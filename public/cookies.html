@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#171310" />
+  <meta name="robots" content="noindex, follow" />
+  <title>Política de cookies · Zeñorio Marbella</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,400;1,6..96,500;1,6..96,600&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/styles.css?v=12" />
+  <style>
+    .legal-top{position:sticky;top:0;background:rgba(5,5,5,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:1rem 0;z-index:10}
+    .legal-wrap{max-width:780px;margin:0 auto;padding:0 var(--gut)}
+    .legal-body{padding:clamp(2.5rem,6vw,5rem) 0 5rem}
+    .legal-body h1{font-family:var(--font-display);font-size:clamp(2rem,5vw,3.2rem);margin-bottom:.4rem}
+    .legal-body .upd{color:var(--muted);font-size:.85rem;margin-bottom:2.5rem}
+    .legal-body h2{font-family:var(--font-display);font-size:1.5rem;margin:2.2rem 0 .8rem;color:var(--gold-2)}
+    .legal-body p,.legal-body li,.legal-body td,.legal-body th{color:var(--cream-2);line-height:1.7}
+    .legal-body p,.legal-body li{margin-bottom:.8rem}
+    .legal-body ul{padding-left:1.2rem;list-style:disc;margin-bottom:1rem}
+    .legal-body a{color:var(--gold);text-decoration:underline}
+    .legal-note{background:var(--noir-2);border:1px solid var(--line);border-radius:4px;padding:1rem 1.2rem;color:var(--muted);font-size:.85rem;margin-bottom:2.5rem}
+    .legal-back{display:inline-block;margin-top:2.5rem;color:var(--gold);font-weight:600}
+    .ck-table{width:100%;border-collapse:collapse;margin:1rem 0 1.5rem;font-size:.9rem}
+    .ck-table th,.ck-table td{border:1px solid var(--line);padding:.6rem .8rem;text-align:left;vertical-align:top}
+    .ck-table th{color:var(--gold-2);font-weight:600}
+    .ck-btn{display:inline-block;margin-top:.5rem;background:var(--gold);color:var(--noir);font-weight:600;padding:.7em 1.4em;border-radius:100px;border:0;cursor:pointer;letter-spacing:.04em}
+  </style>
+</head>
+<body>
+  <div class="legal-top"><div class="legal-wrap"><a href="/" class="brand" style="color:var(--cream)"><span class="brand__name">Zeñorío<small style="color:var(--gold)">Restaurante</small></span></a></div></div>
+  <main class="legal-wrap legal-body">
+    <h1>Política de cookies</h1>
+    <p class="upd">Última actualización: junio de 2026</p>
+
+    <div class="legal-note">⚠️ Plantilla orientativa. Ajusta la tabla a las cookies que finalmente uses (los IDs de Google Analytics y Meta Pixel se activan solo si los configuras y el usuario acepta).</div>
+
+    <h2>¿Qué son las cookies?</h2>
+    <p>Una cookie es un pequeño archivo que se descarga en tu dispositivo al visitar una web. Permiten que el sitio funcione correctamente, recordar tus preferencias y, en su caso, medir el uso o mostrarte contenido relevante.</p>
+
+    <h2>Tipos de cookies que utilizamos</h2>
+    <table class="ck-table">
+      <thead><tr><th>Tipo</th><th>Finalidad</th><th>Consentimiento</th></tr></thead>
+      <tbody>
+        <tr><td>Técnicas / esenciales</td><td>Hacen funcionar el sitio y recuerdan tu elección de idioma y de cookies.</td><td>No requieren consentimiento</td></tr>
+        <tr><td>Analíticas (Google Analytics 4)</td><td>Nos ayudan a entender cómo se usa la web para mejorarla, de forma agregada.</td><td>Requieren tu consentimiento</td></tr>
+        <tr><td>Marketing (Meta Pixel)</td><td>Permiten medir y optimizar campañas publicitarias en redes.</td><td>Requieren tu consentimiento</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Gestión de cookies</h2>
+    <p>Puedes aceptar o rechazar las cookies no esenciales en el aviso que aparece al entrar. También puedes cambiar tu elección en cualquier momento:</p>
+    <button class="ck-btn" onclick="if(window.ZenorioCookies){ZenorioCookies.reset()}else{try{localStorage.removeItem('zenorio-cookies')}catch(e){};location.href='/'}">Cambiar mis preferencias de cookies</button>
+    <p style="margin-top:1.2rem">Además, puedes configurar tu navegador para bloquear o eliminar cookies. Ten en cuenta que algunas funciones podrían no estar disponibles.</p>
+
+    <a class="legal-back" href="/">← Volver al inicio</a>
+  </main>
+</body>
+</html>

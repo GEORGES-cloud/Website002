@@ -1,0 +1,16 @@
+node_modules/
+data/
+npm-debug.log*
+.DS_Store
+.env
+*.local
+
+# Material fuente pesado (no forma parte del sitio desplegable)
+Fotos/
+*.zip
+
+# Config local del editor/agente
+.claude/
+
+# Copias de seguridad de vídeo
+*-old.mp4

@@ -1,0 +1,28 @@
+{
+  "name": "zenorio-marbella",
+  "version": "1.0.0",
+  "description": "Sitio web premium para Zeñorio — restaurante mediterráneo en Nueva Andalucía, Marbella.",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "restaurante",
+    "marbella",
+    "zenorio",
+    "mediterraneo",
+    "fine-dining"
+  ],
+  "author": "Zeñorio",
+  "license": "UNLICENSED",
+  "private": true,
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "compression": "^1.7.5",
+    "express": "^4.21.2"
+  }
+}
