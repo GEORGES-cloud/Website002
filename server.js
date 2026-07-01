@@ -136,8 +136,12 @@ app.get('*', (_req, res) => {
   res.sendFile(join(PUBLIC_DIR, 'index.html'));
 });
 
-const server = app.listen(PORT, () => {
-  console.log(`\n  Zeñorio · sirviendo en  http://localhost:${PORT}\n`);
+// Escuchamos en 0.0.0.0 (todas las interfaces) para que el proxy del hosting
+// (Hostinger, contenedores, PaaS) pueda alcanzar la app. Sin esto, la app
+// puede arrancar sin errores pero el proxy no la alcanza → 503.
+const HOST = process.env.HOST || '0.0.0.0';
+const server = app.listen(PORT, HOST, () => {
+  console.log(`\n  Zeñorio · sirviendo en  http://${HOST}:${PORT}\n`);
 });
 
 server.on('error', (err) => {
