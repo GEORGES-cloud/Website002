@@ -1,0 +1,56 @@
+# =====================================================================
+# Zeñorío · configuración para hosting estático (Hostinger · Apache/LiteSpeed)
+# Sube el CONTENIDO de esta carpeta (public/) a public_html.
+# =====================================================================
+
+# --- Página de inicio y errores -------------------------------------
+DirectoryIndex index.html
+# Sitio de una sola página: rutas desconocidas muestran la home.
+ErrorDocument 404 /index.html
+
+# --- WebP automático: sirve la versión .webp si el navegador la acepta
+# y existe el gemelo .webp junto al .jpg (más ligero, sin tocar el HTML).
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTP_ACCEPT} image/webp
+  RewriteCond %{REQUEST_FILENAME} (.+)\.(jpe?g)$
+  RewriteCond %1.webp -f
+  RewriteRule (.+)\.(jpe?g)$ $1.webp [T=image/webp,E=accept:1,L]
+</IfModule>
+
+# --- Compresión -----------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml \
+    application/javascript application/json image/svg+xml application/xml
+</IfModule>
+
+# --- Caché ----------------------------------------------------------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  # HTML, CSS y JS: sin caché larga (se publican los cambios al instante).
+  ExpiresByType text/html            "access plus 0 seconds"
+  ExpiresByType text/css             "access plus 0 seconds"
+  ExpiresByType application/javascript "access plus 0 seconds"
+  # Binarios estables: caché de un año.
+  ExpiresByType image/jpeg           "access plus 1 year"
+  ExpiresByType image/png            "access plus 1 year"
+  ExpiresByType image/webp           "access plus 1 year"
+  ExpiresByType image/svg+xml        "access plus 1 year"
+  ExpiresByType video/mp4            "access plus 1 year"
+  ExpiresByType font/woff2           "access plus 1 year"
+</IfModule>
+
+# --- Cabeceras ------------------------------------------------------
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header append Vary Accept env=accept
+  # Caché larga solo para binarios estables.
+  <FilesMatch "\.(jpg|jpeg|png|webp|svg|mp4|woff2)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(html|css|js)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
