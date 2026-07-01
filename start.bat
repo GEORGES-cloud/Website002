@@ -17,5 +17,5 @@ echo   Zenorio sirviendo en  http://localhost:3000
 echo   (Cierra esta ventana para detener el servidor)
 echo.
 start "" http://localhost:3000
-node server.js
+node server.mjs
 endlocal
