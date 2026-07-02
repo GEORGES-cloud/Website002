@@ -100,10 +100,10 @@ select { font: inherit; color: inherit; }
 :root {
   /* Color — nocturno andaluz aclarado + highlight VINO
      espresso cálido más luminoso + vino (bordeaux) como acento */
-  --noir: #322A21;
-  --noir-2: #3E3428;
-  --noir-3: #4A3E2F;
-  --noir-soft: #574938;
+  --noir: #171310;
+  --noir-2: #1F1A15;
+  --noir-3: #2A231C;
+  --noir-soft: #332A20;
   --cream: #EDE4D3;
   --cream-2: #DDD2BE;
   --ink: #1E1712;
@@ -309,7 +309,7 @@ h1, h2, h3, h4 {
   transition: background 0.5s var(--ease), padding 0.5s var(--ease), box-shadow 0.5s var(--ease);
 }
 .header.scrolled {
-  background: rgba(50, 42, 33, 0.85);
+  background: rgba(15, 12, 8, 0.85);
   backdrop-filter: blur(14px) saturate(120%);
   padding-block: 0.7rem;
   box-shadow: 0 1px 0 var(--line-soft);
@@ -488,7 +488,7 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
   object-fit: cover;
 }
 /* Hero solo-foto: zoom sutil para que no quede plano */
-.hero--papi .hero__media img {
+.hero--papi .hero__media > img {
   animation: heroZoom 24s ease-in-out infinite alternate;
   will-change: transform;
 }
@@ -1727,6 +1727,19 @@ h1, h2, h3, h4, .h2, .h3 { font-weight: 500; }
   color: var(--muted-2);
   margin-top: 0.7rem;
 }
+/* Pantallas muy estrechas: los datos se apilan con filete horizontal
+   (el divisor vertical queda huérfano si la fila llega a envolver) */
+@media (max-width: 379px) {
+  .story__body .stats { flex-direction: column; }
+  .story__body .stat { padding-right: 0; }
+  .story__body .stat + .stat {
+    padding-left: 0;
+    border-left: none;
+    margin-top: 1.3rem;
+    padding-top: 1.3rem;
+    border-top: 1px solid var(--line);
+  }
+}
 
 /* =====================================================================
    ORO FRÍO monocromo — el acento vuelve a ser claro, así que el texto
@@ -1762,3 +1775,43 @@ h1, h2, h3, h4, .h2, .h3 { font-weight: 500; }
 .footer__bottom a:hover,
 .nav-mobile a:hover,
 .fab--top { color: var(--gold-2); }
+
+/* =====================================================================
+   HERO SLIDESHOW — Ken Burns por CSS (GPU, subpíxel: sin vibración).
+   5 planos × 6 s = ciclo de 30 s con fundidos encadenados.
+   ===================================================================== */
+.hero__slides { position: absolute; inset: 0; overflow: hidden; }
+.hero .hero__slides .hero__slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.03);
+  will-change: opacity, transform;
+  backface-visibility: hidden;
+  animation: heroSlide 30s linear infinite;
+}
+.hero .hero__slides .hero__slide:nth-child(1) { animation-delay: 0s; }
+.hero .hero__slides .hero__slide:nth-child(2) { animation-delay: 6s; }
+.hero .hero__slides .hero__slide:nth-child(3) { animation-delay: 12s; }
+.hero .hero__slides .hero__slide:nth-child(4) { animation-delay: 18s; }
+.hero .hero__slides .hero__slide:nth-child(5) { animation-delay: 24s; }
+/* Alternar el origen del zoom para que cada plano "viaje" distinto */
+.hero .hero__slides .hero__slide:nth-child(odd)  { transform-origin: 38% 42%; }
+.hero .hero__slides .hero__slide:nth-child(even) { transform-origin: 64% 58%; }
+
+@keyframes heroSlide {
+  0%   { opacity: 0; transform: scale(1.03); }
+  4.5% { opacity: 1; }
+  20%  { opacity: 1; }
+  26%  { opacity: 0; transform: scale(1.13); }
+  100% { opacity: 0; transform: scale(1.03); }
+}
+
+/* Reduced motion / respaldo: primer plano fijo, sin animación */
+@media (prefers-reduced-motion: reduce) {
+  .hero .hero__slides .hero__slide { animation: none; opacity: 0; transform: none; }
+  .hero .hero__slides .hero__slide:first-child { opacity: 1; }
+}

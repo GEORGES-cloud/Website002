@@ -8,6 +8,16 @@ DirectoryIndex index.html
 # Sitio de una sola página: rutas desconocidas muestran la home.
 ErrorDocument 404 /index.html
 
+# --- HTTPS y dominio canónico ----------------------------------------
+# Todo a https:// y sin www (el certificado y el SEO usan el dominio raíz).
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+  RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+  RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
+</IfModule>
+
 # --- WebP automático: sirve la versión .webp si el navegador la acepta
 # y existe el gemelo .webp junto al .jpg (más ligero, sin tocar el HTML).
 <IfModule mod_rewrite.c>

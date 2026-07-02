@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://zenoriomarbella.es/sitemap.xml
+Sitemap: https://xn--zeorio-xwa.com/sitemap.xml

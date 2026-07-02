@@ -3,21 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#322A21" />
+  <meta name="theme-color" content="#171310" />
 
-  <title>Zeñorio · Restaurante mediterráneo en Marbella — Nueva Andalucía</title>
-  <meta name="description" content="Zeñorio, restaurante mediterráneo de autor en Nueva Andalucía, Marbella. Brasa de encina, arroces con alma, pescados de lonja y un jardín tropical de palmeras. Reserva tu mesa." />
-  <meta name="author" content="Zeñorio" />
+  <title>Zeñorío · Restaurante mediterráneo en Marbella — Nueva Andalucía</title>
+  <meta name="description" content="Zeñorío, restaurante mediterráneo de autor en Nueva Andalucía, Marbella. Brasa de encina, arroces con alma, pescados de lonja y un jardín tropical de palmeras. Reserva tu mesa." />
+  <meta name="author" content="Zeñorío" />
   <meta name="google" content="notranslate" />
-  <link rel="canonical" href="https://zenoriomarbella.es/" />
+  <link rel="canonical" href="https://xn--zeorio-xwa.com/" />
 
   <!-- Open Graph / Social -->
-  <meta property="og:type" content="restaurant" />
+  <meta property="og:type" content="restaurant.restaurant" />
   <meta property="og:locale" content="es_ES" />
-  <meta property="og:site_name" content="Zeñorio Marbella" />
-  <meta property="og:title" content="Zeñorio · Restaurante mediterráneo en Marbella" />
+  <meta property="og:site_name" content="Zeñorío Marbella" />
+  <meta property="og:title" content="Zeñorío · Restaurante mediterráneo en Marbella" />
   <meta property="og:description" content="Brasa de encina, arroces con alma y un jardín tropical en el corazón de Nueva Andalucía, Marbella." />
-  <meta property="og:image" content="/assets/img/real2-hero.jpg" />
+  <meta property="og:url" content="https://xn--zeorio-xwa.com/" />
+  <meta property="og:image" content="https://xn--zeorio-xwa.com/assets/img/real2-hero.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
 
   <!-- Icono / PWA -->
@@ -33,19 +34,19 @@
 
   <!-- Activa el estado para animaciones de scroll solo si hay JS (degradación elegante) -->
   <script>document.documentElement.classList.add('js');</script>
-  <link rel="stylesheet" href="/css/styles.css?v=27" />
+  <link rel="stylesheet" href="/css/styles.css?v=30" />
 
   <!-- Datos estructurados -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Restaurant",
-    "name": "Zeñorio",
-    "image": "https://zenoriomarbella.es/assets/img/real2-hero.jpg",
+    "name": "Zeñorío",
+    "image": "https://xn--zeorio-xwa.com/assets/img/real2-hero.jpg",
     "servesCuisine": ["Mediterránea", "Española", "Andaluza"],
     "priceRange": "€€€",
     "telephone": "+34 625 84 89 36",
-    "url": "https://zenoriomarbella.es/",
+    "url": "https://xn--zeorio-xwa.com/",
     "sameAs": [
       "https://www.instagram.com/zenoriomarbella/",
       "https://www.facebook.com/p/Ze%C3%B1or%C3%ADo-Marbella-61577793421421/"
@@ -64,23 +65,7 @@
       "@type": "OpeningHoursSpecification",
       "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
       "opens": "19:30", "closes": "23:30"
-    }],
-    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.6", "reviewCount": "99" }
-  }
-  </script>
-
-  <!-- FAQ (resultados enriquecidos en Google) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      { "@type": "Question", "name": "¿Cuál es el horario de Zeñorio?", "acceptedAnswer": { "@type": "Answer", "text": "Abrimos de martes a domingo de 19:30 a 23:30. Los lunes permanecemos cerrados." } },
-      { "@type": "Question", "name": "¿Hace falta reservar?", "acceptedAnswer": { "@type": "Answer", "text": "Recomendamos reservar, sobre todo los fines de semana. Puedes hacerlo desde la web o por WhatsApp en el +34 625 84 89 36." } },
-      { "@type": "Question", "name": "¿Dónde está Zeñorio?", "acceptedAnswer": { "@type": "Answer", "text": "En la Avenida de los Girasoles 108, Nueva Andalucía, Marbella, a un paso de Puerto Banús. Disponemos de aparcamiento." } },
-      { "@type": "Question", "name": "¿Tenéis opciones vegetarianas, veganas o sin gluten?", "acceptedAnswer": { "@type": "Answer", "text": "Sí. Contamos con opciones veganas, vegetarianas y sin gluten. Informa a nuestro equipo de cualquier alergia o intolerancia." } },
-      { "@type": "Question", "name": "¿Se puede cenar en el jardín?", "acceptedAnswer": { "@type": "Answer", "text": "Sí, disponemos de un jardín tropical y terraza para cenar al aire libre, además de sala interior y lounge." } }
-    ]
+    }]
   }
   </script>
 </head>
@@ -114,7 +99,7 @@
       <a href="#inicio" class="brand" aria-label="Zeñorío — inicio">
         <span class="brand__lockup">
           <img class="brand__logo" src="/assets/img/logo-zenorio-word.png?v=2" alt="" />
-          <span class="brand__sub">Restaurante</span>
+          <span class="brand__sub" data-i18n="brand.sub">Restaurante</span>
         </span>
       </a>
 
@@ -157,10 +142,15 @@
   <main id="inicio">
     <!-- ============ HERO ============ -->
     <section class="hero hero--papi">
-      <div class="hero__media">
-        <video class="hero__video" autoplay muted loop playsinline poster="/assets/img/hero-poster.jpg?v=12" aria-hidden="true">
-          <source src="/assets/video/hero.mp4?v=14" type="video/mp4" />
-        </video>
+      <div class="hero__media" aria-hidden="true">
+        <!-- Montaje Ken Burns por CSS (GPU, sin vibración; sustituye al hero.mp4) -->
+        <div class="hero__slides">
+          <img class="hero__slide" src="/assets/img/real2-hero.webp" alt="" fetchpriority="high" />
+          <img class="hero__slide" src="/assets/img/real2-salon.webp" alt="" />
+          <img class="hero__slide" src="/assets/img/real2-terraza-noche.webp" alt="" />
+          <img class="hero__slide" src="/assets/img/real2-jardin-oasis.webp" alt="" />
+          <img class="hero__slide" src="/assets/img/real2-bodega.webp" alt="" />
+        </div>
       </div>
       <div class="wrap hero__inner">
         <h1 class="sr-only">Zeñorío · Restaurante mediterráneo en Marbella</h1>
@@ -178,10 +168,10 @@
     <!-- Marquesina de distinciones -->
     <div class="marquee" aria-hidden="true">
       <div class="marquee__track">
-        <span>Cocina mediterránea</span><span>Brasa de encina</span><span>Arroces con alma</span>
-        <span>Jardín tropical</span><span>Pescados de lonja</span><span>Marbella · Costa del Sol</span>
-        <span>Cocina mediterránea</span><span>Brasa de encina</span><span>Arroces con alma</span>
-        <span>Jardín tropical</span><span>Pescados de lonja</span><span>Marbella · Costa del Sol</span>
+        <span data-i18n="mq.1">Cocina mediterránea</span><span data-i18n="mq.2">Brasa de encina</span><span data-i18n="mq.3">Arroces con alma</span>
+        <span data-i18n="mq.4">Jardín tropical</span><span data-i18n="mq.5">Pescados de lonja</span><span data-i18n="mq.6">Marbella · Costa del Sol</span>
+        <span data-i18n="mq.1">Cocina mediterránea</span><span data-i18n="mq.2">Brasa de encina</span><span data-i18n="mq.3">Arroces con alma</span>
+        <span data-i18n="mq.4">Jardín tropical</span><span data-i18n="mq.5">Pescados de lonja</span><span data-i18n="mq.6">Marbella · Costa del Sol</span>
       </div>
     </div>
 
@@ -189,7 +179,7 @@
     <section class="section" id="casa">
       <div class="wrap story__grid">
         <div class="story__media" data-reveal>
-          <img src="/assets/img/real2-salon.jpg" alt="Salón principal de Zeñorio" loading="lazy" />
+          <img src="/assets/img/real2-salon.webp" alt="Salón principal de Zeñorío" loading="lazy" />
         </div>
         <div class="story__body">
           <span class="eyebrow" data-reveal data-i18n="story.eyebrow">Nuestra historia</span>
@@ -197,7 +187,7 @@
             Un homenaje<br />de hijo a padre
           </h2>
           <p class="lead" data-reveal style="--d:.12s" data-i18n="story.p1">
-            Zeñorio nació de una forma muy sencilla de querer: la de un hijo que quiso
+            Zeñorío nació de una forma muy sencilla de querer: la de un hijo que quiso
             rendir homenaje a su padre. Detrás de cada arroz, de cada brasa y de cada
             pescado de la lonja está la mano del chef Federico Cardenete, al frente de
             los fogones, que ha hecho de la cocina el oficio de toda una vida.
@@ -206,12 +196,12 @@
             Aquí el Mediterráneo se cocina despacio y con respeto: producto local y de
             temporada, técnica heredada y una mirada actual. Una sala elegante que se abre
             a un jardín tropical de palmeras, donde cada servicio se vive sin prisa. Eso es
-            Zeñorio: una casa levantada sobre el cariño, el oficio y la memoria de quien
+            Zeñorío: una casa levantada sobre el cariño, el oficio y la memoria de quien
             nos enseñó a cocinar.
           </p>
           <div class="stats" data-reveal style="--d:.2s">
             <div class="stat"><b>100<span class="stat__u">%</span></b><span data-i18n="story.s1">Producto de mercado</span></div>
-            <div class="stat"><b>45<span class="stat__u">días</span></b><span data-i18n="story.s2">Carne madurada</span></div>
+            <div class="stat"><b>45<span class="stat__u" data-i18n="story.s2u">días</span></b><span data-i18n="story.s2">Carne madurada</span></div>
           </div>
           <p class="muted" data-reveal style="--d:.24s;margin-top:1.8rem;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase" data-i18n="story.chefLabel">Al frente de la cocina</p>
           <p class="signature">Federico Cardenete</p>
@@ -249,7 +239,7 @@
     <!-- ============ FEATURE: PESCADO A LA SAL ============ -->
     <section class="feature">
       <div class="feature__media">
-        <img src="/assets/img/real2-atun.jpg?v=14" alt="Pescado de lonja del día" loading="lazy" />
+        <img src="/assets/img/real2-atun.webp" alt="Pescado de lonja del día" loading="lazy" />
       </div>
       <div class="wrap">
         <div class="feature__card" data-reveal>
@@ -284,7 +274,7 @@
         </div>
         <div class="exp__grid">
           <article class="exp__card exp__card--tall" data-reveal>
-            <img src="/assets/img/real2-bodega-velas.jpg" alt="Bodega y sobremesa en Zeñorio" loading="lazy"/>
+            <img src="/assets/img/real2-bodega-velas.webp" alt="Bodega y sobremesa en Zeñorío" loading="lazy"/>
             <div>
               <span class="eyebrow" data-i18n="exp.c3e">Lounge & copas</span>
               <h3 class="h3" data-i18n="exp.c3t">La sobremesa perfecta</h3>
@@ -292,15 +282,15 @@
             </div>
           </article>
           <article class="exp__card" data-reveal style="--d:.1s">
-            <img src="/assets/img/real2-jardin-oasis.jpg?v=1" alt="El jardín tropical de Zeñorio, palmeras y farol cálido" loading="lazy"/>
+            <img src="/assets/img/real2-jardin-oasis.webp" alt="El jardín tropical de Zeñorío, palmeras y farol cálido" loading="lazy"/>
             <div>
               <span class="eyebrow" data-i18n="exp.c1e">El jardín</span>
               <h3 class="h3" data-i18n="exp.c1t">Un oasis tropical</h3>
-              <p data-i18n="exp.c1p">Palmeras, vegetación frondosa y nuestro célebre pavo real. Cenar al aire libre en Zeñorio es desconectar de Marbella sin salir de ella.</p>
+              <p data-i18n="exp.c1p">Palmeras, vegetación frondosa y nuestro célebre pavo real. Cenar al aire libre en Zeñorío es desconectar de Marbella sin salir de ella.</p>
             </div>
           </article>
           <article class="exp__card" data-reveal style="--d:.2s">
-            <img src="/assets/img/real2-terraza-noche.jpg" alt="Terraza de Zeñorio de noche" loading="lazy"/>
+            <img src="/assets/img/real2-terraza-noche.webp" alt="Terraza de Zeñorío de noche" loading="lazy"/>
             <div>
               <span class="eyebrow" data-i18n="exp.c2e">Al fresco</span>
               <h3 class="h3" data-i18n="exp.c2t">Cenas bajo las estrellas</h3>
@@ -315,7 +305,7 @@
     <section class="section" id="eventos">
       <div class="wrap story__grid">
         <div class="story__media" data-reveal>
-          <img src="/assets/img/real2-mesa.jpg" alt="Mesa preparada para un evento privado en Zeñorio" loading="lazy" />
+          <img src="/assets/img/real2-mesa.webp" alt="Mesa preparada para un evento privado en Zeñorío" loading="lazy" />
         </div>
         <div class="story__body">
           <span class="eyebrow" data-reveal data-i18n="ev.e">Eventos & Privados</span>
@@ -428,7 +418,7 @@
         </div>
         <div class="loc" data-reveal>
           <div class="loc__info">
-            <h3 class="h3" style="margin-bottom:1rem">Zeñorio Marbella</h3>
+            <h3 class="h3" style="margin-bottom:1rem">Zeñorío Marbella</h3>
             <p class="muted">Avenida de los Girasoles, 108<br/>29660 Nueva Andalucía, Marbella (Málaga)</p>
             <div class="loc__hours">
               <div class="row closed"><span data-i18n="loc.mon">Lunes</span><b data-i18n="loc.closed">Cerrado</b></div>
@@ -441,7 +431,7 @@
           </div>
           <div class="loc__map">
             <iframe
-              title="Mapa de Zeñorio Marbella"
+              title="Mapa de Zeñorío Marbella"
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
               src="https://www.google.com/maps?q=Avenida%20de%20los%20Girasoles%20108%20Nueva%20Andaluc%C3%ADa%20Marbella&output=embed">
@@ -459,13 +449,13 @@
           <h2 class="h2" data-reveal style="--d:.06s" data-i18n="gallery.title">El placer entra por los ojos</h2>
         </div>
         <div class="gallery" data-reveal>
-          <figure class="g-a"><img src="/assets/img/real2-jardin-noche.jpg" alt="El jardín tropical de Zeñorío de noche" loading="lazy"/><figcaption data-i18n="gallery.c1">El jardín, de noche</figcaption></figure>
-          <figure class="g-b"><img src="/assets/img/real2-paella.jpg" alt="Paella de marisco de Zeñorío" loading="lazy"/><figcaption data-i18n="gallery.c2">El arte del arroz</figcaption></figure>
-          <figure class="g-c"><img src="/assets/img/real2-terraza-noche.jpg" alt="La terraza de Zeñorío al anochecer" loading="lazy"/><figcaption data-i18n="gallery.c3">La terraza</figcaption></figure>
-          <figure class="g-d"><img src="/assets/img/real2-ostras.jpg" alt="Ostras con caviar" loading="lazy"/><figcaption data-i18n="gallery.c4">Ostras &amp; caviar</figcaption></figure>
-          <figure class="g-e"><img src="/assets/img/real2-atun.jpg" alt="Atún rojo de almadraba" loading="lazy"/><figcaption data-i18n="gallery.c5">Atún rojo</figcaption></figure>
-          <figure class="g-f"><img src="/assets/img/real2-salon.jpg" alt="El salón de Zeñorío" loading="lazy"/><figcaption data-i18n="gallery.c6">El salón</figcaption></figure>
-          <figure class="g-g"><img src="/assets/img/real2-bodega-velas.jpg" alt="La bodega de Zeñorío" loading="lazy"/><figcaption data-i18n="gallery.c7">La bodega</figcaption></figure>
+          <figure class="g-a"><img src="/assets/img/real2-jardin-noche.webp" alt="El jardín tropical de Zeñorío de noche" loading="lazy"/><figcaption data-i18n="gallery.c1">El jardín, de noche</figcaption></figure>
+          <figure class="g-b"><img src="/assets/img/real2-paella.webp" alt="Paella de marisco de Zeñorío" loading="lazy"/><figcaption data-i18n="gallery.c2">El arte del arroz</figcaption></figure>
+          <figure class="g-c"><img src="/assets/img/real2-terraza-noche.webp" alt="La terraza de Zeñorío al anochecer" loading="lazy"/><figcaption data-i18n="gallery.c3">La terraza</figcaption></figure>
+          <figure class="g-d"><img src="/assets/img/real2-ostras.webp" alt="Ostras con caviar" loading="lazy"/><figcaption data-i18n="gallery.c4">Ostras &amp; caviar</figcaption></figure>
+          <figure class="g-e"><img src="/assets/img/real2-atun.webp" alt="Atún rojo de almadraba" loading="lazy"/><figcaption data-i18n="gallery.c5">Atún rojo</figcaption></figure>
+          <figure class="g-f"><img src="/assets/img/real2-salon.webp" alt="El salón de Zeñorío" loading="lazy"/><figcaption data-i18n="gallery.c6">El salón</figcaption></figure>
+          <figure class="g-g"><img src="/assets/img/real2-bodega-velas.webp" alt="La bodega de Zeñorío" loading="lazy"/><figcaption data-i18n="gallery.c7">La bodega</figcaption></figure>
         </div>
       </div>
     </section>
@@ -478,7 +468,7 @@
         <div class="footer__col">
           <span class="brand__lockup">
             <img class="brand__logo" src="/assets/img/logo-zenorio-word.png?v=2" alt="Zeñorío" />
-            <span class="brand__sub">Restaurante</span>
+            <span class="brand__sub" data-i18n="brand.sub">Restaurante</span>
           </span>
           <p class="footer__tagline" data-i18n="foot.tagline">El señorío de la mesa mediterránea. Brasa, arroz y jardín en Nueva Andalucía.</p>
           <div class="socials">
@@ -505,14 +495,11 @@
         <div class="footer__col">
           <h4 data-i18n="foot.news">Novedades</h4>
           <p data-i18n="foot.newsP">Eventos, menús de temporada y noches especiales.</p>
-          <form class="newsletter" id="newsletter">
-            <input type="email" required placeholder="tu@email.com" aria-label="Email"/>
-            <button type="submit" aria-label="Suscribirse"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-          </form>
+          <a class="link-underline" href="https://www.instagram.com/zenoriomarbella/" target="_blank" rel="noopener" data-i18n="foot.follow">Síguenos en Instagram ↗</a>
         </div>
       </div>
       <div class="footer__bottom">
-        <p>© <span id="year">2026</span> Zeñorio Marbella · <span data-i18n="foot.rights">Todos los derechos reservados</span></p>
+        <p>© <span id="year">2026</span> Zeñorío Marbella · <span data-i18n="foot.rights">Todos los derechos reservados</span></p>
         <p><a href="/aviso-legal.html" data-i18n="foot.legal">Aviso legal</a> · <a href="/privacidad.html" data-i18n="foot.privacy">Privacidad</a> · <a href="/cookies.html" data-i18n="foot.cookies">Cookies</a></p>
       </div>
     </div>
@@ -528,8 +515,8 @@
     </button>
   </div>
 
-  <script src="/js/cookies.js?v=1"></script>
-  <script src="/js/i18n.js?v=3"></script>
-  <script src="/js/main.js?v=1"></script>
+  <script src="/js/cookies.js?v=2"></script>
+  <script src="/js/i18n.js?v=5"></script>
+  <script src="/js/main.js?v=2"></script>
 </body>
 </html>

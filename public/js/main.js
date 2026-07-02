@@ -1,5 +1,5 @@
 /* =====================================================================
-   Zeñorio · interacciones
+   Zeñorío · interacciones
    ===================================================================== */
 (function () {
   "use strict";
@@ -68,6 +68,10 @@
   navMobile && $$("a", navMobile).forEach((a) =>
     a.addEventListener("click", () => setMenu(false))
   );
+  // Los botones ES/EN del menú móvil también cierran el overlay
+  navMobile && $$("button[data-lang]", navMobile).forEach((b) =>
+    b.addEventListener("click", () => setMenu(false))
+  );
 
   /* ---- Scroll spy ---- */
   const navLinks = $$(".nav__links a");
@@ -92,18 +96,6 @@
     });
   }
 
-  /* ---- Pestañas de la carta ---- */
-  const tabs = $$(".menu__tab");
-  tabs.forEach((tab) => {
-    tab.addEventListener("click", () => {
-      const target = tab.dataset.tab;
-      tabs.forEach((t) => t.classList.toggle("active", t === tab));
-      $$(".menu__panel").forEach((p) =>
-        p.classList.toggle("active", p.id === target)
-      );
-    });
-  });
-
   /* ---- Fecha mínima = hoy ---- */
   const fecha = $("#fecha");
   if (fecha) {
@@ -127,7 +119,7 @@
   }
   function waLink(d) {
     const txt = encodeURIComponent(
-      "Hola, me gustaría reservar en Zeñorio.\n" +
+      "Hola, me gustaría reservar en Zeñorío.\n" +
         `• Nombre: ${d.nombre}\n` +
         `• Fecha: ${d.fecha} a las ${d.hora}\n` +
         `• Comensales: ${d.personas}\n` +
@@ -162,22 +154,18 @@
       form.reset();
       if (fecha) fecha.value = fecha.min;
     } catch (err) {
-      // Sin servidor (modo estático): caemos directos a WhatsApp.
-      showMsg("ok", okText + `<a href="${waLink(data)}" target="_blank" rel="noopener">WhatsApp ↗</a>`);
+      // Sin servidor (modo estático): la solicitud NO queda registrada en
+      // ningún sitio, así que el paso por WhatsApp es OBLIGATORIO. El texto
+      // debe dejarlo claro (no prometer una confirmación que no existe).
+      const waText = isEN
+        ? "One last step! Your request isn't confirmed yet — send it to us on WhatsApp with one tap: "
+        : "¡Último paso! Tu solicitud aún no está confirmada — envíanosla por WhatsApp con un toque: ";
+      showMsg("ok", waText + `<a href="${waLink(data)}" target="_blank" rel="noopener"><strong>${isEN ? "Send via WhatsApp" : "Enviar por WhatsApp"} ↗</strong></a>`);
     } finally {
       submitBtn.disabled = false;
       submitBtn.textContent = isEN ? "Request reservation" : "Solicitar reserva";
-      msg.scrollIntoView({ behavior: "smooth", block: "center" });
+      msg && msg.scrollIntoView({ behavior: "smooth", block: "center" });
     }
   });
 
-  /* ---- Newsletter ---- */
-  const news = $("#newsletter");
-  news && news.addEventListener("submit", (ev) => {
-    ev.preventDefault();
-    const isEN = document.documentElement.lang === "en";
-    news.innerHTML = `<p style="color:var(--gold);font-size:.9rem">${
-      isEN ? "Thank you for subscribing ◆" : "Gracias por suscribirte ◆"
-    }</p>`;
-  });
 })();
