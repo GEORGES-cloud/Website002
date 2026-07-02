@@ -5,8 +5,9 @@
 
 # --- Página de inicio y errores -------------------------------------
 DirectoryIndex index.html
-# Sitio de una sola página: rutas desconocidas muestran la home.
-ErrorDocument 404 /index.html
+# Rutas/recursos inexistentes → página 404 propia con estado 404 real
+# (evita los "soft 404" que penaliza Google al devolver 200 con la home).
+ErrorDocument 404 /404.html
 
 # --- HTTPS y dominio canónico ----------------------------------------
 # Todo a https:// y sin www (el certificado y el SEO usan el dominio raíz).
