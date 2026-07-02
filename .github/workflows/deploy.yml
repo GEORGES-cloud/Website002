@@ -61,6 +61,7 @@ jobs:
       # caché/WebP/redirecciones/404 nunca llegaban al servidor. Este paso lo
       # sube siempre a mano por FTP.
       - name: Forzar subida de .htaccess (el sync omite dotfiles)
+        if: always()
         env:
           FTP_SERVER: ${{ secrets.FTP_SERVER }}
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
@@ -69,13 +70,20 @@ jobs:
           npm install basic-ftp@5 --no-fund --no-audit --silent
           cat > subir-htaccess.mjs <<'EOF'
           import * as ftp from 'basic-ftp';
-          const c = new ftp.Client(30000);
-          try {
-            await c.access({ host: process.env.FTP_SERVER, user: process.env.FTP_USERNAME, password: process.env.FTP_PASSWORD, secure: true, secureOptions: { rejectUnauthorized: false } });
-            const raiz = (await c.list('/')).map(e => e.name);
-            const base = raiz.includes('public_html') ? 'public_html/' : '';
-            await c.uploadFrom('public/.htaccess', base + '.htaccess');
-            console.log('SUBIDO ' + base + '.htaccess');
-          } finally { c.close(); }
+          async function intento(n) {
+            const c = new ftp.Client(30000);
+            try {
+              await c.access({ host: process.env.FTP_SERVER, user: process.env.FTP_USERNAME, password: process.env.FTP_PASSWORD, secure: true, secureOptions: { rejectUnauthorized: false } });
+              const raiz = (await c.list('/')).map(e => e.name);
+              const base = raiz.includes('public_html') ? 'public_html/' : '';
+              await c.uploadFrom('public/.htaccess', base + '.htaccess');
+              console.log('SUBIDO ' + base + '.htaccess (intento ' + n + ')');
+              c.close();
+              return true;
+            } catch (e) { console.log('intento ' + n + ' falló: ' + e.message.split('\n')[0]); c.close(); return false; }
+          }
+          let ok = false;
+          for (let n = 1; n <= 4 && !ok; n++) { ok = await intento(n); if (!ok) await new Promise(r => setTimeout(r, 5000)); }
+          if (!ok) process.exit(1);
           EOF
           node subir-htaccess.mjs
