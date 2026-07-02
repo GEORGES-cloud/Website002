@@ -8,12 +8,23 @@
   <title>La carta · Zeñorío · Restaurante en Marbella</title>
   <meta name="description" content="La carta de Zeñorío: entablados, entrantes, ensaladas, clásicos, arroces y paellas, especialidades, pescados, carnes y postres. Nueva Andalucía, Marbella." />
   <link rel="canonical" href="https://xn--zeorio-xwa.com/carta.html" />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="restaurant.menu" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:site_name" content="Zeñorío Marbella" />
+  <meta property="og:title" content="La carta · Zeñorío · Restaurante en Marbella" />
+  <meta property="og:description" content="Entablados, entrantes, arroces y paellas, pescados, carnes y postres caseros. Nueva Andalucía, Marbella." />
+  <meta property="og:url" content="https://xn--zeorio-xwa.com/carta.html" />
+  <meta property="og:image" content="https://xn--zeorio-xwa.com/assets/img/real2-paella.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,400;1,6..96,500;1,6..96,600&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/css/styles.css?v=29" />
+  <link rel="stylesheet" href="/css/styles.css?v=30" />
   <style>
     .header { position: static; background: var(--noir-2); border-bottom: 1px solid var(--line); }
     .carta-page { padding-top: clamp(2.5rem, 6vw, 5rem); }
@@ -27,7 +38,7 @@
       <a href="/" class="brand" aria-label="Zeñorío — inicio">
         <span class="brand__lockup">
           <img class="brand__logo" src="/assets/img/logo-zenorio-word.png?v=2" alt="" />
-          <span class="brand__sub">Restaurante</span>
+          <span class="brand__sub" data-i18n="brand.sub">Restaurante</span>
         </span>
       </a>
       <nav class="nav" aria-label="Principal">
@@ -70,7 +81,7 @@
           <p class="lead" style="margin:1.4rem auto 0;max-width:46ch" data-i18n="carta.intro">Esos momentos especiales, esas recetas nunca escritas y ese sabor tradicional.</p>
         </div>
 
-        <h3 class="menu-cat">Entablados</h3>
+        <h3 class="menu-cat" data-i18n="carta.cat1">Entablados</h3>
         <div class="menu__grid">
           <div class="dish"><div class="dish__name">Tabla de quesos andaluces</div><div class="dish__price">18 €</div><p class="dish__desc">Andalusian cheese board</p></div>
           <div class="dish"><div class="dish__name">Jamón ibérico de bellota</div><div class="dish__price">25,50 €</div><p class="dish__desc">Iberian premium ham</p></div>
@@ -82,7 +93,7 @@
           <div class="dish"><div class="dish__name">Doble gilda de anchoa <span class="tag tag--star">La campeona</span></div><div class="dish__price">3,90 €</div><p class="dish__desc">Double anchovy gilda, “the champion of Spain”</p></div>
         </div>
 
-        <h3 class="menu-cat">Entrantes</h3>
+        <h3 class="menu-cat" data-i18n="carta.cat2">Entrantes</h3>
         <div class="menu__grid">
           <div class="dish"><div class="dish__name">Croquetas cremosas</div><div class="dish__price">17,50 €</div><p class="dish__desc">Creamy croquettes</p></div>
           <div class="dish"><div class="dish__name">Ensaladilla rusa</div><div class="dish__price">14,50 €</div><p class="dish__desc">Russian salad</p></div>
@@ -95,23 +106,23 @@
           <div class="dish"><div class="dish__name">Salmorejo con tartar de atún rojo</div><div class="dish__price">18,50 €</div><p class="dish__desc">Salmorejo with red tuna tartare</p></div>
         </div>
 
-        <h3 class="menu-cat">Ensaladas</h3>
+        <h3 class="menu-cat" data-i18n="carta.cat3">Ensaladas</h3>
         <div class="menu__grid">
           <div class="dish"><div class="dish__name">Ensalada Zeñorío</div><div class="dish__price">15,50 €</div><p class="dish__desc">Mixed salad</p></div>
-          <div class="dish"><div class="dish__name">Ensalada de tomate, cebolla y anchoa</div><div class="dish__price">19,50 €</div><p class="dish__desc">Tomato salad with onion and tuna belly</p></div>
+          <div class="dish"><div class="dish__name">Ensalada de tomate, cebolla y anchoa</div><div class="dish__price">19,50 €</div><p class="dish__desc">Tomato, onion and anchovy salad</p></div>
           <div class="dish"><div class="dish__name">Ensalada tres tomates con burrata</div><div class="dish__price">18,50 €</div><p class="dish__desc">Three tomato salad with burrata</p></div>
           <div class="dish"><div class="dish__name">Ensalada finger de salmón</div><div class="dish__price">19,50 €</div><p class="dish__desc">Smoked salmon salad</p></div>
           <div class="dish"><div class="dish__name">Ensalada de aguacate con gambas y salsa rosa</div><div class="dish__price">19,50 €</div><p class="dish__desc">Avocado and prawns salad</p></div>
         </div>
 
-        <h3 class="menu-cat">Clásicos</h3>
+        <h3 class="menu-cat" data-i18n="carta.cat4">Clásicos</h3>
         <div class="menu__grid">
           <div class="dish"><div class="dish__name">Huevos rotos con carabinero</div><div class="dish__price">35 €</div><p class="dish__desc">Scrambled eggs with red shrimp</p></div>
           <div class="dish"><div class="dish__name">Pollo al ajillo</div><div class="dish__price">19,50 €</div><p class="dish__desc">Chicken with fine herbs and garlic</p></div>
           <div class="dish"><div class="dish__name">Rabo de toro</div><div class="dish__price">25,50 €</div><p class="dish__desc">Ox tail</p></div>
         </div>
 
-        <h3 class="menu-cat">Arroces</h3>
+        <h3 class="menu-cat" data-i18n="carta.cat5">Arroces</h3>
         <p class="muted" style="font-style:italic;margin:-.4rem 0 1.4rem" data-i18n="carta.arrocesNote">Mínimo 2 personas · precio por persona</p>
         <div class="menu__grid">
           <div class="dish"><div class="dish__name">Arroz el Zeñorito (a banda) <span class="tag tag--star">Top</span></div><div class="dish__price">25 €</div><p class="dish__desc">“El Zeñorito” rice, a banda style</p></div>
@@ -123,7 +134,7 @@
           <div class="dish"><div class="dish__name">Arroz campero</div><div class="dish__price">24 €</div><p class="dish__desc">“Campero” rice</p></div>
         </div>
 
-        <h3 class="menu-cat">Especialidades</h3>
+        <h3 class="menu-cat" data-i18n="carta.cat6">Especialidades</h3>
         <div class="menu__grid">
           <div class="dish"><div class="dish__name">Rigatoni con atún</div><div class="dish__price">24 €</div><p class="dish__desc">Tuna rigatoni</p></div>
           <div class="dish"><div class="dish__name">Lasaña Zeñorío</div><div class="dish__price">21 €</div><p class="dish__desc">Meat lasagna</p></div>
@@ -131,7 +142,7 @@
           <div class="dish"><div class="dish__name">Zarzuela de pescado y marisco</div><div class="dish__price">S/M</div><p class="dish__desc">Seafood stew with clams and prawns</p></div>
         </div>
 
-        <h3 class="menu-cat">Pescados</h3>
+        <h3 class="menu-cat" data-i18n="carta.cat7">Pescados</h3>
         <div class="menu__grid">
           <div class="dish"><div class="dish__name">Rodaballo al horno</div><div class="dish__price">S/M</div><p class="dish__desc">Baked turbot</p></div>
           <div class="dish"><div class="dish__name">Lubina salvaje</div><div class="dish__price">S/M</div><p class="dish__desc">Wild sea bass</p></div>
@@ -140,7 +151,7 @@
           <div class="dish"><div class="dish__name">Tartar de atún</div><div class="dish__price">28,50 €</div><p class="dish__desc">Tuna tartare</p></div>
         </div>
 
-        <h3 class="menu-cat">Carnes</h3>
+        <h3 class="menu-cat" data-i18n="carta.cat8">Carnes</h3>
         <div class="menu__grid">
           <div class="dish"><div class="dish__name">Entrecot de retinto, patatas y pimientos de Padrón</div><div class="dish__price">30 €</div><p class="dish__desc">Retinto ribeye with potatoes and Padrón peppers</p></div>
           <div class="dish"><div class="dish__name">Pierna de cordero lechal</div><div class="dish__price">32,50 €</div><p class="dish__desc">Roasted suckling lamb</p></div>
@@ -149,7 +160,7 @@
           <div class="dish"><div class="dish__name">Chuletón de vaca madurada <span class="tag tag--star">Top</span></div><div class="dish__price">S/M</div><p class="dish__desc">Matured beef steak</p></div>
         </div>
 
-        <h3 class="menu-cat">Postres</h3>
+        <h3 class="menu-cat" data-i18n="carta.cat9">Postres</h3>
         <div class="menu__grid">
           <div class="dish"><div class="dish__name">Tarta de queso con helado de vainilla <span class="tag tag--star">Top</span></div><div class="dish__price">8,50 €</div><p class="dish__desc">Cheesecake with vanilla ice cream</p></div>
           <div class="dish"><div class="dish__name">Lemon pie</div><div class="dish__price">8,50 €</div><p class="dish__desc">Lemon pie</p></div>
@@ -172,13 +183,13 @@
     <div class="wrap">
       <div class="footer__bottom" style="border-top:1px solid var(--line)">
         <p>© <span id="year">2026</span> Zeñorío Marbella · <span data-i18n="foot.rights">Todos los derechos reservados</span></p>
-        <p><a href="/">Inicio</a> · <a href="tel:+34625848936">+34 625 84 89 36</a> · <a href="/aviso-legal.html" data-i18n="foot.legal">Aviso legal</a> · <a href="/privacidad.html" data-i18n="foot.privacy">Privacidad</a></p>
+        <p><a href="/" data-i18n="nav.home">Inicio</a> · <a href="tel:+34625848936">+34 625 84 89 36</a> · <a href="/aviso-legal.html" data-i18n="foot.legal">Aviso legal</a> · <a href="/privacidad.html" data-i18n="foot.privacy">Privacidad</a> · <a href="/cookies.html" data-i18n="foot.cookies">Cookies</a></p>
       </div>
     </div>
   </footer>
 
-  <script src="/js/cookies.js?v=1"></script>
-  <script src="/js/i18n.js?v=4"></script>
-  <script src="/js/main.js?v=1"></script>
+  <script src="/js/cookies.js?v=2"></script>
+  <script src="/js/i18n.js?v=5"></script>
+  <script src="/js/main.js?v=2"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 /* =====================================================================
-   Zeñorio · i18n ligero (ES por defecto, EN opcional)
+   Zeñorío · i18n ligero (ES por defecto, EN opcional)
    El español vive en el HTML; aquí solo definimos la traducción EN y
    restauramos el original al volver a ES. Sin dependencias.
    ===================================================================== */
@@ -25,11 +25,33 @@
 
     "story.eyebrow": "Our story",
     "story.title": "A son's tribute<br />to his father",
-    "story.p1": "Zeñorio was born from the simplest kind of love: a son's wish to honour his father. Behind every rice dish, every flame of the grill and every fish from the market lies the hand of chef Federico Cardenete, who stands at the helm of the kitchen and has made cooking the craft of a lifetime.",
-    "story.p2": "Here the Mediterranean is cooked slowly and with respect: local, seasonal produce, inherited technique and a contemporary eye. An elegant dining room that opens onto a tropical garden of palm trees, where every service unfolds unhurried. This is Zeñorio: a home built on affection, craft and the memory of the man who taught us to cook.",
+    "story.p1": "Zeñorío was born from the simplest kind of love: a son's wish to honour his father. Behind every rice dish, every flame of the grill and every fish from the market lies the hand of chef Federico Cardenete, who stands at the helm of the kitchen and has made cooking the craft of a lifetime.",
+    "story.p2": "Here the Mediterranean is cooked slowly and with respect: local, seasonal produce, inherited technique and a contemporary eye. An elegant dining room that opens onto a tropical garden of palm trees, where every service unfolds unhurried. This is Zeñorío: a home built on affection, craft and the memory of the man who taught us to cook.",
     "story.s1": "Market produce",
     "story.s2": "Dry-aged beef",
+    "story.s2u": "days",
     "story.chefLabel": "At the helm of the kitchen",
+
+    "brand.sub": "Restaurant",
+
+    "mq.1": "Mediterranean cuisine",
+    "mq.2": "Oak-fired grill",
+    "mq.3": "Soulful rice",
+    "mq.4": "Tropical garden",
+    "mq.5": "Market fish",
+    "mq.6": "Marbella · Costa del Sol",
+
+    "carta.cat1": "Boards",
+    "carta.cat2": "Starters",
+    "carta.cat3": "Salads",
+    "carta.cat4": "Classics",
+    "carta.cat5": "Rice dishes",
+    "carta.cat6": "Specialities",
+    "carta.cat7": "Fish",
+    "carta.cat8": "Meats",
+    "carta.cat9": "Desserts",
+
+    "foot.follow": "Follow us on Instagram ↗",
 
     "pillars.eyebrow": "The philosophy",
     "pillars.title": "Three ways to understand the table",
@@ -128,7 +150,7 @@
     "exp.title": "More than dining — staying",
     "exp.c1e": "The garden",
     "exp.c1t": "A tropical oasis",
-    "exp.c1p": "Palm trees, lush greenery and our famous peacock. Dining outdoors at Zeñorio means escaping Marbella without ever leaving it.",
+    "exp.c1p": "Palm trees, lush greenery and our famous peacock. Dining outdoors at Zeñorío means escaping Marbella without ever leaving it.",
     "exp.c2e": "Al fresco",
     "exp.c2t": "Dinners under the stars",
     "exp.c2p": "Warm Costa del Sol nights call for a terrace, a breeze and a fine table.",

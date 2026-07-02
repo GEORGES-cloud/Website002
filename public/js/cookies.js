@@ -1,5 +1,5 @@
 /* =====================================================================
-   Zeñorio · consentimiento de cookies (RGPD) + carga condicional de
+   Zeñorío · consentimiento de cookies (RGPD) + carga condicional de
    analítica. La analítica SOLO se carga si el usuario acepta Y si has
    puesto tus IDs reales abajo (mientras tengan "XXX" no carga nada).
    ===================================================================== */
@@ -44,17 +44,32 @@
 
   function showBanner() {
     if (document.getElementById("ck-banner")) return;
+    // Idioma: el mismo que guarda i18n.js (por defecto ES)
+    var en = false;
+    try { en = localStorage.getItem("zenorio-lang") === "en"; } catch (e) {}
+    var T = en
+      ? {
+          aria: "Cookie notice",
+          txt: "We use our own and third-party cookies to improve your experience and analyse site usage. You can accept them or reject the non-essential ones. <a href=\"/cookies.html\">More information</a>.",
+          rej: "Reject",
+          acc: "Accept",
+        }
+      : {
+          aria: "Aviso de cookies",
+          txt: "Usamos cookies propias y de terceros para mejorar tu experiencia y analizar el uso del sitio. Puedes aceptarlas o rechazar las no esenciales. <a href=\"/cookies.html\">Más información</a>.",
+          rej: "Rechazar",
+          acc: "Aceptar",
+        };
     var el = document.createElement("div");
     el.id = "ck-banner";
     el.className = "cookie-banner";
     el.setAttribute("role", "dialog");
-    el.setAttribute("aria-label", "Aviso de cookies");
+    el.setAttribute("aria-label", T.aria);
     el.innerHTML =
       '<div class="cookie-banner__in">' +
-      '<p class="cookie-banner__txt">Usamos cookies propias y de terceros para mejorar tu experiencia y analizar el uso del sitio. ' +
-      'Puedes aceptarlas o rechazar las no esenciales. <a href="/cookies.html">Más información</a>.</p>' +
-      '<div class="cookie-banner__btns"><button class="ck-rej" type="button">Rechazar</button>' +
-      '<button class="ck-acc" type="button">Aceptar</button></div></div>';
+      '<p class="cookie-banner__txt">' + T.txt + '</p>' +
+      '<div class="cookie-banner__btns"><button class="ck-rej" type="button">' + T.rej + '</button>' +
+      '<button class="ck-acc" type="button">' + T.acc + '</button></div></div>';
     document.body.appendChild(el);
     el.querySelector(".ck-acc").addEventListener("click", accept);
     el.querySelector(".ck-rej").addEventListener("click", reject);
