@@ -1,0 +1,41 @@
+name: Desplegar a Hostinger
+
+# Cada push a main que toque la web (public/) se sube solo a Hostinger.
+# Requiere 3 secrets en GitHub (Settings -> Secrets and variables -> Actions):
+#   FTP_SERVER    p. ej. 185.xx.xx.xx o ftp.zeñorio.com (hPanel -> Archivos -> Cuentas FTP)
+#   FTP_USERNAME  usuario FTP de esa pantalla
+#   FTP_PASSWORD  contraseña FTP
+#
+# Nota: si la cuenta FTP está limitada ya a public_html, cambia server-dir a "./"
+# Nota: si el servidor rechaza FTPS, cambia protocol a "ftp".
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "public/**"
+      - ".github/workflows/deploy.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-hostinger
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Subir public/ a public_html
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Sincronizar por FTP (solo archivos cambiados)
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          local-dir: public/
+          server-dir: public_html/
+          dangerous-clean-slate: false

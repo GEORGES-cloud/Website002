@@ -1,5 +1,27 @@
 # Desplegar Zeñorío en Hostinger (sin el error 503)
 
+## ⚡ Despliegue AUTOMÁTICO (activo desde 2026-07-02)
+
+Cada `git push` a `main` que toque `public/` **sube los cambios solos a Hostinger**
+(GitHub Action `.github/workflows/deploy.yml`, sincroniza por FTP solo lo cambiado).
+
+**Configuración única (5 min), solo la primera vez:**
+1. En **hPanel → Archivos → Cuentas FTP**: apunta el **host** (IP o `ftp.tudominio`),
+   el **usuario**, y crea/restablece la **contraseña**.
+2. En GitHub → `Website002` → **Settings → Secrets and variables → Actions** →
+   *New repository secret*, crea estos 3:
+   - `FTP_SERVER` · `FTP_USERNAME` · `FTP_PASSWORD`
+3. Listo. Comprueba la primera ejecución en la pestaña **Actions** del repo
+   (la primera sube todo, ~26 MB; las siguientes solo lo que cambie).
+
+> Si la cuenta FTP ya está limitada a `public_html`, edita el workflow y cambia
+> `server-dir: public_html/` por `./`. Si el servidor rechaza FTPS, cambia
+> `protocol: ftps` por `ftp`.
+
+Las opciones de abajo quedan como **manuales de respaldo**.
+
+---
+
 ## Qué está pasando
 El **503 "Service Unavailable"** que ves en `zeñorio.com` es la página de error de
 Hostinger: está intentando ejecutar la app de **Node.js y no responde** (se cae o no
