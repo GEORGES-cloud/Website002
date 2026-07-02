@@ -20,36 +20,42 @@ jobs:
           npm install basic-ftp@5 --no-fund --no-audit --silent
           cat > limpiar.mjs <<'EOF'
           import * as ftp from 'basic-ftp';
-          const objetivos = [
-            'public_html/assets/video/hero.mp4',
-            'public_html/assets/video/cocina.mp4',
-            'public_html/assets/video/hero-montaje.mp4',
-            'public_html/assets/video/hero-old.mp4',
-            'public_html/assets/img/real2-tartar.jpg',
-            'public_html/assets/img/real2-tartar.webp',
-            'public_html/assets/img/real2-carabineros.jpg',
-            'public_html/assets/img/real2-carabineros.webp',
-            'public_html/assets/img/real2-carne.jpg',
-            'public_html/assets/img/real2-carne.webp',
-            'public_html/assets/img/real2-jardin.jpg',
-            'public_html/assets/img/real2-jardin.webp',
-            'public_html/assets/img/real2-postre.jpg',
-            'public_html/assets/img/real2-postre.webp',
-            'public_html/assets/img/logo-zenorio.png',
-            'public_html/assets/img/logo-wordmark.png',
-            'public_html/assets/img/logo-zenorio-word.svg',
-            'public_html/assets/img/logo-z.png',
-            'public_html/assets/img/hero-poster.jpg',
+          const rel = [
+            'assets/video/hero.mp4',
+            'assets/video/cocina.mp4',
+            'assets/video/hero-montaje.mp4',
+            'assets/video/hero-old.mp4',
+            'assets/img/real2-tartar.jpg',
+            'assets/img/real2-tartar.webp',
+            'assets/img/real2-carabineros.jpg',
+            'assets/img/real2-carabineros.webp',
+            'assets/img/real2-carne.jpg',
+            'assets/img/real2-carne.webp',
+            'assets/img/real2-jardin.jpg',
+            'assets/img/real2-jardin.webp',
+            'assets/img/real2-postre.jpg',
+            'assets/img/real2-postre.webp',
+            'assets/img/logo-zenorio.png',
+            'assets/img/logo-wordmark.png',
+            'assets/img/logo-zenorio-word.svg',
+            'assets/img/logo-z.png',
+            'assets/img/hero-poster.jpg',
           ];
           const c = new ftp.Client(30000);
           try {
             await c.access({ host: process.env.FTP_SERVER, user: process.env.FTP_USERNAME, password: process.env.FTP_PASSWORD, secure: true, secureOptions: { rejectUnauthorized: false } });
-            for (const p of objetivos) {
+            // Detectar la base: si la raíz FTP contiene index.html => ya es public_html
+            const raiz = (await c.list('/')).map(e => e.name);
+            console.log('RAIZ FTP:', raiz.join(', '));
+            const base = raiz.includes('index.html') ? '' : (raiz.includes('public_html') ? 'public_html/' : '');
+            console.log('BASE elegida: "' + base + '"');
+            for (const r of rel) {
+              const p = base + r;
               try { await c.remove(p); console.log('BORRADO  ' + p); }
-              catch (e) { console.log('(ausente) ' + p + '  [' + (e.code || e.message.split('\n')[0]) + ']'); }
+              catch (e) { console.log('(no) ' + p + '  [' + (e.code || e.message.split('\n')[0]) + ']'); }
             }
-            try { await c.removeDir('public_html/assets/video'); console.log('BORRADA carpeta assets/video'); }
-            catch (e) { console.log('(carpeta video no vaciable/ausente) [' + (e.code || 'x') + ']'); }
+            try { await c.removeDir(base + 'assets/video'); console.log('BORRADA carpeta assets/video'); }
+            catch (e) { console.log('(carpeta video) [' + (e.code || 'x') + ']'); }
           } finally { c.close(); }
           EOF
           node limpiar.mjs
