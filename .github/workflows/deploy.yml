@@ -30,6 +30,23 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Sincronizar por FTP (solo archivos cambiados)
+        id: ftp
+        continue-on-error: true
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          local-dir: public/
+          server-dir: public_html/
+          dangerous-clean-slate: false
+
+      # El FTP de Hostinger falla a veces al guardar el archivo de estado del
+      # sync (550 intermitente) aunque los archivos ya estén subidos. Un
+      # segundo intento re-sincroniza lo poco que falte y deja el run en verde.
+      - name: Reintento (el FTP de Hostinger falla a veces al guardar estado)
+        if: steps.ftp.outcome == 'failure'
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
