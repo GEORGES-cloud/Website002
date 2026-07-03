@@ -1779,6 +1779,22 @@ h1, h2, h3, h4, .h2, .h3 { font-weight: 500; }
 .socials a:hover { color: var(--ink); }
 
 /* =====================================================================
+   HERO CTA — botones bien visibles sobre la foto oscura del hero.
+   El principal (Reservar) destaca en marfil sólido; el secundario
+   recupera su texto claro (se perdía en oscuro-sobre-oscuro).
+   ===================================================================== */
+.hero__cta .btn { box-shadow: 0 14px 36px -12px rgba(0, 0, 0, 0.85); }
+.hero__cta .btn:not(.btn--ghost) {
+  --bg: var(--cream);
+  --fg: #1E1712;
+}
+.hero__cta .btn--ghost {
+  --fg: var(--cream);
+  background: rgba(12, 9, 5, 0.5);
+  border-color: rgba(237, 228, 211, 0.85);
+}
+
+/* =====================================================================
    WHITE GOLD — highlights de texto en dorado pálido (--gold-2).
    El vino oscuro (--gold) queda para rellenos, botones y bordes;
    los detalles finos sobre fondo oscuro van en white gold para leerse.
