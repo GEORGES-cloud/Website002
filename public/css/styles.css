@@ -955,6 +955,7 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-auto-rows: clamp(120px, 16vw, 220px);
+  grid-auto-flow: dense;
   gap: clamp(0.6rem, 1.2vw, 1rem);
 }
 .gallery figure {
@@ -997,6 +998,8 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
 .g-e { grid-column: span 4; grid-row: span 2; }
 .g-f { grid-column: span 5; grid-row: span 1; }
 .g-g { grid-column: span 3; grid-row: span 1; }
+.g-h { grid-column: span 5; grid-row: span 2; }
+.g-w { grid-column: 1 / -1; grid-row: span 1; }
 
 /* ---------- 14. Experience ---------- */
 .exp__grid {
@@ -1361,15 +1364,17 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
   .form { grid-template-columns: 1fr; }
 
   .gallery { grid-template-columns: repeat(6, 1fr); }
-  .g-a { grid-column: span 6; grid-row: span 2; }
+  .g-a, .g-h { grid-column: span 6; grid-row: span 2; }
   .g-b, .g-c, .g-d, .g-e, .g-f, .g-g { grid-column: span 3; grid-row: span 1; }
+  .g-c { grid-row: span 2; }
 }
 
 @media (max-width: 520px) {
   .hero__scroll { display: none; }
   .marquee span { font-size: 1.1rem; }
   .gallery { grid-template-columns: repeat(2, 1fr); }
-  .g-a, .g-b, .g-c, .g-d, .g-e, .g-f, .g-g { grid-column: span 1; grid-row: span 1; }
+  .g-a, .g-b, .g-c, .g-d, .g-e, .g-f, .g-g, .g-h, .g-w { grid-column: span 1; grid-row: span 1; }
+  .g-c { grid-row: span 2; }
   .story__media .badge { left: 50%; transform: translateX(-50%); bottom: -34px; }
   .btn { width: 100%; }
   .hero__cta { width: 100%; }
