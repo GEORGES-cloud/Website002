@@ -270,10 +270,10 @@ h1, h2, h3, h4 {
 .btn:hover::after { transform: scaleX(1); transform-origin: left; }
 
 .btn--ghost {
-  --bg: transparent;
+  --bg: rgba(15, 12, 8, 0.34);
   --fg: var(--cream);
-  border: 1px solid var(--line);
-  backdrop-filter: blur(4px);
+  border: 1.5px solid rgba(237, 228, 211, 0.6);
+  backdrop-filter: blur(6px);
 }
 .btn--ghost::after { background: var(--gold); }
 .btn--ghost:hover { color: var(--noir); border-color: var(--gold); }
