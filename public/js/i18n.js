@@ -174,7 +174,7 @@
     "res.tel": "Phone & WhatsApp",
     "res.addr": "Where we are",
     "res.hours": "Opening hours",
-    "res.hoursVal": "Tuesday to Sunday · 19:30 – 23:30<br />Monday closed",
+    "res.hoursVal": "Tuesday to Sunday · 18:30 – 23:30<br />Monday closed",
 
     "form.name": "Full name",
     "form.namePh": "Your name",
@@ -197,7 +197,7 @@
     "foot.tagline": "The art of the Mediterranean table. Grill, rice and garden in Nueva Andalucía.",
     "foot.explore": "Explore",
     "foot.contact": "Contact",
-    "foot.hours": "Tue–Sun · 19:30–23:30",
+    "foot.hours": "Tue–Sun · 18:30–23:30",
     "foot.news": "News",
     "foot.newsP": "Events, seasonal menus and special nights.",
     "foot.rights": "All rights reserved",
