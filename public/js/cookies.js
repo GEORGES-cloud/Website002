@@ -42,24 +42,49 @@
   function accept() { set("all"); hide(); enableAll(); }
   function reject() { set("essential"); hide(); }
 
+  var COPY = {
+    es: {
+      aria: "Aviso de cookies",
+      txt: "Usamos cookies propias y de terceros para mejorar tu experiencia y analizar el uso del sitio. Puedes aceptarlas o rechazar las no esenciales. <a href=\"/cookies.html\">Más información</a>.",
+      rej: "Rechazar", acc: "Aceptar",
+    },
+    en: {
+      aria: "Cookie notice",
+      txt: "We use our own and third-party cookies to improve your experience and analyse site usage. You can accept them or reject the non-essential ones. <a href=\"/cookies.html\">More information</a>.",
+      rej: "Reject", acc: "Accept",
+    },
+    fr: {
+      aria: "Avis sur les cookies",
+      txt: "Nous utilisons des cookies, propres et de tiers, pour améliorer votre expérience et analyser l'utilisation du site. Vous pouvez les accepter ou refuser les cookies non essentiels. <a href=\"/cookies.html\">Plus d'informations</a>.",
+      rej: "Refuser", acc: "Accepter",
+    },
+    de: {
+      aria: "Cookie-Hinweis",
+      txt: "Wir verwenden eigene und Cookies von Drittanbietern, um Ihr Erlebnis zu verbessern und die Nutzung der Website zu analysieren. Sie können sie akzeptieren oder die nicht notwendigen ablehnen. <a href=\"/cookies.html\">Mehr Informationen</a>.",
+      rej: "Ablehnen", acc: "Akzeptieren",
+    },
+    sv: {
+      aria: "Cookie-meddelande",
+      txt: "Vi använder egna cookies och cookies från tredje part för att förbättra din upplevelse och analysera användningen av webbplatsen. Du kan acceptera dem eller neka de som inte är nödvändiga. <a href=\"/cookies.html\">Mer information</a>.",
+      rej: "Neka", acc: "Acceptera",
+    },
+    ru: {
+      aria: "Уведомление о файлах cookie",
+      txt: "Мы используем собственные и сторонние файлы cookie, чтобы улучшить ваш опыт и анализировать использование сайта. Вы можете принять их или отклонить необязательные. <a href=\"/cookies.html\">Подробнее</a>.",
+      rej: "Отклонить", acc: "Принять",
+    },
+  };
+
   function showBanner() {
     if (document.getElementById("ck-banner")) return;
-    // Idioma: el mismo que guarda i18n.js (por defecto ES)
-    var en = false;
-    try { en = localStorage.getItem("zenorio-lang") === "en"; } catch (e) {}
-    var T = en
-      ? {
-          aria: "Cookie notice",
-          txt: "We use our own and third-party cookies to improve your experience and analyse site usage. You can accept them or reject the non-essential ones. <a href=\"/cookies.html\">More information</a>.",
-          rej: "Reject",
-          acc: "Accept",
-        }
-      : {
-          aria: "Aviso de cookies",
-          txt: "Usamos cookies propias y de terceros para mejorar tu experiencia y analizar el uso del sitio. Puedes aceptarlas o rechazar las no esenciales. <a href=\"/cookies.html\">Más información</a>.",
-          rej: "Rechazar",
-          acc: "Aceptar",
-        };
+    // Idioma: el mismo que usa i18n.js (?lang= o localStorage; por defecto ES)
+    var lang = "es";
+    try { lang = localStorage.getItem("zenorio-lang") || "es"; } catch (e) {}
+    try {
+      var q = new URLSearchParams(location.search).get("lang");
+      if (q && COPY[q]) lang = q;
+    } catch (e) {}
+    var T = COPY[lang] || COPY.en;
     var el = document.createElement("div");
     el.id = "ck-banner";
     el.className = "cookie-banner";
