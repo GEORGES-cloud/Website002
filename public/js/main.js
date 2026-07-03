@@ -73,6 +73,16 @@
     b.addEventListener("click", () => setMenu(false))
   );
 
+  /* ---- Marcar la página actual en la navegación (multipágina) ---- */
+  (function () {
+    const here = location.pathname.replace(/\/index\.html$/, "/") || "/";
+    $$(".nav__links a, .nav-mobile a").forEach((a) => {
+      const href = a.getAttribute("href");
+      if (!href || href.charAt(0) === "#") return;
+      if (href.replace(/\/index\.html$/, "/") === here) a.classList.add("active");
+    });
+  })();
+
   /* ---- Scroll spy ---- */
   const navLinks = $$(".nav__links a");
   const ids = navLinks.map((a) => a.getAttribute("href")).filter((h) => h && h.startsWith("#"));

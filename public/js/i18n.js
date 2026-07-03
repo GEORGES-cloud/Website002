@@ -203,7 +203,19 @@
     "foot.rights": "All rights reserved",
     "foot.legal": "Legal notice",
     "foot.privacy": "Privacy",
-    "foot.cookies": "Cookies"
+    "foot.cookies": "Cookies",
+
+    "brand.sub": "Restaurant",
+    "home.casaTeaser": "Zeñorío was born from a son's wish to honour his father. Market-driven Mediterranean cuisine, holm-oak embers and a tropical garden where time slows down.",
+    "home.casaCta": "Get to know us",
+    "casa.philEyebrow": "The philosophy",
+    "casa.philTitle": "Fire, rice and garden",
+    "casa.philP": "Three hallmarks: holm-oak embers as an ingredient, rices and paellas made to order with stocks cooked for hours, and a tropical garden where dining outdoors means escaping Marbella without ever leaving it.",
+    "casa.cta": "View the menu",
+    "exp.merged.e": "The garden · Al fresco",
+    "exp.merged.t": "Dinners under the palms",
+    "exp.merged.p": "A tropical oasis of palm trees, lush greenery and our famous peacock. Warm Costa del Sol nights call for a terrace and a breeze: dining outdoors at Zeñorío means escaping Marbella without ever leaving it.",
+    "rev.hint": "← Swipe to read more →"
   };
 
   // Captura del español original para poder restaurarlo.

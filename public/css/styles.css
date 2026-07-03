@@ -442,11 +442,16 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
 .loader__mark {
   width: 96px; height: 96px;
   box-sizing: border-box;
-  padding: 0;
   border: 2px solid var(--gold-2);
   border-radius: var(--radius);
-  color: var(--gold-2);
+  display: grid; place-items: center;
   animation: floaty 3s ease-in-out infinite;
+}
+.loader__z {
+  width: 64%; height: 64%;
+  background-color: var(--gold-2);
+  -webkit-mask: url(/assets/img/logo-z.svg) center / contain no-repeat;
+  mask: url(/assets/img/logo-z.svg) center / contain no-repeat;
 }
 .loader__bar {
   position: absolute;
@@ -1814,4 +1819,82 @@ h1, h2, h3, h4, .h2, .h3 { font-weight: 500; }
 @media (prefers-reduced-motion: reduce) {
   .hero .hero__slides .hero__slide { animation: none; opacity: 0; transform: none; }
   .hero .hero__slides .hero__slide:first-child { opacity: 1; }
+}
+
+/* =====================================================================
+   MULTIPÁGINA (2026-07-03) — fondo con reflejos, cabecera interna,
+   cabecera de página, carrusel de reseñas y estado de nav.
+   ===================================================================== */
+
+/* Fondo negro con reflejos sutiles (da profundidad sin aclarar) */
+body {
+  background-color: var(--noir);
+  background-image:
+    radial-gradient(120% 72% at 50% -18%, rgba(198, 164, 115, 0.07), transparent 55%),
+    radial-gradient(95% 60% at 100% 108%, rgba(126, 138, 107, 0.06), transparent 55%),
+    radial-gradient(70% 55% at -5% 42%, rgba(176, 138, 84, 0.05), transparent 60%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+/* Un velo de brillo muy tenue que cruza la página (reflejo) */
+body::before {
+  content: "";
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: 0;
+  background: linear-gradient(115deg, transparent 42%, rgba(237, 228, 211, 0.028) 50%, transparent 58%);
+  mix-blend-mode: screen;
+}
+body > * { position: relative; z-index: 1; }
+
+/* Cabecera sólida y fija-pegajosa en páginas internas (sin hero).
+   Arregla la "barra que se desconfigura" al entrar en la Carta. */
+.page--sub .header {
+  position: sticky;
+  background: rgba(15, 12, 8, 0.92);
+  backdrop-filter: blur(14px) saturate(120%);
+  box-shadow: 0 1px 0 var(--line-soft);
+}
+
+/* Enlace de navegación de la página actual */
+.nav__links a.active,
+.nav-mobile a.active { color: var(--gold); }
+
+/* Cabecera de página (título de sección en su propia página) */
+.page-head { text-align: center; padding: clamp(2.5rem, 6vw, 4.5rem) 0 clamp(1.5rem, 3vw, 2.5rem); }
+.page-head .h2 { margin-top: 1rem; }
+.page-head .lead { margin: 1.4rem auto 0; max-width: 48ch; }
+
+/* Reseñas: carrusel horizontal deslizable con muchas tarjetas */
+.reviews-rail {
+  display: flex;
+  gap: clamp(1rem, 2vw, 1.6rem);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 0.5rem clamp(1.25rem, 5vw, 4rem) 1.6rem;
+  scrollbar-width: none;
+}
+.reviews-rail::-webkit-scrollbar { display: none; }
+.review-card {
+  scroll-snap-align: center;
+  flex: 0 0 min(84%, 400px);
+  background: var(--noir-2);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: clamp(1.6rem, 3vw, 2.4rem);
+  display: flex; flex-direction: column; gap: 1.1rem;
+}
+.review-card__stars { color: var(--gold-2); letter-spacing: 0.14em; font-size: 0.9rem; }
+.review-card p {
+  font-family: var(--font-display); font-style: italic;
+  font-size: clamp(1.05rem, 1.6vw, 1.3rem); line-height: 1.5; color: var(--cream); margin: 0;
+}
+.review-card footer {
+  margin-top: auto; font-size: 0.7rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--muted);
+}
+.review-card__src { color: var(--gold-deep); }
+.reviews-hint {
+  text-align: center; margin-top: 0.8rem;
+  font-size: 0.68rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--muted-2);
 }
