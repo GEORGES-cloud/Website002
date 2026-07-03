@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,400;1,6..96,500;1,6..96,600&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
   <script>document.documentElement.classList.add('js');</script>
-  <link rel="stylesheet" href="/css/styles.css?v=33" />
+  <link rel="stylesheet" href="/css/styles.css?v=34" />
 </head>
 <body class="page--sub">
   <a href="#reservar" class="skip-link" data-i18n="a11y.skip">Saltar al contenido</a>
@@ -75,7 +75,7 @@
     <section class="section" style="padding-top:0">
       <div class="wrap reserve">
         <div class="reserve__aside">
-          <p class="lead" data-reveal data-i18n="res.p">Reserva en segundos. Confirmamos disponibilidad de inmediato y, si lo prefieres, cerramos la reserva al instante por WhatsApp.</p>
+          <p class="lead" data-reveal data-i18n="res.p">Reserva online en segundos, con confirmación al instante. Elige día, hora y mesa; el resto corre de nuestra cuenta.</p>
           <dl class="reserve__contacts" data-reveal style="--d:.1s">
             <a href="tel:+34625848936">
               <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
@@ -92,44 +92,15 @@
           </dl>
         </div>
 
-        <form class="form" id="reservaForm" data-reveal style="--d:.1s" novalidate>
-          <div class="field field--full">
-            <label for="nombre" data-i18n="form.name">Nombre completo</label>
-            <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre" data-i18n-ph="form.namePh"/>
-          </div>
-          <div class="field">
-            <label for="telefono" data-i18n="form.phone">Teléfono</label>
-            <input type="tel" id="telefono" name="telefono" required placeholder="+34 ..." />
-          </div>
-          <div class="field">
-            <label for="personas" data-i18n="form.guests">Comensales</label>
-            <select id="personas" name="personas" required>
-              <option value="1">1</option><option value="2" selected>2</option>
-              <option value="3">3</option><option value="4">4</option>
-              <option value="5">5</option><option value="6">6</option>
-              <option value="7">7</option><option value="8">8+</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="fecha" data-i18n="form.date">Fecha</label>
-            <input type="date" id="fecha" name="fecha" required/>
-          </div>
-          <div class="field">
-            <label for="hora" data-i18n="form.time">Hora</label>
-            <select id="hora" name="hora" required>
-              <option>18:30</option><option>19:00</option><option>19:30</option><option>20:00</option><option>20:30</option>
-              <option selected>21:00</option><option>21:30</option><option>22:00</option><option>22:30</option>
-            </select>
-          </div>
-          <div class="field field--full">
-            <label for="comentario" data-i18n="form.notes">Comentarios (opcional)</label>
-            <textarea id="comentario" name="comentario" placeholder="Alergias, ocasión especial, mesa en el jardín..." data-i18n-ph="form.notesPh"></textarea>
-          </div>
-          <div class="form__msg" id="formMsg" role="status" aria-live="polite"></div>
-          <div class="field field--full">
-            <button type="submit" class="btn btn--block" id="formSubmit" data-i18n="form.submit">Solicitar reserva</button>
-          </div>
-        </form>
+        <div class="reserve__engine" data-reveal style="--d:.1s">
+          <iframe id="covermanager"
+            title="Motor de reservas de Zeñorío"
+            src="https://www.covermanager.com/reserve/module_restaurant/restaurante-zenorio/spanish"
+            data-cm-es="https://www.covermanager.com/reserve/module_restaurant/restaurante-zenorio/spanish"
+            data-cm-en="https://www.covermanager.com/reserve/module_restaurant/restaurante-zenorio/english"
+            loading="lazy" allow="payment"></iframe>
+          <p class="reserve__alt" data-i18n="res.alt">¿Prefieres el trato directo? Escríbenos por <a href="https://wa.me/34625848936?text=Hola%2C%20me%20gustar%C3%ADa%20reservar%20en%20Ze%C3%B1orio" target="_blank" rel="noopener">WhatsApp</a> o llámanos al <a href="tel:+34625848936">+34 625 84 89 36</a>.</p>
+        </div>
       </div>
     </section>
 
@@ -211,7 +182,7 @@
   </div>
 
   <script src="/js/cookies.js?v=2"></script>
-  <script src="/js/i18n.js?v=8"></script>
+  <script src="/js/i18n.js?v=9"></script>
   <script src="/js/main.js?v=3"></script>
 </body>
 </html>

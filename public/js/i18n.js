@@ -173,7 +173,8 @@
 
     "res.eyebrow": "Reservations",
     "res.title": "Your table<br />is waiting",
-    "res.p": "Book in seconds. We confirm availability right away and, if you prefer, close your reservation instantly on WhatsApp.",
+    "res.p": "Book online in seconds, with instant confirmation. Pick your day, time and table; we take care of the rest.",
+    "res.alt": "Prefer a personal touch? Message us on <a href=\"https://wa.me/34625848936?text=Hi%2C%20I%27d%20like%20to%20book%20a%20table%20at%20Ze%C3%B1orio\" target=\"_blank\" rel=\"noopener\">WhatsApp</a> or call <a href=\"tel:+34625848936\">+34 625 84 89 36</a>.",
     "res.tel": "Phone & WhatsApp",
     "res.addr": "Where we are",
     "res.hours": "Opening hours",
@@ -246,6 +247,12 @@
       else if (originalPh.has(el)) el.setAttribute("placeholder", originalPh.get(el));
     });
     document.documentElement.lang = lang;
+    // Motor de reservas CoverManager: cambiar el modulo al idioma elegido
+    const cm = document.getElementById("covermanager");
+    if (cm) {
+      const want = lang === "en" ? cm.dataset.cmEn : cm.dataset.cmEs;
+      if (want && cm.getAttribute("src") !== want) cm.setAttribute("src", want);
+    }
     document.querySelectorAll(".lang button").forEach((b) => {
       b.classList.toggle("active", b.dataset.lang === lang);
     });

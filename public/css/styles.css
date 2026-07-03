@@ -1094,6 +1094,22 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
   gap: clamp(2.5rem, 6vw, 6rem);
   align-items: center;
 }
+/* Motor de reservas CoverManager incrustado */
+.reserve__engine iframe {
+  width: 100%;
+  height: 640px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+  display: block;
+}
+.reserve__alt {
+  margin-top: 1.1rem;
+  font-size: 0.92rem;
+  color: var(--muted);
+  text-align: center;
+}
+.reserve__alt a { color: var(--gold-2); text-decoration: underline; text-underline-offset: 3px; }
 .reserve__aside .lead { margin: 1.5rem 0 2.5rem; }
 .reserve__contacts { display: grid; gap: 1.4rem; }
 .reserve__contacts a,
