@@ -138,13 +138,8 @@
 
     "gallery.eyebrow": "The gallery",
     "gallery.title": "Pleasure begins with the eyes",
-    "gallery.c1": "The garden at night",
-    "gallery.c2": "The art of rice",
-    "gallery.c3": "The terrace",
     "gallery.c4": "Oysters & caviar",
     "gallery.c5": "Bluefin tuna",
-    "gallery.c6": "The dining room",
-    "gallery.c7": "The cellar",
     "gallery.c8": "Galician-style octopus",
     "gallery.c9": "Broken eggs with red shrimp",
     "gallery.c10": "Tuna tartare",
