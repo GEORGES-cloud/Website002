@@ -442,14 +442,14 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
 .loader__mark {
   width: 96px; height: 96px;
   box-sizing: border-box;
-  border: 2px solid var(--gold-2);
+  border: 2px solid #fff;
   border-radius: var(--radius);
   display: grid; place-items: center;
   animation: floaty 3s ease-in-out infinite;
 }
 .loader__z {
   width: 64%; height: 64%;
-  background-color: var(--gold-2);
+  background-color: #fff;
   -webkit-mask: url(/assets/img/logo-z.svg?v=5) center / contain no-repeat;
   mask: url(/assets/img/logo-z.svg?v=5) center / contain no-repeat;
 }
