@@ -1,22 +1,20 @@
-name: Limpiar public_html (migracion a zenorio.es)
+name: Desplegar a Hostinger
 
-# ─────────────────────────────────────────────────────────────────────
-# CONTEXTO (2026-07-06): la web se sirve desde la APP NODE conectada a
-# GitHub (auto-deploy de Hostinger). La copia estática de public_html
-# (que este workflow sincronizaba por FTP) creaba una SEGUNDA capa que
-# servía los .html directamente y se saltaba la redirección 301 del
-# dominio antiguo (zeñorio.com → zenorio.es), porque el LiteSpeed de
-# Hostinger ignora las RewriteRule del .htaccess.
+# Cada push a main que toque la web (public/) se sube solo a Hostinger.
+# Requiere 3 secrets en GitHub (Settings -> Secrets and variables -> Actions):
+#   FTP_SERVER    p. ej. 185.xx.xx.xx o ftp.zeñorio.com (hPanel -> Archivos -> Cuentas FTP)
+#   FTP_USERNAME  usuario FTP de esa pantalla
+#   FTP_PASSWORD  contraseña FTP
 #
-# Este workflow VACÍA public_html para que todas las peticiones caigan
-# a la app Node (verificado: las rutas sin archivo estático llegan a
-# Express, que sirve la web y aplica la redirección de dominio).
-#
-# Se lanza a mano (workflow_dispatch). Si algún día hay que restaurar
-# la copia estática: recuperar el sync de este archivo del historial git.
-# ─────────────────────────────────────────────────────────────────────
+# Nota: si la cuenta FTP está limitada ya a public_html, cambia server-dir a "./"
+# Nota: si el servidor rechaza FTPS, cambia protocol a "ftp".
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - "public/**"
+      - ".github/workflows/deploy.yml"
   workflow_dispatch:
 
 concurrency:
@@ -24,40 +22,62 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  limpiar:
-    name: Vaciar public_html (la app Node sirve la web)
+  deploy:
+    name: Subir public/ a public_html
     runs-on: ubuntu-latest
     steps:
-      - name: Borrar la copia estática por FTP
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Sincronizar por FTP (solo archivos cambiados)
+        id: ftp
+        continue-on-error: true
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          local-dir: public/
+          server-dir: public_html/
+          dangerous-clean-slate: false
+
+      # El FTP de Hostinger falla a veces al guardar el archivo de estado del
+      # sync (550 intermitente) aunque los archivos ya estén subidos. Un
+      # segundo intento re-sincroniza lo poco que falte y deja el run en verde.
+      - name: Reintento (el FTP de Hostinger falla a veces al guardar estado)
+        if: steps.ftp.outcome == 'failure'
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          local-dir: public/
+          server-dir: public_html/
+          dangerous-clean-slate: false
+
+      # El sync de arriba OMITE los dotfiles (.htaccess), así que las reglas de
+      # caché/WebP/redirecciones/404 nunca llegaban al servidor. Este paso lo
+      # sube siempre a mano por FTP.
+      - name: Forzar subida de .htaccess (el sync omite dotfiles)
+        if: always()
         env:
           FTP_SERVER: ${{ secrets.FTP_SERVER }}
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
         run: |
           npm install basic-ftp@5 --no-fund --no-audit --silent
-          cat > limpiar.mjs <<'EOF'
+          cat > subir-htaccess.mjs <<'EOF'
           import * as ftp from 'basic-ftp';
           async function intento(n) {
             const c = new ftp.Client(30000);
             try {
               await c.access({ host: process.env.FTP_SERVER, user: process.env.FTP_USERNAME, password: process.env.FTP_PASSWORD, secure: true, secureOptions: { rejectUnauthorized: false } });
               const raiz = (await c.list('/')).map(e => e.name);
-              const base = raiz.includes('public_html') ? '/public_html' : '/';
-              await c.cd(base);
-              const entradas = await c.list();
-              console.log('Contenido de ' + base + ':', entradas.map(e => e.name).join(', ') || '(vacío)');
-              for (const e of entradas) {
-                if (e.name === '.' || e.name === '..') continue;
-                if (e.isDirectory) {
-                  console.log('  borrando carpeta ' + e.name + '/ ...');
-                  await c.removeDir(e.name);
-                } else {
-                  console.log('  borrando ' + e.name);
-                  await c.remove(e.name);
-                }
-              }
-              const despues = await c.list();
-              console.log('LIMPIO. Queda:', despues.filter(e => e.name !== '.' && e.name !== '..').map(e => e.name).join(', ') || '(vacío)');
+              const base = raiz.includes('public_html') ? 'public_html/' : '';
+              await c.uploadFrom('public/.htaccess', base + '.htaccess');
+              console.log('SUBIDO ' + base + '.htaccess (intento ' + n + ')');
               c.close();
               return true;
             } catch (e) { console.log('intento ' + n + ' falló: ' + e.message.split('\n')[0]); c.close(); return false; }
@@ -66,4 +86,4 @@ jobs:
           for (let n = 1; n <= 4 && !ok; n++) { ok = await intento(n); if (!ok) await new Promise(r => setTimeout(r, 5000)); }
           if (!ok) process.exit(1);
           EOF
-          node limpiar.mjs
+          node subir-htaccess.mjs
