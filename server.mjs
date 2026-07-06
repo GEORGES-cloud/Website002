@@ -22,6 +22,24 @@ const PUBLIC_DIR = join(__dirname, 'public');
 const app = express();
 
 app.disable('x-powered-by');
+// Detrás del proxy de Hostinger: respetar X-Forwarded-* (host/proto/ip reales).
+app.set('trust proxy', true);
+
+// Dominio canónico: zenorio.es. El dominio antiguo zeñorio.com
+// (xn--zeorio-xwa.com) redirige con 301 para no perder visitas ni SEO.
+const OLD_HOSTS = new Set([
+  'xn--zeorio-xwa.com',
+  'www.xn--zeorio-xwa.com',
+  'www.zenorio.es',
+]);
+app.use((req, res, next) => {
+  const host = (req.hostname || '').toLowerCase();
+  if (OLD_HOSTS.has(host)) {
+    return res.redirect(301, `https://zenorio.es${req.originalUrl}`);
+  }
+  next();
+});
+
 app.use(compression());
 app.use(express.json({ limit: '32kb' }));
 app.use(express.urlencoded({ extended: true, limit: '32kb' }));
