@@ -6,6 +6,8 @@
 (function () {
   const DICT = {
   "en": {
+    "home.localT": "A restaurant with a garden in Nueva Andalucía, Marbella",
+    "home.localP": "Zeñorío is a Mediterranean restaurant in Nueva Andalucía, Marbella, born as a son's tribute to his father. In the kitchen, the holm oak fire rules: fish fresh from the day's auction, rice dishes and paellas cooked to order, no shortcuts. And when evening falls, few pleasures compare to dining in the open air beneath the palms of the tropical garden, with the table set and the fire close by. If you'd like to get to know us, take a look at the menu and book a table in seconds — we're open evenings, Tuesday to Sunday, and it will be a pleasure to welcome you.",
     "a11y.skip": "Skip to content",
     "a11y.skipMenu": "Skip to menu",
     "nav.home": "Home",
@@ -204,6 +206,8 @@
     "rev.hint": "← Swipe to read more →"
   },
   "fr": {
+    "home.localT": "Un restaurant avec jardin à Nueva Andalucía, Marbella",
+    "home.localP": "Zeñorío est un restaurant de cuisine méditerranéenne à Nueva Andalucía, Marbella, né de l'hommage d'un fils à son père. En cuisine, c'est la braise de chêne vert qui donne le ton : poissons de la criée, riz et paellas préparés à la minute, sans raccourcis. Et quand le soir tombe, peu de choses font plus envie qu'un dîner en plein air, sous les palmiers du jardin tropical, la table dressée et le feu tout près. Si l'envie vous prend de nous découvrir, jetez un œil à la carte et réservez votre table en un instant : nous ouvrons le soir, du mardi au dimanche, et ce sera un plaisir de vous recevoir.",
     "a11y.skip": "Aller au contenu",
     "brand.sub": "Restaurant",
     "nav.house": "La maison",
@@ -316,6 +320,8 @@
     "loc.call": "Appeler"
   },
   "de": {
+    "home.localT": "Ein Restaurant mit Garten in Nueva Andalucía, Marbella",
+    "home.localP": "Zeñorío ist ein Restaurant mit mediterraner Küche in Nueva Andalucía, Marbella – entstanden als Hommage eines Sohnes an seinen Vater. In der Küche gibt die Glut der Steineiche den Ton an: fangfrischer Fisch vom Markt, Reisgerichte und Paellas, frisch auf Bestellung zubereitet, ohne Kompromisse. Und wenn sich der Abend senkt, gibt es kaum etwas Schöneres, als im Freien zu speisen, unter den Palmen unseres tropischen Gartens – der Tisch gedeckt, das Feuer ganz nah. Wenn Sie uns kennenlernen möchten, werfen Sie einen Blick in unsere Karte und reservieren Sie Ihren Tisch im Handumdrehen: Wir haben dienstags bis sonntags abends geöffnet und freuen uns darauf, Sie bei uns zu empfangen.",
     "a11y.skip": "Zum Inhalt springen",
     "brand.sub": "Restaurant",
     "nav.house": "Das Haus",
@@ -428,6 +434,8 @@
     "loc.call": "Anrufen"
   },
   "sv": {
+    "home.localT": "En restaurang med trädgård i Nueva Andalucía, Marbella",
+    "home.localP": "Zeñorío är en restaurang med medelhavskök i Nueva Andalucía, Marbella, sprungen ur en sons hyllning till sin far. I köket är det stenekens glöd som bestämmer: fisk direkt från fiskauktionen, risrätter och paella som tillagas i stunden, utan genvägar. Och när kvällen sänker sig finns det få saker som lockar mer än en middag under bar himmel, bland palmerna i den tropiska trädgården, med bordet dukat och elden alldeles intill. Har du lust att lära känna oss? Ta en titt på menyn och boka bord – det är gjort på ett ögonblick. Vi har kvällsöppet tisdag till söndag, och det ska bli ett nöje att få välkomna dig.",
     "a11y.skip": "Hoppa till innehållet",
     "brand.sub": "Restaurang",
     "nav.house": "Huset",
@@ -540,6 +548,8 @@
     "loc.call": "Ring"
   },
   "ru": {
+    "home.localT": "Ресторан с садом в Nueva Andalucía, Marbella",
+    "home.localP": "Zeñorío — ресторан средиземноморской кухни в Nueva Andalucía, Marbella, рождённый как дань любви сына к отцу. На кухне здесь правит жар углей каменного дуба: свежая рыба прямо из порта, рис и паэлья — только под заказ, без спешки и без компромиссов. А когда опускается вечер, мало что сравнится с ужином под открытым небом, под пальмами тропического сада, за накрытым столом, у живого огня. Захотите познакомиться поближе — загляните в меню и забронируйте столик: это займёт всего минуту. Мы открыты по вечерам со вторника по воскресенье и будем искренне рады вас принять.",
     "a11y.skip": "Перейти к содержанию",
     "brand.sub": "Ресторан",
     "nav.house": "О нас",
