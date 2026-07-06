@@ -10,9 +10,14 @@ DirectoryIndex index.html
 ErrorDocument 404 /404.html
 
 # --- HTTPS y dominio canónico ----------------------------------------
-# Todo a https:// y sin www (el certificado y el SEO usan el dominio raíz).
+# Dominio canónico: zenorio.es. El antiguo zeñorio.com (xn--zeorio-xwa.com)
+# redirige con 301 conservando la ruta. Después: todo a https:// y sin www.
 <IfModule mod_rewrite.c>
   RewriteEngine On
+  RewriteCond %{HTTP_HOST} ^(www\.)?xn--zeorio-xwa\.com$ [NC]
+  RewriteRule ^ https://zenorio.es%{REQUEST_URI} [R=301,L]
+  RewriteCond %{HTTP_HOST} ^www\.zenorio\.es$ [NC]
+  RewriteRule ^ https://zenorio.es%{REQUEST_URI} [R=301,L]
   RewriteCond %{HTTPS} !=on
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
   RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
