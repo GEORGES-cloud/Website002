@@ -149,9 +149,10 @@ app.post('/api/reserva', async (req, res) => {
 // Healthcheck simple para despliegues.
 app.get('/api/health', (_req, res) => res.json({ ok: true, ts: Date.now() }));
 
-// Fallback: cualquier otra ruta devuelve la home (sitio de una sola página).
-app.get('*', (_req, res) => {
-  res.sendFile(join(PUBLIC_DIR, 'index.html'));
+// Fallback: ruta desconocida → 404 REAL con nuestra página propia.
+// (Antes devolvía la home con 200: "soft-404" que Google penaliza.)
+app.use((_req, res) => {
+  res.status(404).sendFile(join(PUBLIC_DIR, '404.html'));
 });
 
 // Escuchamos en 0.0.0.0 (todas las interfaces) para que el proxy del hosting
