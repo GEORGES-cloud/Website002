@@ -51,6 +51,9 @@ app.use((req, res, next) => {
     'X-Frame-Options': 'SAMEORIGIN',
     'Referrer-Policy': 'strict-origin-when-cross-origin',
     'Permissions-Policy': 'geolocation=(), microphone=(), camera=()',
+    // HSTS también aquí: la home y las rutas dinámicas las sirve Express,
+    // no la capa estática del .htaccess (regla: toda cabecera en AMBAS capas).
+    'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
   });
   next();
 });
