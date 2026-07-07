@@ -43,10 +43,13 @@ ErrorDocument 404 /404.html
 # --- Caché ----------------------------------------------------------
 <IfModule mod_expires.c>
   ExpiresActive On
-  # HTML, CSS y JS: sin caché larga (se publican los cambios al instante).
+  # HTML: sin caché larga (se publican los cambios al instante).
   ExpiresByType text/html            "access plus 0 seconds"
-  ExpiresByType text/css             "access plus 0 seconds"
-  ExpiresByType application/javascript "access plus 0 seconds"
+  # CSS/JS: versionados con ?v=N → caché de un año (este hosting sirve el
+  # JS como application/x-javascript, por eso van los dos tipos).
+  ExpiresByType text/css             "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType application/x-javascript "access plus 1 year"
   # Binarios estables: caché de un año.
   ExpiresByType image/jpeg           "access plus 1 year"
   ExpiresByType image/png            "access plus 1 year"
@@ -61,12 +64,17 @@ ErrorDocument 404 /404.html
   Header set X-Content-Type-Options "nosniff"
   Header set X-Frame-Options "SAMEORIGIN"
   Header set Referrer-Policy "strict-origin-when-cross-origin"
+  # HSTS: el sitio es https-only (http hace 301); un año, con subdominios.
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
   Header append Vary Accept env=accept
-  # Caché larga solo para binarios estables.
-  <FilesMatch "\.(jpg|jpeg|png|webp|svg|mp4|woff2)$">
+  # Caché larga para binarios estables Y para css/js: van versionados con
+  # ?v=N y la versión se sube en cada cambio (disciplina del repo), así que
+  # pueden ser immutable sin riesgo de servir código viejo.
+  <FilesMatch "\.(jpg|jpeg|png|webp|svg|mp4|woff2|css|js)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
   </FilesMatch>
-  <FilesMatch "\.(html|css|js)$">
+  # El HTML siempre se revalida (publica los cambios al instante).
+  <FilesMatch "\.html$">
     Header set Cache-Control "no-cache"
   </FilesMatch>
 </IfModule>

@@ -78,9 +78,9 @@ app.use(
       if (filePath.endsWith('.html')) {
         res.setHeader('Cache-Control', 'no-cache');
       } else if (/\.(?:css|js)$/.test(filePath)) {
-        // Sin build con hash de versión: revalidamos siempre (ETag → 304) para
-        // publicar los cambios al instante sin servir CSS/JS obsoleto.
-        res.setHeader('Cache-Control', 'no-cache');
+        // CSS/JS van versionados con ?v=N (y la versión se sube en cada
+        // cambio), así que pueden cachearse un año sin servir código viejo.
+        res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
       } else if (/\.(?:jpg|jpeg|png|webp|avif|svg|mp4|webm|woff2?)$/.test(filePath)) {
         // Binarios estables: caché agresiva de un año.
         res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
