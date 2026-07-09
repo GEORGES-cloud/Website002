@@ -16,6 +16,23 @@
   /* ---- Año ---- */
   const y = $("#year"); if (y) y.textContent = new Date().getFullYear();
 
+  /* ---- Hero: cargar las fotos 2-5 del pase después del load ----
+     Ahorra ~542 KB en el arranque (la 2ª foto no se ve hasta el s. 6).
+     Con prefers-reduced-motion solo se muestra la 1ª: no se cargan. */
+  (function () {
+    const pending = $$(".hero__slide[data-src]");
+    if (!pending.length) return;
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    function promote() {
+      pending.forEach((img) => {
+        img.src = img.getAttribute("data-src");
+        img.removeAttribute("data-src");
+      });
+    }
+    if (document.readyState === "complete") setTimeout(promote, 300);
+    else window.addEventListener("load", () => setTimeout(promote, 300));
+  })();
+
   /* ---- Header + progreso + back-to-top ---- */
   const header = $("#header");
   const progress = $("#progress");

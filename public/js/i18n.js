@@ -15,12 +15,7 @@
     "nav.menu": "Menu",
     "nav.gallery": "Gallery",
     "nav.experience": "Experience",
-    "nav.location": "Find us",
     "nav.book": "Book",
-    "hero.eyebrow": "Restaurant · Nueva Andalucía, Marbella",
-    "hero.title1": "The art of the",
-    "hero.title2": "Mediterranean table",
-    "hero.sub": "Market-driven Mediterranean cuisine, oak-fired grill and soulful rice dishes, served beneath the palms of a tropical garden in the heart of Marbella.",
     "hero.cta1": "Book a table",
     "hero.cta2": "View the menu",
     "hero.scroll": "Scroll",
@@ -49,14 +44,6 @@
     "carta.cat8": "Meats",
     "carta.cat9": "Desserts",
     "foot.follow": "Follow us on Instagram ↗",
-    "pillars.eyebrow": "The philosophy",
-    "pillars.title": "Three ways to understand the table",
-    "pillars.c1t": "Oak-fired grill",
-    "pillars.c1p": "Fire as an ingredient. Dry-aged meats and market fish kissed by the embers, with just the right point and just the right smoke.",
-    "pillars.c2t": "Soulful rice",
-    "pillars.c2p": "From dry to creamy. Paellas and rice dishes made to order, with stocks cooked for hours and saffron as our signature.",
-    "pillars.c3t": "Tropical garden",
-    "pillars.c3p": "Dining under the palms. A green terrace and a lounge where time slows down to the rhythm of Marbella.",
     "feature.eyebrow": "The ritual of salt",
     "feature.title": "Fish, sealed in a crust of salt",
     "feature.p": "The day's catch from the market, encased in a crust of sea salt and baked whole. The salt seals in the juices and keeps the flavour of the sea intact; cracked open at the table and served at once, clean and tender. Pure Mediterranean.",
@@ -70,17 +57,6 @@
     "carta.arrocesNote": "Minimum 2 people · price per person",
     "carta.note": "Prices include VAT · S/M: market price · Allergen and intolerance information available — just ask.",
     "menu.title": "Mediterranean,<br />from garden and sea",
-    "menu.t1": "To share",
-    "menu.t2": "From the sea",
-    "menu.t3": "Rice",
-    "menu.t4": "From the grill",
-    "menu.t5": "Sweets",
-    "menu.t6": "Cellar",
-    "menu.arrocesNote": "Minimum 2 people · price per person · made to order (25 min)",
-    "menu.bodegaNote": "By the glass: Ronda, Rioja, Ribera del Duero, Rías Baixas and champagne. Ask for our sommelier's recommendations.",
-    "menu.note": "Menu subject to market availability · 10% VAT included · Vegan, vegetarian and gluten-free options available · Please inform our team of any allergy or intolerance.",
-    "menu.allergTitle": "Allergens",
-    "menu.allergNote": "Allergen information for all our dishes is available in accordance with Regulation (EU) 1169/2011. Just ask our team — we're happy to help.",
     "ev.e": "Events & Private dining",
     "ev.t": "Celebrate your moment<br />beneath the palms",
     "ev.p": "Birthdays, corporate lunches, celebrations or private dinners. We design bespoke group menus and reserve spaces for your party, with all the charm of the garden.",
@@ -88,46 +64,6 @@
     "ev.l2": "Garden, terrace or lounge for exclusive use",
     "ev.l3": "Cocktails and music for your event",
     "ev.cta": "Request information",
-    "ev.nav": "Events",
-    "d.ostras": "Freshly shucked, cava and lemon mignonette.",
-    "d.ensaladilla": "Potato, tuna, prawn and virgin olive oil mayonnaise.",
-    "d.pilpil": "Sautéed with garlic, chilli and Arbequina olive oil.",
-    "d.chistorra": "Traditional sausage with garlic, salt and paprika, in cider.",
-    "d.croquetas": "Creamy, with artisan béchamel and acorn-fed ham.",
-    "d.burrata": "Garden tomato, basil and pistachio pesto.",
-    "d.remolacha": "Roasted beetroot, goat cheese and caramelised walnuts.",
-    "d.alcachofas": "Slow-confit artichokes, crispy ham and aioli.",
-    "d.albondigas": "A timeless recipe in marcona almond sauce.",
-    "d.tartar": "Almadraba tuna, avocado, sesame and citrus ponzu.",
-    "d.jamon": "Hand-carved, crystal bread and tomato.",
-    "d.mejillones": "Steamed with lemon, bay leaf and a hint of fennel.",
-    "d.gambaroja": "Grilled, sea-salt flakes and olive oil.",
-    "d.pulpo": "Smoked potato parmentier and Vera paprika.",
-    "d.lubina": "Baked in a sea-salt crust, pure and simple.",
-    "d.rodaballo": "Garlic refrito and a touch of sherry vinegar.",
-    "d.sashimi": "Thinly sliced, virgin olive oil and lime zest.",
-    "d.calamares": "Andalusian-style, floured and fried in olive oil, lemon.",
-    "d.valenciana": "Free-range chicken, rabbit, green beans and garrofó.",
-    "d.carabineros": "Creamy and intense, with red prawn from the coast.",
-    "d.negro": "Squid ink, cuttlefish and saffron aioli.",
-    "d.fideua": "Fine noodles, prawns, squid and a soft aioli.",
-    "d.verduras": "From the garden, saffron and extra virgin olive oil.",
-    "d.chuleton": "≈1 kg · 45-day aged · over holm-oak embers.",
-    "d.solomillo": "Grilled foie and a Pedro Ximénez reduction.",
-    "d.cordero": "Slow-roasted, panadera potatoes and fresh rosemary.",
-    "d.secreto": "Acorn-fed Iberian pork, sea salt and Padrón peppers.",
-    "d.pato": "Lacquered, thin crepe, hoisin sauce and spring onion.",
-    "d.pollo": "Free-range, marinated in citrus and herbs, charcoal-grilled.",
-    "d.cheesecake": "Creamy inside, golden outside.",
-    "d.torrija": "Brioche, infused milk and cinnamon ice cream.",
-    "d.coulant": "Molten heart and bourbon vanilla ice cream.",
-    "d.sorbete": "Citrusy and light, to close the table.",
-    "d.frutas": "A market selection with fresh mint.",
-    "d.sangria": "Cava, seasonal fruit and our secret touch.",
-    "d.gintonic": "Mediterranean botanicals, citrus and rosemary.",
-    "d.rebujito": "Manzanilla sherry and soda, very cold, very southern.",
-    "d.vermut": "Red, with blood orange and gordal olive.",
-    "d.champagne": "A fine bubble to toast beneath the palms.",
     "gallery.eyebrow": "The gallery",
     "gallery.title": "Pleasure begins with the eyes",
     "gallery.c4": "Oysters & caviar",
@@ -142,24 +78,14 @@
     "gallery.c15": "Confit artichokes",
     "exp.eyebrow": "The experience",
     "exp.title": "More than dining — staying",
-    "exp.c1e": "The garden",
-    "exp.c1t": "A tropical oasis",
-    "exp.c1p": "Palm trees, lush greenery and our famous peacock. Dining outdoors at Zeñorío means escaping Marbella without ever leaving it.",
-    "exp.c2e": "Al fresco",
-    "exp.c2t": "Dinners under the stars",
-    "exp.c2p": "Warm Costa del Sol nights call for a terrace, a breeze and a fine table.",
     "exp.c3e": "Lounge & drinks",
     "exp.c3t": "The perfect after-dinner",
     "exp.c3p": "Cocktails, live music at weekends and an atmosphere that invites you to linger.",
     "rev.eyebrow": "What they say",
     "rev.title": "Guests who return",
     "rev.q1": "“An outstanding experience: a warm welcome, attentive service and excellent cuisine. Our new favourite restaurant in Marbella.”",
-    "rev.src1": "Google",
     "rev.q2": "“A gorgeous place, with superb food and wonderful garden surroundings. The rice — spectacular.”",
-    "rev.src2": "Tripadvisor",
-    "rev.q3": "“Exceptional flexibility, impeccable presentation and a unique setting under the palms. We'll be back for sure.”",
-    "rev.src3": "TheFork",
-    "rev.badge": "Mediterranean · Nueva Andalucía",
+    "rev.q3": "“Impeccable presentation and a unique atmosphere beneath the palms. We'll be back for sure.”",
     "res.eyebrow": "Reservations",
     "res.title": "Your table<br />is waiting",
     "res.p": "Book online in seconds, with instant confirmation. Pick your day, time and table; we take care of the rest.",
@@ -168,15 +94,6 @@
     "res.addr": "Where we are",
     "res.hours": "Opening hours",
     "res.hoursVal": "Tuesday to Sunday · 18:30 – 23:30<br />Monday closed",
-    "form.name": "Full name",
-    "form.namePh": "Your name",
-    "form.phone": "Phone",
-    "form.guests": "Guests",
-    "form.date": "Date",
-    "form.time": "Time",
-    "form.notes": "Comments (optional)",
-    "form.notesPh": "Allergies, special occasion, a table in the garden...",
-    "form.submit": "Request reservation",
     "loc.eyebrow": "How to get here",
     "loc.title": "In the heart of Nueva Andalucía",
     "loc.mon": "Monday",
@@ -203,7 +120,15 @@
     "exp.merged.e": "The garden · Al fresco",
     "exp.merged.t": "Dinners under the palms",
     "exp.merged.p": "A tropical oasis of palm trees, lush greenery and our famous peacock. Warm Costa del Sol nights call for a terrace and a breeze: dining outdoors at Zeñorío means escaping Marbella without ever leaving it.",
-    "rev.hint": "← Swipe to read more →"
+    "rev.hint": "← Swipe to read more →",
+    "rev.q4": "“The salt-baked fish is on another level and the service exquisite. A flawless evening from start to finish.”",
+    "rev.q5": "“We dined in the garden and it was magical. You can taste the fire in every dish. Marbella at its purest.”",
+    "rev.q6": "“Wonderfully attentive service, first-rate produce and a superb wine list. We'll definitely return.”",
+    "rev.q7": "“Elegant yet relaxed at the same time. The oysters and the bluefin tuna — memorable.”",
+    "rev.q8": "“Perfect for a special occasion. They made us feel at home and the food was impeccable.”",
+    "a11y.h1Home": "Zeñorío, Mediterranean restaurant in Nueva Andalucía, Marbella",
+    "a11y.h1Carta": "The Zeñorío menu: rice dishes and paellas in Marbella",
+    "a11y.reviewsList": "Customer reviews"
   },
   "fr": {
     "home.localT": "Un restaurant avec jardin à Nueva Andalucía, Marbella",
@@ -267,7 +192,7 @@
     "carta.back": "Retour à l'accueil",
     "nav.home": "Accueil",
     "story.p1": "Zeñorío est né de la plus simple des affections : celle d'un fils qui a voulu rendre hommage à son père. Derrière chaque riz, chaque flambée de la braise et chaque poisson de la criée se trouve la main du chef Federico Cardenete, aux commandes des fourneaux, qui a fait de la cuisine le métier de toute une vie.",
-    "story.p2": "Ici, la Méditerranée se cuisine lentement et avec respect : un produit local et de saison, une technique transmise et un regard résolument actuel. Une salle élégante qui s'ouvre sur un jardin tropical de palmiers, où chaque service se savoure sans hâte. Voilà Zeñorío : une maison bâtie sur la tendresse, le métier et la mémoire de celui qui nous a appris à cuisiner.",
+    "story.p2": "Ici, la Méditerranée se cuisine lentement et avec respect : un produit local et de saison, une technique transmise et un regard résolument actuel. Une salle élégante qui s'ouvre sur un jardin tropical de palmiers, où chaque service se savoure sans hâte. Voilà Zeñorío : une maison bâtie sur la tendresse, le métier et la passion de celui qui, chaque jour, nous apprend encore à cuisiner.",
     "story.s1": "Produit de marché",
     "story.s2u": "jours",
     "story.s2": "Bœuf maturé",
@@ -310,14 +235,25 @@
     "res.addr": "Où nous trouver",
     "res.hours": "Horaires",
     "res.hoursVal": "Du mardi au dimanche · 18:30 – 23:30<br />Fermé le lundi",
-    "res.alt": "Vous préférez le contact direct ? Écrivez-nous sur <a href=\"https://wa.me/34625848936?text=Hola%2C%20me%20gustar%C3%ADa%20reservar%20en%20Ze%C3%B1orio\" target=\"_blank\" rel=\"noopener\">WhatsApp</a> ou appelez-nous au <a href=\"tel:+34625848936\">+34 625 84 89 36</a>.",
+    "res.alt": "Vous préférez le contact direct ? Écrivez-nous sur <a href=\"https://wa.me/34625848936?text=Bonjour%2C%20je%20souhaiterais%20r%C3%A9server%20une%20table%20chez%20Ze%C3%B1or%C3%ADo\" target=\"_blank\" rel=\"noopener\">WhatsApp</a> ou appelez-nous au <a href=\"tel:+34625848936\">+34 625 84 89 36</a>.",
     "loc.eyebrow": "Comment venir",
     "loc.title": "Au cœur de Nueva Andalucía",
     "loc.mon": "Lundi",
     "loc.closed": "Fermé",
     "loc.tuesun": "Mardi – Dimanche",
     "loc.directions": "Itinéraire",
-    "loc.call": "Appeler"
+    "loc.call": "Appeler",
+    "rev.q1": "“Une expérience remarquable : accueil chaleureux, service attentionné et cuisine excellente. Notre nouveau restaurant préféré à Marbella.”",
+    "rev.q2": "“Un endroit magnifique, une cuisine superbe et un cadre de jardin merveilleux. Le riz, spectaculaire.”",
+    "rev.q3": "“Présentation impeccable et une atmosphère unique sous les palmiers. Nous reviendrons, c'est certain.”",
+    "rev.q4": "“Le poisson en croûte de sel est d'un autre niveau et le service, exquis. Une soirée parfaite du début à la fin.”",
+    "rev.q5": "“Nous avons dîné dans le jardin et c'était magique. La braise se sent dans chaque plat. Marbella à l'état pur.”",
+    "rev.q6": "“Service très attentionné, produits de première qualité et une superbe carte des vins. Nous reviendrons sans hésiter.”",
+    "rev.q7": "“Une ambiance à la fois élégante et détendue. Les huîtres et le thon rouge, mémorables.”",
+    "rev.q8": "“Parfait pour une grande occasion. Nous avons été reçus comme à la maison et la cuisine était impeccable.”",
+    "a11y.h1Home": "Zeñorío, restaurant méditerranéen à Nueva Andalucía, Marbella",
+    "a11y.h1Carta": "La carte de Zeñorío : riz et paellas à Marbella",
+    "a11y.reviewsList": "Avis de nos clients"
   },
   "de": {
     "home.localT": "Ein Restaurant mit Garten in Nueva Andalucía, Marbella",
@@ -424,14 +360,25 @@
     "res.addr": "Wo Sie uns finden",
     "res.hours": "Öffnungszeiten",
     "res.hoursVal": "Dienstag bis Sonntag · 18:30 – 23:30<br />Montag geschlossen",
-    "res.alt": "Bevorzugen Sie den direkten Kontakt? Schreiben Sie uns über <a href=\"https://wa.me/34625848936?text=Hola%2C%20me%20gustar%C3%ADa%20reservar%20en%20Ze%C3%B1orio\" target=\"_blank\" rel=\"noopener\">WhatsApp</a> oder rufen Sie uns an unter <a href=\"tel:+34625848936\">+34 625 84 89 36</a>.",
+    "res.alt": "Bevorzugen Sie den direkten Kontakt? Schreiben Sie uns über <a href=\"https://wa.me/34625848936?text=Hallo%2C%20ich%20m%C3%B6chte%20gerne%20einen%20Tisch%20im%20Ze%C3%B1or%C3%ADo%20reservieren\" target=\"_blank\" rel=\"noopener\">WhatsApp</a> oder rufen Sie uns an unter <a href=\"tel:+34625848936\">+34 625 84 89 36</a>.",
     "loc.eyebrow": "Anfahrt",
     "loc.title": "Im Herzen von Nueva Andalucía",
     "loc.mon": "Montag",
     "loc.closed": "Geschlossen",
     "loc.tuesun": "Dienstag – Sonntag",
     "loc.directions": "Route planen",
-    "loc.call": "Anrufen"
+    "loc.call": "Anrufen",
+    "rev.q1": "“Ein herausragendes Erlebnis: herzlicher Empfang, aufmerksamer Service und eine exzellente Küche. Unser neues Lieblingsrestaurant in Marbella.”",
+    "rev.q2": "“Ein wunderschöner Ort mit hervorragendem Essen und traumhaftem Garten. Der Reis — spektakulär.”",
+    "rev.q3": "“Makellose Präsentation und eine einzigartige Atmosphäre unter den Palmen. Wir kommen ganz sicher wieder.”",
+    "rev.q4": "“Der Fisch in der Salzkruste ist eine Klasse für sich, der Service exquisit. Ein rundum gelungener Abend.”",
+    "rev.q5": "“Wir haben im Garten gegessen — es war magisch. Die Glut schmeckt man in jedem Gericht. Marbella pur.”",
+    "rev.q6": "“Überaus aufmerksamer Service, erstklassige Produkte und eine großartige Weinkarte. Wir kommen bestimmt wieder.”",
+    "rev.q7": "“Elegant und entspannt zugleich. Die Austern und der rote Thunfisch — unvergesslich.”",
+    "rev.q8": "“Perfekt für einen besonderen Anlass. Wir fühlten uns wie zu Hause und das Essen war tadellos.”",
+    "a11y.h1Home": "Zeñorío, mediterranes Restaurant in Nueva Andalucía, Marbella",
+    "a11y.h1Carta": "Die Karte von Zeñorío: Reisgerichte und Paellas in Marbella",
+    "a11y.reviewsList": "Gästebewertungen"
   },
   "sv": {
     "home.localT": "En restaurang med trädgård i Nueva Andalucía, Marbella",
@@ -498,8 +445,8 @@
     "story.p2": "Här tillagas Medelhavet långsamt och med respekt: lokala råvaror i säsong, ärvd teknik och en samtida blick. En elegant matsal som öppnar sig mot en tropisk trädgård av palmer, där varje servering får ta sin tid. Det är Zeñorío: ett hem byggt på tillgivenhet, hantverk och minnet av den som lärde oss att laga mat.",
     "story.s1": "Råvaror från marknaden",
     "story.s2u": "dagar",
-    "story.s2": "Mörad nötkött",
-    "story.chefLabel": "Vid spisens rodret",
+    "story.s2": "Mörat nötkött",
+    "story.chefLabel": "Vid rodret i köket",
     "casa.philEyebrow": "Filosofin",
     "casa.philTitle": "Elden, riset och trädgården",
     "casa.philP": "Tre kännetecken: steneksglöden som ingrediens, risrätter och paella tillagade på beställning med buljonger som kokat i timmar, och en tropisk trädgård där en middag under bar himmel är att koppla bort Marbella utan att lämna den.",
@@ -538,14 +485,25 @@
     "res.addr": "Var vi finns",
     "res.hours": "Öppettider",
     "res.hoursVal": "Tisdag till söndag · 18:30 – 23:30<br />Måndag stängt",
-    "res.alt": "Föredrar du personlig kontakt? Skriv till oss på <a href=\"https://wa.me/34625848936?text=Hola%2C%20me%20gustar%C3%ADa%20reservar%20en%20Ze%C3%B1orio\" target=\"_blank\" rel=\"noopener\">WhatsApp</a> eller ring oss på <a href=\"tel:+34625848936\">+34 625 84 89 36</a>.",
+    "res.alt": "Föredrar du personlig kontakt? Skriv till oss på <a href=\"https://wa.me/34625848936?text=Hej%2C%20jag%20skulle%20vilja%20boka%20ett%20bord%20p%C3%A5%20Ze%C3%B1or%C3%ADo\" target=\"_blank\" rel=\"noopener\">WhatsApp</a> eller ring oss på <a href=\"tel:+34625848936\">+34 625 84 89 36</a>.",
     "loc.eyebrow": "Hitta hit",
     "loc.title": "I hjärtat av Nueva Andalucía",
     "loc.mon": "Måndag",
     "loc.closed": "Stängt",
     "loc.tuesun": "Tisdag – Söndag",
     "loc.directions": "Vägbeskrivning",
-    "loc.call": "Ring"
+    "loc.call": "Ring",
+    "rev.q1": "“En enastående upplevelse: varmt välkomnande, uppmärksam service och utmärkt mat. Vår nya favoritrestaurang i Marbella.”",
+    "rev.q2": "“En underbar plats med fantastisk mat och en härlig trädgårdsmiljö. Riset — spektakulärt.”",
+    "rev.q3": "“Oklanderlig presentation och en unik stämning under palmerna. Vi kommer garanterat tillbaka.”",
+    "rev.q4": "“Den saltbakade fisken är i en klass för sig och servicen utsökt. En fulländad kväll från början till slut.”",
+    "rev.q5": "“Vi åt middag i trädgården och det var magiskt. Glöden känns i varje rätt. Marbella när det är som bäst.”",
+    "rev.q6": "“Otroligt uppmärksam service, förstklassiga råvaror och en utmärkt vinlista. Vi kommer gärna tillbaka.”",
+    "rev.q7": "“Elegant och avslappnat på samma gång. Ostronen och den blåfenade tonfisken — minnesvärda.”",
+    "rev.q8": "“Perfekt för ett speciellt tillfälle. Vi kände oss som hemma och maten var oklanderlig.”",
+    "a11y.h1Home": "Zeñorío, medelhavsrestaurang i Nueva Andalucía, Marbella",
+    "a11y.h1Carta": "Zeñoríos meny: risrätter och paella i Marbella",
+    "a11y.reviewsList": "Gästrecensioner"
   },
   "ru": {
     "home.localT": "Ресторан с садом в Nueva Andalucía, Marbella",
@@ -568,7 +526,7 @@
     "mq.6": "Marbella · Costa del Sol",
     "story.eyebrow": "Наша история",
     "story.title": "Дань уважения<br />от сына отцу",
-    "home.casaTeaser": "Zeñorío родился из желания сына почтить память отца. Средиземноморская кухня со свежего рынка, гриль на дубовых углях и тропический сад, где время замирает.",
+    "home.casaTeaser": "Zeñorío родился из желания сына воздать должное своему отцу. Средиземноморская кухня со свежего рынка, гриль на дубовых углях и тропический сад, где время замирает.",
     "home.casaCta": "Познакомиться с нами",
     "feature.eyebrow": "Ритуал соли",
     "feature.title": "Рыба, запечённая в соляной корке",
@@ -608,8 +566,8 @@
     "carta.note": "Цены указаны с НДС · S/M: по рыночной цене · У нас есть информация об аллергенах и непереносимости — спрашивайте.",
     "carta.back": "Вернуться на главную",
     "nav.home": "Главная",
-    "story.p1": "Zeñorío родился из самой простой формы любви — желания сына почтить память отца. За каждым блюдом из риса, за каждым языком пламени гриля и за каждой рыбой со свежего улова стоит рука шеф-повара Federico Cardenete, который встал у плиты и сделал кулинарию делом всей своей жизни.",
-    "story.p2": "Здесь Средиземноморье готовят неспешно и с уважением: местные сезонные продукты, унаследованная техника и современный взгляд. Элегантный зал открывается в тропический сад с пальмами, где каждая трапеза проходит без спешки. Это и есть Zeñorío: дом, построенный на любви, мастерстве и памяти о том, кто научил нас готовить.",
+    "story.p1": "Zeñorío родился из самой простой формы любви — желания сына воздать должное своему отцу. За каждым блюдом из риса, за каждым языком пламени гриля и за каждой рыбой со свежего улова стоит рука шеф-повара Federico Cardenete, который стоит у плиты и сделал кулинарию делом всей своей жизни.",
+    "story.p2": "Здесь Средиземноморье готовят неспешно и с уважением: местные сезонные продукты, унаследованная техника и современный взгляд. Элегантный зал открывается в тропический сад с пальмами, где каждая трапеза проходит без спешки. Это и есть Zeñorío: дом, построенный на любви, мастерстве и наследии человека, который научил нас готовить.",
     "story.s1": "Продукты со свежего рынка",
     "story.s2u": "дней",
     "story.s2": "Выдержанное мясо",
@@ -652,25 +610,39 @@
     "res.addr": "Где мы находимся",
     "res.hours": "Часы работы",
     "res.hoursVal": "Со вторника по воскресенье · 18:30 – 23:30<br />Понедельник — выходной",
-    "res.alt": "Предпочитаете личное общение? Напишите нам в <a href=\"https://wa.me/34625848936?text=Hola%2C%20me%20gustar%C3%ADa%20reservar%20en%20Ze%C3%B1orio\" target=\"_blank\" rel=\"noopener\">WhatsApp</a> или позвоните по номеру <a href=\"tel:+34625848936\">+34 625 84 89 36</a>.",
+    "res.alt": "Предпочитаете личное общение? Напишите нам в <a href=\"https://wa.me/34625848936?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB(%D0%B0)%20%D0%B1%D1%8B%20%D0%B7%D0%B0%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D1%81%D1%82%D0%BE%D0%BB%D0%B8%D0%BA%20%D0%B2%20Ze%C3%B1or%C3%ADo\" target=\"_blank\" rel=\"noopener\">WhatsApp</a> или позвоните по номеру <a href=\"tel:+34625848936\">+34 625 84 89 36</a>.",
     "loc.eyebrow": "Как добраться",
     "loc.title": "В самом сердце Nueva Andalucía",
     "loc.mon": "Понедельник",
     "loc.closed": "Выходной",
     "loc.tuesun": "Вторник – Воскресенье",
     "loc.directions": "Построить маршрут",
-    "loc.call": "Позвонить"
+    "loc.call": "Позвонить",
+    "rev.q1": "“Выдающийся опыт: тёплый приём, внимательный сервис и превосходная кухня. Наш новый любимый ресторан в Marbella.”",
+    "rev.q2": "“Прекрасное место с великолепной кухней и чудесным садом. Рис — просто восхитительный.”",
+    "rev.q3": "“Безупречная подача и неповторимая атмосфера под пальмами. Обязательно вернёмся.”",
+    "rev.q4": "“Рыба в соляной корке — нечто особенное, а сервис безукоризненный. Идеальный вечер от начала до конца.”",
+    "rev.q5": "“Мы ужинали в саду, и это было волшебно. Жар углей чувствуется в каждом блюде. Marbella в чистом виде.”",
+    "rev.q6": "“Внимательнейший сервис, первоклассные продукты и отличная винная карта. Непременно вернёмся.”",
+    "rev.q7": "“Атмосфера элегантная и в то же время непринуждённая. Устрицы и голубой тунец — незабываемы.”",
+    "rev.q8": "“Идеально для особого случая. Нас приняли как дома, и еда была безупречной.”",
+    "a11y.h1Home": "Zeñorío — средиземноморский ресторан в Nueva Andalucía, Marbella",
+    "a11y.h1Carta": "Меню Zeñorío: рис и паэлья в Marbella",
+    "a11y.reviewsList": "Отзывы гостей"
   }
 };
 
-  // Slug del módulo de reservas CoverManager por idioma
-  const CM_SLUG = { es: "spanish", en: "english", fr: "french", de: "german", sv: "swedish", ru: "russian" };
+  // Slug del módulo de reservas CoverManager por idioma.
+  // CoverManager no tiene módulo en sueco ni ruso para este restaurante
+  // (esas rutas devuelven "Invalid URL"), así que caen en inglés.
+  const CM_SLUG = { es: "spanish", en: "english", fr: "french", de: "german", sv: "english", ru: "english" };
 
   const SUPPORTED = ["es", "en", "fr", "de", "sv", "ru"];
 
   // Captura del español original (del HTML) para poder restaurarlo.
   const original = new Map();
   const originalPh = new Map();
+  const originalAria = new Map();
 
   function cache() {
     document.querySelectorAll("[data-i18n]").forEach((el) => {
@@ -678,6 +650,9 @@
     });
     document.querySelectorAll("[data-i18n-ph]").forEach((el) => {
       originalPh.set(el, el.getAttribute("placeholder") || "");
+    });
+    document.querySelectorAll("[data-i18n-aria]").forEach((el) => {
+      originalAria.set(el, el.getAttribute("aria-label") || "");
     });
   }
 
@@ -694,6 +669,11 @@
       const key = el.getAttribute("data-i18n-ph");
       if (map && map[key] != null) el.setAttribute("placeholder", map[key]);
       else if (originalPh.has(el)) el.setAttribute("placeholder", originalPh.get(el));
+    });
+    document.querySelectorAll("[data-i18n-aria]").forEach((el) => {
+      const key = el.getAttribute("data-i18n-aria");
+      if (map && map[key] != null) el.setAttribute("aria-label", map[key]);
+      else if (originalAria.has(el)) el.setAttribute("aria-label", originalAria.get(el));
     });
 
     document.documentElement.lang = lang;

@@ -19,9 +19,9 @@
   <meta property="og:title" content="Zeñorío · Restaurante mediterráneo en Marbella" />
   <meta property="og:description" content="Brasa de encina, arroces con alma y un jardín tropical en el corazón de Nueva Andalucía, Marbella." />
   <meta property="og:url" content="https://zenorio.es/" />
-  <meta property="og:image" content="https://zenorio.es/assets/img/real2-hero.jpg" />
-  <meta property="og:image:width" content="1403" />
-  <meta property="og:image:height" content="2000" />
+  <meta property="og:image" content="https://zenorio.es/assets/img/og/og-home.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="La terraza ajardinada de Zeñorío al anochecer" />
   <meta name="twitter:card" content="summary_large_image" />
 
@@ -49,7 +49,7 @@
     "servesCuisine": ["Mediterránea", "Española", "Andaluza"],
     "priceRange": "€€€",
     "telephone": "+34 625 84 89 36",
-    "email": "info@xn--zeorio-xwa.com",
+    "email": "info@zenorio.es",
     "url": "https://zenorio.es/",
     "sameAs": [
       "https://www.instagram.com/zenoriomarbella/",
@@ -144,14 +144,16 @@
       <div class="hero__media" aria-hidden="true">
         <div class="hero__slides">
           <img class="hero__slide" src="/assets/img/real2-hero.webp" alt="" fetchpriority="high" />
-          <img class="hero__slide" src="/assets/img/real2-salon.webp" alt="" loading="lazy" fetchpriority="low" decoding="async" />
-          <img class="hero__slide" src="/assets/img/real2-terraza-noche.webp" alt="" loading="lazy" fetchpriority="low" decoding="async" />
-          <img class="hero__slide" src="/assets/img/real2-jardin-oasis.webp" alt="" loading="lazy" fetchpriority="low" decoding="async" />
-          <img class="hero__slide" src="/assets/img/real2-bodega.webp" alt="" loading="lazy" fetchpriority="low" decoding="async" />
+          <!-- Las fotos 2-5 (~542 KB) se cargan por JS tras el load: la 2ª no
+               se ve hasta el segundo 6 y así no compiten con el arranque. -->
+          <img class="hero__slide" data-src="/assets/img/real2-salon.webp" alt="" decoding="async" />
+          <img class="hero__slide" data-src="/assets/img/real2-terraza-noche.webp" alt="" decoding="async" />
+          <img class="hero__slide" data-src="/assets/img/real2-jardin-oasis.webp" alt="" decoding="async" />
+          <img class="hero__slide" data-src="/assets/img/real2-bodega.webp" alt="" decoding="async" />
         </div>
       </div>
       <div class="wrap hero__inner">
-        <h1 class="sr-only">Zeñorío, restaurante mediterráneo en Nueva Andalucía, Marbella</h1>
+        <h1 class="sr-only" data-i18n="a11y.h1Home">Zeñorío, restaurante mediterráneo en Nueva Andalucía, Marbella</h1>
         <div class="hero__cta" data-reveal style="--d:.18s">
           <a href="/reserva.html" class="btn" data-i18n="hero.cta1">Reservar mesa</a>
           <a href="/carta.html" class="btn btn--ghost" data-i18n="hero.cta2">Ver la carta</a>
@@ -218,15 +220,15 @@
           <h2 class="h2" data-reveal style="--d:.06s" data-i18n="rev.title">Huéspedes que vuelven</h2>
         </div>
       </div>
-      <div class="reviews-rail" data-reveal role="list" aria-label="Reseñas de clientes">
-        <figure class="review-card" role="listitem"><div class="review-card__stars">★★★★★</div><p>“Una experiencia sobresaliente: acogida cálida, servicio atento y una cocina excelente. Nuestro nuevo restaurante favorito en Marbella.”</p><footer>Laura M. · <span class="review-card__src">Google</span></footer></figure>
-        <figure class="review-card" role="listitem"><div class="review-card__stars">★★★★★</div><p>“Un lugar precioso, con una comida superba y un entorno de jardín maravilloso. El arroz, espectacular.”</p><footer>James T. · <span class="review-card__src">Google</span></footer></figure>
-        <figure class="review-card" role="listitem"><div class="review-card__stars">★★★★★</div><p>“Presentación impecable y un ambiente único bajo las palmeras. Volveremos sin duda.”</p><footer>Sofía R. · <span class="review-card__src">Google</span></footer></figure>
-        <figure class="review-card" role="listitem"><div class="review-card__stars">★★★★★</div><p>“El pescado a la sal es de otro nivel y el trato, exquisito. Una velada redonda de principio a fin.”</p><footer>Andrés P. · <span class="review-card__src">Google</span></footer></figure>
-        <figure class="review-card" role="listitem"><div class="review-card__stars">★★★★★</div><p>“Cenamos en el jardín y fue mágico. La brasa se nota en cada plato. Marbella en estado puro.”</p><footer>Chloé D. · <span class="review-card__src">Google</span></footer></figure>
-        <figure class="review-card" role="listitem"><div class="review-card__stars">★★★★★</div><p>“Servicio atentísimo, producto de primera y una carta de vinos estupenda. Repetiremos seguro.”</p><footer>Marco V. · <span class="review-card__src">Google</span></footer></figure>
-        <figure class="review-card" role="listitem"><div class="review-card__stars">★★★★★</div><p>“Ambiente elegante y relajado a la vez. Las ostras y el atún rojo, memorables.”</p><footer>Elena G. · <span class="review-card__src">Google</span></footer></figure>
-        <figure class="review-card" role="listitem"><div class="review-card__stars">★★★★★</div><p>“Perfecto para una ocasión especial. Nos trataron como en casa y la comida estuvo impecable.”</p><footer>Thomas B. · <span class="review-card__src">Google</span></footer></figure>
+      <div class="reviews-rail" data-reveal role="list" aria-label="Reseñas de clientes" data-i18n-aria="a11y.reviewsList">
+        <figure class="review-card" role="listitem"><div class="review-card__stars">★★★★★</div><p data-i18n="rev.q1">“Una experiencia sobresaliente: acogida cálida, servicio atento y una cocina excelente. Nuestro nuevo restaurante favorito en Marbella.”</p><footer>Laura M. · <span class="review-card__src">Google</span></footer></figure>
+        <figure class="review-card" role="listitem"><div class="review-card__stars">★★★★★</div><p data-i18n="rev.q2">“Un lugar precioso, con una comida superba y un entorno de jardín maravilloso. El arroz, espectacular.”</p><footer>James T. · <span class="review-card__src">Google</span></footer></figure>
+        <figure class="review-card" role="listitem"><div class="review-card__stars">★★★★★</div><p data-i18n="rev.q3">“Presentación impecable y un ambiente único bajo las palmeras. Volveremos sin duda.”</p><footer>Sofía R. · <span class="review-card__src">Google</span></footer></figure>
+        <figure class="review-card" role="listitem"><div class="review-card__stars">★★★★★</div><p data-i18n="rev.q4">“El pescado a la sal es de otro nivel y el trato, exquisito. Una velada redonda de principio a fin.”</p><footer>Andrés P. · <span class="review-card__src">Google</span></footer></figure>
+        <figure class="review-card" role="listitem"><div class="review-card__stars">★★★★★</div><p data-i18n="rev.q5">“Cenamos en el jardín y fue mágico. La brasa se nota en cada plato. Marbella en estado puro.”</p><footer>Chloé D. · <span class="review-card__src">Google</span></footer></figure>
+        <figure class="review-card" role="listitem"><div class="review-card__stars">★★★★★</div><p data-i18n="rev.q6">“Servicio atentísimo, producto de primera y una carta de vinos estupenda. Repetiremos seguro.”</p><footer>Marco V. · <span class="review-card__src">Google</span></footer></figure>
+        <figure class="review-card" role="listitem"><div class="review-card__stars">★★★★★</div><p data-i18n="rev.q7">“Ambiente elegante y relajado a la vez. Las ostras y el atún rojo, memorables.”</p><footer>Elena G. · <span class="review-card__src">Google</span></footer></figure>
+        <figure class="review-card" role="listitem"><div class="review-card__stars">★★★★★</div><p data-i18n="rev.q8">“Perfecto para una ocasión especial. Nos trataron como en casa y la comida estuvo impecable.”</p><footer>Thomas B. · <span class="review-card__src">Google</span></footer></figure>
       </div>
       <p class="reviews-hint" aria-hidden="true" data-i18n="rev.hint">← Desliza para leer más →</p>
     </section>
@@ -272,7 +274,7 @@
           <h4 data-i18n="foot.contact">Contacto</h4>
           <a href="tel:+34625848936">+34 625 84 89 36</a>
           <a href="https://wa.me/34625848936" target="_blank" rel="noopener">WhatsApp</a>
-          <a href="mailto:info@xn--zeorio-xwa.com">info@zeñorio.com</a>
+          <a href="mailto:info@zenorio.es">info@zenorio.es</a>
           <p>Av. de los Girasoles 108<br/>Nueva Andalucía, Marbella</p>
           <p data-i18n="foot.hours">Mar–Dom · 18:30–23:30</p>
         </div>
@@ -295,7 +297,7 @@
   </div>
 
   <script src="/js/cookies.js?v=3"></script>
-  <script src="/js/i18n.js?v=11"></script>
+  <script src="/js/i18n.js?v=13"></script>
   <script src="/js/main.js?v=3"></script>
 </body>
 </html>
