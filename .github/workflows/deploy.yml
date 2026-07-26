@@ -55,15 +55,21 @@ jobs:
               return items;
             } catch (err) { console.log('== ' + ruta + ' · ERROR: ' + err.message.split('\n')[0]); return []; }
           }
+          console.log('PWD inicial: ' + (await c.pwd()));
           await listado('/');
+          await listado('/nodejs');
+          for (const e of await c.list('/nodejs').catch(() => [])) {
+            if (e.isDirectory) await listado('/nodejs/' + e.name);
+          }
           await listado('/public_html');
-          const doms = await listado('/domains');
-          for (const d of doms) {
-            if (d.isDirectory) {
-              await listado('/domains/' + d.name);
-              await listado('/domains/' + d.name + '/public_html');
+          await listado('/public_html/.builds');
+          for (const e of await c.list('/public_html/.builds').catch(() => [])) {
+            if (e.isDirectory) {
+              await listado('/public_html/.builds/' + e.name);
+              await listado('/public_html/.builds/' + e.name + '/public');
             }
           }
+          await listado('/public_html/public_html');
           c.close();
           EOF
           node diag-ftp.mjs
