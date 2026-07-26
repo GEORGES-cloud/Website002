@@ -1,13 +1,15 @@
 name: Desplegar a Hostinger
 
-# Cada push a main que toque la web (public/) se sube solo a Hostinger.
-# Requiere 3 secrets en GitHub (Settings -> Secrets and variables -> Actions):
-#   FTP_SERVER    p. ej. 185.xx.xx.xx o ftp.zeñorio.com (hPanel -> Archivos -> Cuentas FTP)
-#   FTP_USERNAME  usuario FTP de esa pantalla
-#   FTP_PASSWORD  contraseña FTP
+# ARQUITECTURA REAL (verificada el 2026-07-26 mapeando el FTP):
+# La web la sirve una app Node.js de Hostinger. El repo está clonado en
+# /nodejs (server.mjs + Express + public/) y Express sirve /nodejs/public.
+# El home de la cuenta FTP es /public_html — un scaffold de Hostinger que
+# YA NO SIRVE NADA (era el docroot de la etapa estática, hasta jul-2026).
+# Por eso este workflow sube con rutas ABSOLUTAS a /nodejs/public/ y
+# después toca /nodejs/tmp/restart.txt para reiniciar la app.
 #
-# Nota: si la cuenta FTP está limitada ya a public_html, cambia server-dir a "./"
-# Nota: si el servidor rechaza FTPS, cambia protocol a "ftp".
+# Requiere 3 secrets (Settings -> Secrets and variables -> Actions):
+#   FTP_SERVER · FTP_USERNAME · FTP_PASSWORD  (hPanel -> Archivos -> Cuentas FTP)
 
 on:
   push:
@@ -23,66 +25,11 @@ concurrency:
 
 jobs:
   deploy:
-    name: Subir public/ a public_html
+    name: Subir public/ a /nodejs/public
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      # TEMPORAL: el 2026-07-26 el sync aterrizó en una carpeta vacía
-      # ("first publish") pese a que la web vive en el servidor desde el
-      # 9 de julio: el home del FTP ya no apunta al docroot. Este paso
-      # mapea el árbol del FTP para localizar la carpeta real de la web.
-      - name: Diagnóstico · mapear carpetas del FTP
-        env:
-          FTP_SERVER: ${{ secrets.FTP_SERVER }}
-          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
-          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-        run: |
-          npm install basic-ftp@5 --no-fund --no-audit --silent
-          cat > diag-ftp.mjs <<'EOF'
-          import * as ftp from 'basic-ftp';
-          async function ronda(n) {
-            const c = new ftp.Client(45000);
-            try {
-              await c.access({ host: process.env.FTP_SERVER, user: process.env.FTP_USERNAME, password: process.env.FTP_PASSWORD, secure: true, secureOptions: { rejectUnauthorized: false } });
-              async function listado(ruta) {
-                try {
-                  const items = await c.list(ruta);
-                  console.log('== ' + ruta + ' · ' + items.length + ' elementos');
-                  for (const e of items.slice(0, 25)) {
-                    const fecha = e.modifiedAt ? e.modifiedAt.toISOString().slice(0, 10) : (e.rawModifiedAt || '');
-                    console.log('   ' + (e.isDirectory ? 'D' : 'F') + '  ' + e.name + (e.isDirectory ? '' : '  (' + e.size + ' b, ' + fecha + ')'));
-                  }
-                  return items;
-                } catch (err) { console.log('== ' + ruta + ' · ERROR: ' + err.message.split('\n')[0]); return []; }
-              }
-              console.log('PWD inicial: ' + (await c.pwd()));
-              await listado('/');
-              for (const e of await listado('/nodejs')) {
-                if (e.isDirectory) await listado('/nodejs/' + e.name);
-              }
-              await listado('/public_html');
-              for (const e of await listado('/public_html/.builds')) {
-                if (e.isDirectory) {
-                  await listado('/public_html/.builds/' + e.name);
-                  await listado('/public_html/.builds/' + e.name + '/public');
-                }
-              }
-              await listado('/public_html/public_html');
-              c.close();
-              return true;
-            } catch (e) {
-              console.log('intento ' + n + ' falló: ' + e.message.split('\n')[0]);
-              c.close();
-              return false;
-            }
-          }
-          let ok = false;
-          for (let n = 1; n <= 4 && !ok; n++) { ok = await ronda(n); if (!ok) await new Promise(r => setTimeout(r, 8000)); }
-          if (!ok) process.exit(1);
-          EOF
-          node diag-ftp.mjs
 
       - name: Sincronizar por FTP (solo archivos cambiados)
         id: ftp
@@ -94,13 +41,13 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
           local-dir: public/
-          server-dir: public_html/
+          server-dir: /nodejs/public/
           dangerous-clean-slate: false
 
       # El FTP de Hostinger falla a veces al guardar el archivo de estado del
-      # sync (550 intermitente) aunque los archivos ya estén subidos. Un
-      # segundo intento re-sincroniza lo poco que falte y deja el run en verde.
-      - name: Reintento (el FTP de Hostinger falla a veces al guardar estado)
+      # sync (550/timeout intermitente) aunque los archivos ya estén subidos.
+      # Un segundo intento re-sincroniza lo poco que falte.
+      - name: Reintento (el FTP de Hostinger falla a veces)
         if: steps.ftp.outcome == 'failure'
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
@@ -109,13 +56,14 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
           local-dir: public/
-          server-dir: public_html/
+          server-dir: /nodejs/public/
           dangerous-clean-slate: false
 
-      # El sync de arriba OMITE los dotfiles (.htaccess), así que las reglas de
-      # caché/WebP/redirecciones/404 nunca llegaban al servidor. Este paso lo
-      # sube siempre a mano por FTP.
-      - name: Forzar subida de .htaccess (el sync omite dotfiles)
+      # 1) El sync omite dotfiles: subir .htaccess a mano (paridad repo-servidor).
+      # 2) Tocar /nodejs/tmp/restart.txt: la app se reinicia y coge cambios.
+      # 3) Limpieza única: borrar /public_html/public_html, creado por error
+      #    el 26-07 cuando el sync aterrizó en el home nuevo del FTP.
+      - name: Dotfiles, reinicio de la app y limpieza
         if: always()
         env:
           FTP_SERVER: ${{ secrets.FTP_SERVER }}
@@ -123,22 +71,30 @@ jobs:
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
         run: |
           npm install basic-ftp@5 --no-fund --no-audit --silent
-          cat > subir-htaccess.mjs <<'EOF'
+          cat > post-deploy.mjs <<'EOF'
           import * as ftp from 'basic-ftp';
+          import { writeFileSync } from 'node:fs';
           async function intento(n) {
-            const c = new ftp.Client(30000);
+            const c = new ftp.Client(45000);
             try {
               await c.access({ host: process.env.FTP_SERVER, user: process.env.FTP_USERNAME, password: process.env.FTP_PASSWORD, secure: true, secureOptions: { rejectUnauthorized: false } });
-              const raiz = (await c.list('/')).map(e => e.name);
-              const base = raiz.includes('public_html') ? 'public_html/' : '';
-              await c.uploadFrom('public/.htaccess', base + '.htaccess');
-              console.log('SUBIDO ' + base + '.htaccess (intento ' + n + ')');
+              await c.uploadFrom('public/.htaccess', '/nodejs/public/.htaccess');
+              console.log('SUBIDO /nodejs/public/.htaccess (intento ' + n + ')');
+              writeFileSync('restart.txt', new Date().toISOString());
+              await c.uploadFrom('restart.txt', '/nodejs/tmp/restart.txt');
+              console.log('REINICIO solicitado (tmp/restart.txt)');
+              try {
+                await c.removeDir('/public_html/public_html');
+                console.log('LIMPIEZA hecha: /public_html/public_html eliminado');
+              } catch (e) {
+                console.log('LIMPIEZA: nada que borrar (' + e.message.split('\n')[0] + ')');
+              }
               c.close();
               return true;
             } catch (e) { console.log('intento ' + n + ' falló: ' + e.message.split('\n')[0]); c.close(); return false; }
           }
           let ok = false;
-          for (let n = 1; n <= 4 && !ok; n++) { ok = await intento(n); if (!ok) await new Promise(r => setTimeout(r, 5000)); }
+          for (let n = 1; n <= 4 && !ok; n++) { ok = await intento(n); if (!ok) await new Promise(r => setTimeout(r, 8000)); }
           if (!ok) process.exit(1);
           EOF
-          node subir-htaccess.mjs
+          node post-deploy.mjs
