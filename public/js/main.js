@@ -156,6 +156,114 @@
     return `https://wa.me/${WA}?text=${txt}`;
   }
 
+  /* ---- Lightbox de la galería ----
+     Clic en una foto: se abre en grande sobre fondo oscuro. Se pasa de una
+     a otra con las flechas (pantalla o teclado) o deslizando el dedo,
+     como un carrete. Esc, la X o el fondo cierran. */
+  (function () {
+    const figures = $$(".gallery figure");
+    if (!figures.length) return;
+
+    const lb = document.createElement("div");
+    lb.className = "lightbox";
+    lb.setAttribute("role", "dialog");
+    lb.setAttribute("aria-modal", "true");
+    lb.setAttribute("aria-label", "Visor de fotos");
+    lb.innerHTML =
+      '<button class="lightbox__close" type="button" aria-label="Cerrar (Esc)">&times;</button>' +
+      '<button class="lightbox__nav lightbox__nav--prev" type="button" aria-label="Foto anterior">&#8249;</button>' +
+      '<figure class="lightbox__stage">' +
+      '<img class="lightbox__img" alt="" decoding="async" />' +
+      '<figcaption class="lightbox__caption"></figcaption>' +
+      "</figure>" +
+      '<button class="lightbox__nav lightbox__nav--next" type="button" aria-label="Foto siguiente">&#8250;</button>' +
+      '<span class="lightbox__count" aria-hidden="true"></span>';
+    document.body.appendChild(lb);
+
+    const img = $(".lightbox__img", lb);
+    const caption = $(".lightbox__caption", lb);
+    const count = $(".lightbox__count", lb);
+    const btnClose = $(".lightbox__close", lb);
+    const btnPrev = $(".lightbox__nav--prev", lb);
+    const btnNext = $(".lightbox__nav--next", lb);
+
+    let current = 0;
+    let lastFocus = null;
+
+    function itemAt(i) {
+      const im = $("img", figures[i]);
+      const cap = $("figcaption", figures[i]);
+      return { src: im.currentSrc || im.src, alt: im.alt || "", cap: cap ? cap.textContent : "" };
+    }
+    function preload(i) {
+      new Image().src = itemAt((i + figures.length) % figures.length).src;
+    }
+    function show(i, dir) {
+      current = (i + figures.length) % figures.length;
+      const it = itemAt(current);
+      img.classList.remove("slide-next", "slide-prev");
+      void img.offsetWidth; // reinicia la animación
+      img.src = it.src;
+      img.alt = it.alt;
+      caption.textContent = it.cap;
+      count.textContent = current + 1 + " / " + figures.length;
+      if (dir) img.classList.add(dir > 0 ? "slide-next" : "slide-prev");
+      preload(current + 1);
+      preload(current - 1);
+    }
+    function open(i) {
+      lastFocus = document.activeElement;
+      show(i, 0);
+      lb.classList.add("open");
+      document.body.classList.add("lightbox-open");
+      btnClose.focus();
+    }
+    function close() {
+      lb.classList.remove("open");
+      document.body.classList.remove("lightbox-open");
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+
+    figures.forEach((fig, i) => {
+      const im = $("img", fig);
+      fig.setAttribute("tabindex", "0");
+      fig.setAttribute("role", "button");
+      fig.setAttribute("aria-label", "Ampliar: " + (im ? im.alt : ""));
+      fig.addEventListener("click", () => open(i));
+      fig.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(i); }
+      });
+    });
+
+    btnClose.addEventListener("click", close);
+    btnPrev.addEventListener("click", () => show(current - 1, -1));
+    btnNext.addEventListener("click", () => show(current + 1, 1));
+    lb.addEventListener("click", (e) => { if (e.target === lb) close(); });
+
+    document.addEventListener("keydown", (e) => {
+      if (!lb.classList.contains("open")) return;
+      if (e.key === "Escape") close();
+      else if (e.key === "ArrowRight") show(current + 1, 1);
+      else if (e.key === "ArrowLeft") show(current - 1, -1);
+    });
+
+    // Deslizar con el dedo (móvil): pasar de foto como en el carrete
+    let touchX = null, touchY = null;
+    lb.addEventListener("touchstart", (e) => {
+      touchX = e.touches[0].clientX;
+      touchY = e.touches[0].clientY;
+    }, { passive: true });
+    lb.addEventListener("touchend", (e) => {
+      if (touchX === null) return;
+      const dx = e.changedTouches[0].clientX - touchX;
+      const dy = e.changedTouches[0].clientY - touchY;
+      touchX = touchY = null;
+      if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.4) {
+        show(current + (dx < 0 ? 1 : -1), dx < 0 ? 1 : -1);
+      }
+    }, { passive: true });
+  })();
+
   form && form.addEventListener("submit", async (ev) => {
     ev.preventDefault();
     if (!form.checkValidity()) { form.reportValidity(); return; }
