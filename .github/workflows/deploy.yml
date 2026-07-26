@@ -42,35 +42,45 @@ jobs:
           npm install basic-ftp@5 --no-fund --no-audit --silent
           cat > diag-ftp.mjs <<'EOF'
           import * as ftp from 'basic-ftp';
-          const c = new ftp.Client(30000);
-          await c.access({ host: process.env.FTP_SERVER, user: process.env.FTP_USERNAME, password: process.env.FTP_PASSWORD, secure: true, secureOptions: { rejectUnauthorized: false } });
-          async function listado(ruta) {
+          async function ronda(n) {
+            const c = new ftp.Client(45000);
             try {
-              const items = await c.list(ruta);
-              console.log('== ' + ruta + ' · ' + items.length + ' elementos');
-              for (const e of items.slice(0, 25)) {
-                const fecha = e.modifiedAt ? e.modifiedAt.toISOString().slice(0, 10) : (e.rawModifiedAt || '');
-                console.log('   ' + (e.isDirectory ? 'D' : 'F') + '  ' + e.name + (e.isDirectory ? '' : '  (' + e.size + ' b, ' + fecha + ')'));
+              await c.access({ host: process.env.FTP_SERVER, user: process.env.FTP_USERNAME, password: process.env.FTP_PASSWORD, secure: true, secureOptions: { rejectUnauthorized: false } });
+              async function listado(ruta) {
+                try {
+                  const items = await c.list(ruta);
+                  console.log('== ' + ruta + ' · ' + items.length + ' elementos');
+                  for (const e of items.slice(0, 25)) {
+                    const fecha = e.modifiedAt ? e.modifiedAt.toISOString().slice(0, 10) : (e.rawModifiedAt || '');
+                    console.log('   ' + (e.isDirectory ? 'D' : 'F') + '  ' + e.name + (e.isDirectory ? '' : '  (' + e.size + ' b, ' + fecha + ')'));
+                  }
+                  return items;
+                } catch (err) { console.log('== ' + ruta + ' · ERROR: ' + err.message.split('\n')[0]); return []; }
               }
-              return items;
-            } catch (err) { console.log('== ' + ruta + ' · ERROR: ' + err.message.split('\n')[0]); return []; }
-          }
-          console.log('PWD inicial: ' + (await c.pwd()));
-          await listado('/');
-          await listado('/nodejs');
-          for (const e of await c.list('/nodejs').catch(() => [])) {
-            if (e.isDirectory) await listado('/nodejs/' + e.name);
-          }
-          await listado('/public_html');
-          await listado('/public_html/.builds');
-          for (const e of await c.list('/public_html/.builds').catch(() => [])) {
-            if (e.isDirectory) {
-              await listado('/public_html/.builds/' + e.name);
-              await listado('/public_html/.builds/' + e.name + '/public');
+              console.log('PWD inicial: ' + (await c.pwd()));
+              await listado('/');
+              for (const e of await listado('/nodejs')) {
+                if (e.isDirectory) await listado('/nodejs/' + e.name);
+              }
+              await listado('/public_html');
+              for (const e of await listado('/public_html/.builds')) {
+                if (e.isDirectory) {
+                  await listado('/public_html/.builds/' + e.name);
+                  await listado('/public_html/.builds/' + e.name + '/public');
+                }
+              }
+              await listado('/public_html/public_html');
+              c.close();
+              return true;
+            } catch (e) {
+              console.log('intento ' + n + ' falló: ' + e.message.split('\n')[0]);
+              c.close();
+              return false;
             }
           }
-          await listado('/public_html/public_html');
-          c.close();
+          let ok = false;
+          for (let n = 1; n <= 4 && !ok; n++) { ok = await ronda(n); if (!ok) await new Promise(r => setTimeout(r, 8000)); }
+          if (!ok) process.exit(1);
           EOF
           node diag-ftp.mjs
 
