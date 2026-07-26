@@ -457,7 +457,8 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
   animation: floaty 3s ease-in-out infinite;
 }
 .loader__z {
-  width: 64%; height: 64%;
+  /* Proporción del logo oficial: la Z llena el 83% del marco */
+  width: 83%; height: 83%;
   background-color: #fff;
   -webkit-mask: url(/assets/img/logo-z.svg?v=5) center / contain no-repeat;
   mask: url(/assets/img/logo-z.svg?v=5) center / contain no-repeat;
