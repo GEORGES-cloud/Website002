@@ -16,6 +16,7 @@ on:
     branches: [main]
     paths:
       - "public/**"
+      - "server.mjs"
       - ".github/workflows/deploy.yml"
   workflow_dispatch:
 
@@ -80,6 +81,9 @@ jobs:
               await c.access({ host: process.env.FTP_SERVER, user: process.env.FTP_USERNAME, password: process.env.FTP_PASSWORD, secure: true, secureOptions: { rejectUnauthorized: false } });
               await c.uploadFrom('public/.htaccess', '/nodejs/public/.htaccess');
               console.log('SUBIDO /nodejs/public/.htaccess (intento ' + n + ')');
+              // El sync solo cubre public/: la app (server.mjs) se sube aparte.
+              await c.uploadFrom('server.mjs', '/nodejs/server.mjs');
+              console.log('SUBIDO /nodejs/server.mjs');
               writeFileSync('restart.txt', new Date().toISOString());
               await c.uploadFrom('restart.txt', '/nodejs/tmp/restart.txt');
               console.log('REINICIO solicitado (tmp/restart.txt)');
