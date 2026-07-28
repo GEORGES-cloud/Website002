@@ -11,7 +11,7 @@
 import express from 'express';
 import compression from 'compression';
 import { fileURLToPath } from 'node:url';
-import { dirname, join } from 'node:path';
+import { dirname, join, normalize, sep } from 'node:path';
 import { appendFile, mkdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 
@@ -58,11 +58,24 @@ app.use((req, res, next) => {
   next();
 });
 
+// URL canónica única por página: /carta -> /carta.html e /index.html -> /
+// (express.static con extensions:['html'] respondía 200 en ambas variantes:
+// contenido duplicado rastreable; el 301 consolida la señal).
+const PAGES = new Set(['carta', 'casa', 'experiencia', 'galeria', 'reserva', 'aviso-legal', 'privacidad', 'cookies']);
+app.use((req, res, next) => {
+  if (req.path === '/index.html') return res.redirect(301, '/');
+  const m = req.path.match(/^\/([a-z-]+)$/);
+  if (m && PAGES.has(m[1])) return res.redirect(301, `/${m[1]}.html`);
+  next();
+});
+
 // Negociación WebP: si el navegador acepta image/webp y existe el gemelo .webp,
 // lo servimos en lugar del .jpg (más ligero) sin cambiar el HTML.
 app.use((req, res, next) => {
   if (/\.jpe?g$/i.test(req.path) && (req.headers.accept || '').includes('image/webp')) {
-    const webp = join(PUBLIC_DIR, req.path.replace(/\.jpe?g$/i, '.webp'));
+    // normalize + startsWith: que un '/../' literal no pueda salir de public/
+    const webp = normalize(join(PUBLIC_DIR, req.path.replace(/\.jpe?g$/i, '.webp')));
+    if (!webp.startsWith(PUBLIC_DIR + sep)) return next();
     if (existsSync(webp)) {
       res.set('Vary', 'Accept');
       res.set('Cache-Control', 'public, max-age=31536000, immutable');

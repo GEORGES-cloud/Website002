@@ -75,7 +75,7 @@
     },
   };
 
-  function showBanner() {
+  function showBanner(langForce) {
     if (document.getElementById("ck-banner")) return;
     // Idioma: el mismo que usa i18n.js (?lang= o localStorage; por defecto ES)
     var lang = "es";
@@ -84,11 +84,14 @@
       var q = new URLSearchParams(location.search).get("lang");
       if (q && COPY[q]) lang = q;
     } catch (e) {}
+    if (langForce && COPY[langForce]) lang = langForce;
     var T = COPY[lang] || COPY.en;
     var el = document.createElement("div");
     el.id = "ck-banner";
     el.className = "cookie-banner";
-    el.setAttribute("role", "dialog");
+    // role=region (no dialog): el banner no es modal ni gestiona el foco;
+    // dialog sin foco es un patrón ARIA incorrecto para lectores de pantalla.
+    el.setAttribute("role", "region");
     el.setAttribute("aria-label", T.aria);
     el.innerHTML =
       '<div class="cookie-banner__in">' +
@@ -109,5 +112,12 @@
     if (c === "all") enableAll();
     else if (c === "essential") { /* solo esenciales: nada */ }
     else showBanner();
+  });
+
+  // Si el usuario cambia de idioma con el banner aún visible, retraducirlo
+  // (i18n.js emite zenorio:lang después de guardar la preferencia).
+  document.addEventListener("zenorio:lang", function (e) {
+    var b = document.getElementById("ck-banner");
+    if (b) { b.remove(); showBanner(e && e.detail); }
   });
 })();

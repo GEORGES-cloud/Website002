@@ -128,7 +128,16 @@
     "rev.q8": "“Perfect for a special occasion. They made us feel at home and the food was impeccable.”",
     "a11y.h1Home": "Zeñorío, Mediterranean restaurant in Nueva Andalucía, Marbella",
     "a11y.h1Carta": "The Zeñorío menu: rice dishes and paellas in Marbella",
-    "a11y.reviewsList": "Customer reviews"
+    "a11y.reviewsList": "Customer reviews",
+    "a11y.lbViewer": "Photo viewer",
+    "a11y.lbClose": "Close (Esc)",
+    "a11y.lbPrev": "Previous photo",
+    "a11y.lbNext": "Next photo",
+    "a11y.backTop": "Back to top",
+    "a11y.menu": "Menu",
+    "a11y.mainNav": "Main",
+    "a11y.brandHome": "Zeñorío — home",
+    "rev.stars": "5 out of 5 stars"
   },
   "fr": {
     "home.localT": "Un restaurant avec jardin à Nueva Andalucía, Marbella",
@@ -253,7 +262,16 @@
     "rev.q8": "“Parfait pour une grande occasion. Nous avons été reçus comme à la maison et la cuisine était impeccable.”",
     "a11y.h1Home": "Zeñorío, restaurant méditerranéen à Nueva Andalucía, Marbella",
     "a11y.h1Carta": "La carte de Zeñorío : riz et paellas à Marbella",
-    "a11y.reviewsList": "Avis de nos clients"
+    "a11y.reviewsList": "Avis de nos clients",
+    "a11y.lbViewer": "Visionneuse de photos",
+    "a11y.lbClose": "Fermer (Échap)",
+    "a11y.lbPrev": "Photo précédente",
+    "a11y.lbNext": "Photo suivante",
+    "a11y.backTop": "Retour en haut",
+    "a11y.menu": "Menu",
+    "a11y.mainNav": "Navigation principale",
+    "a11y.brandHome": "Zeñorío — accueil",
+    "rev.stars": "5 étoiles sur 5"
   },
   "de": {
     "home.localT": "Ein Restaurant mit Garten in Nueva Andalucía, Marbella",
@@ -378,7 +396,16 @@
     "rev.q8": "“Perfekt für einen besonderen Anlass. Wir fühlten uns wie zu Hause und das Essen war tadellos.”",
     "a11y.h1Home": "Zeñorío, mediterranes Restaurant in Nueva Andalucía, Marbella",
     "a11y.h1Carta": "Die Karte von Zeñorío: Reisgerichte und Paellas in Marbella",
-    "a11y.reviewsList": "Gästebewertungen"
+    "a11y.reviewsList": "Gästebewertungen",
+    "a11y.lbViewer": "Fotoansicht",
+    "a11y.lbClose": "Schließen (Esc)",
+    "a11y.lbPrev": "Vorheriges Foto",
+    "a11y.lbNext": "Nächstes Foto",
+    "a11y.backTop": "Zurück nach oben",
+    "a11y.menu": "Menü",
+    "a11y.mainNav": "Hauptnavigation",
+    "a11y.brandHome": "Zeñorío — Startseite",
+    "rev.stars": "5 von 5 Sternen"
   },
   "sv": {
     "home.localT": "En restaurang med trädgård i Nueva Andalucía, Marbella",
@@ -503,7 +530,16 @@
     "rev.q8": "“Perfekt för ett speciellt tillfälle. Vi kände oss som hemma och maten var oklanderlig.”",
     "a11y.h1Home": "Zeñorío, medelhavsrestaurang i Nueva Andalucía, Marbella",
     "a11y.h1Carta": "Zeñoríos meny: risrätter och paella i Marbella",
-    "a11y.reviewsList": "Gästrecensioner"
+    "a11y.reviewsList": "Gästrecensioner",
+    "a11y.lbViewer": "Bildvisare",
+    "a11y.lbClose": "Stäng (Esc)",
+    "a11y.lbPrev": "Föregående foto",
+    "a11y.lbNext": "Nästa foto",
+    "a11y.backTop": "Till toppen",
+    "a11y.menu": "Meny",
+    "a11y.mainNav": "Huvudnavigering",
+    "a11y.brandHome": "Zeñorío — startsida",
+    "rev.stars": "5 av 5 stjärnor"
   },
   "ru": {
     "home.localT": "Ресторан с садом в Nueva Andalucía, Marbella",
@@ -628,7 +664,16 @@
     "rev.q8": "“Идеально для особого случая. Нас приняли как дома, и еда была безупречной.”",
     "a11y.h1Home": "Zeñorío — средиземноморский ресторан в Nueva Andalucía, Marbella",
     "a11y.h1Carta": "Меню Zeñorío: рис и паэлья в Marbella",
-    "a11y.reviewsList": "Отзывы гостей"
+    "a11y.reviewsList": "Отзывы гостей",
+    "a11y.lbViewer": "Просмотр фотографий",
+    "a11y.lbClose": "Закрыть (Esc)",
+    "a11y.lbPrev": "Предыдущее фото",
+    "a11y.lbNext": "Следующее фото",
+    "a11y.backTop": "Наверх",
+    "a11y.menu": "Меню",
+    "a11y.mainNav": "Основная навигация",
+    "a11y.brandHome": "Zeñorío — на главную",
+    "rev.stars": "5 из 5 звёзд"
   }
 };
 
@@ -691,6 +736,8 @@
     });
 
     try { localStorage.setItem("zenorio-lang", lang); } catch (e) {}
+    // Aviso a otros componentes (p. ej. el banner de cookies se retraduce en vivo)
+    document.dispatchEvent(new CustomEvent("zenorio:lang", { detail: lang }));
   }
 
   document.addEventListener("DOMContentLoaded", () => {
