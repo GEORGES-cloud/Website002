@@ -513,39 +513,6 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
 }
 .hero--papi h1 .serif-it { color: var(--gold-2); }
 
-.hero__scroll {
-  position: absolute;
-  right: var(--gut);
-  bottom: clamp(2rem, 5vw, 3.5rem);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.9rem;
-  font-size: 0.62rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--muted);
-  writing-mode: vertical-rl;
-}
-.hero__scroll i {
-  width: 1px; height: 56px;
-  background: linear-gradient(var(--gold), transparent);
-  position: relative;
-  overflow: hidden;
-}
-.hero__scroll i::after {
-  content: "";
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 40%;
-  background: var(--cream);
-  animation: scrolldot 2.2s var(--ease) infinite;
-}
-@keyframes scrolldot {
-  0% { transform: translateY(-100%); }
-  100% { transform: translateY(280%); }
-}
-
 /* Accolades marquee */
 .marquee {
   border-top: 1px solid var(--line-soft);
@@ -765,6 +732,84 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
 @media (max-width: 600px) {
   .cookie-banner__btns { width: 100%; }
   .cookie-banner__btns button { flex: 1; }
+}
+
+/* Aviso de música en directo (viernes piano · sábados saxo).
+   Abajo a la izquierda: los flotantes de WhatsApp y "subir" viven a la
+   derecha. En móvil pasa a ocupar el ancho y se sube por encima de ellos. */
+.gig {
+  position: fixed;
+  left: var(--gut);
+  bottom: clamp(1rem, 2vw, 1.8rem);
+  z-index: 90; /* sobre los flotantes (80), bajo el de cookies (300) */
+  width: min(370px, calc(100vw - var(--gut) * 2));
+  background: rgba(8, 8, 10, 0.96);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.3rem 1.4rem 1.4rem;
+  box-shadow: 0 22px 50px -18px rgba(0, 0, 0, 0.75);
+  animation: gigin 0.6s var(--ease) both;
+}
+@keyframes gigin {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+.gig__eyebrow {
+  display: block;
+  font-size: 0.6rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold-2);
+  margin-bottom: 0.6rem;
+}
+.gig__t {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  line-height: 1.22;
+  color: var(--cream);
+  margin: 0 0 0.5rem;
+}
+.gig__p {
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: var(--cream-2);
+  margin: 0 0 1.15rem;
+}
+.gig__cta {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--noir);
+  padding: 0.7em 1.6em;
+  border-radius: 100px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: transform 0.3s var(--ease);
+}
+.gig__cta:hover { transform: translateY(-2px); }
+.gig__x {
+  position: absolute;
+  top: 0.5rem; right: 0.55rem;
+  width: 30px; height: 30px;
+  display: grid; place-items: center;
+  color: var(--cream-2);
+  background: transparent;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.3s, background 0.3s;
+}
+.gig__x:hover { color: var(--cream); background: rgba(237, 228, 211, 0.08); }
+@media (max-width: 620px) {
+  .gig {
+    left: var(--gut); right: var(--gut);
+    width: auto;
+    /* Por encima de los flotantes (54px + su separación) para no taparlos. */
+    bottom: calc(clamp(1rem, 2vw, 1.8rem) + 54px + 0.8rem);
+  }
 }
 
 /* ---------- 13. Gallery ---------- */
@@ -1074,7 +1119,6 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
 }
 
 @media (max-width: 520px) {
-  .hero__scroll { display: none; }
   .marquee span { font-size: 1.1rem; }
   .gallery { grid-template-columns: repeat(2, 1fr); }
   .g-a, .g-b, .g-c, .g-d, .g-e, .g-f, .g-g, .g-h, .g-w { grid-column: span 1; grid-row: span 1; }
@@ -1264,8 +1308,6 @@ h1, h2, h3, h4, .h2, .h3 { font-weight: 500; }
 .dish__price,
 .loc__hours .row b,
 .reserve__contacts .ic,
-.hero__scroll,
-.hero__scroll i,
 .marquee span::after,
 .ev-list li::before,
 .cookie-banner__txt a,
