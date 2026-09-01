@@ -590,11 +590,13 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
   position: relative;
   aspect-ratio: 4 / 5;
 }
-.story__media img {
+.story__media img,
+.story__media video {
   width: 100%; height: 100%;
   object-fit: cover;
   border-radius: var(--radius);
 }
+.story__media video { display: block; }
 .story__body .stats {
   display: flex;
   gap: clamp(1.5rem, 4vw, 3rem);

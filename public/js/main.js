@@ -38,6 +38,33 @@
     }
   })();
 
+  /* ---- Vídeo de "la casa": no pedirlo hasta que se acerque ----
+     Mismo criterio que el hero: el MP4 (1,8 MB) se queda en data-src y solo
+     se pide cuando la sección entra en pantalla; hasta entonces se ve el
+     póster. Fuera de pantalla se pausa. Con prefers-reduced-motion no se
+     reproduce solo: aparecen los controles para lanzarlo a voluntad. */
+  (function () {
+    const vid = $("#casa-teaser video[data-src]");
+    if (!vid) return;
+    function cargar() {
+      const src = vid.getAttribute("data-src");
+      if (src) { vid.src = src; vid.removeAttribute("data-src"); }
+    }
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      vid.removeAttribute("autoplay");
+      vid.controls = true;
+      cargar();
+      return;
+    }
+    if (!("IntersectionObserver" in window)) { cargar(); return; }
+    new IntersectionObserver((entradas) => {
+      entradas.forEach((e) => {
+        if (e.isIntersecting) { cargar(); vid.play().catch(() => {}); }
+        else if (!vid.paused) vid.pause();
+      });
+    }, { rootMargin: "200px 0px" }).observe(vid);
+  })();
+
   /* ---- Header + progreso + back-to-top ---- */
   const header = $("#header");
   const progress = $("#progress");
