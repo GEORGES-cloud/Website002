@@ -807,8 +807,10 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
   .gig {
     left: var(--gut); right: var(--gut);
     width: auto;
-    /* Por encima de los flotantes (54px + su separación) para no taparlos. */
-    bottom: calc(clamp(1rem, 2vw, 1.8rem) + 54px + 0.8rem);
+    /* Por encima de los flotantes para no taparlos. Son DOS botones de 54px
+       con 0.8rem entre ellos: el de "subir" está oculto con opacity, así que
+       ocupa sitio aunque no se vea. Altura real de la columna: 54+0.8rem+54. */
+    bottom: calc(clamp(1rem, 2vw, 1.8rem) + 108px + 0.8rem + 0.8rem);
   }
 }
 
