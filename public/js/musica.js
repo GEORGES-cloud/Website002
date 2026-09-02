@@ -77,14 +77,19 @@
     if (el) el.remove();
   }
 
+  // COPY[x] resolvia tambien por la cadena de prototipos: ?lang=constructor
+  // devolvia una funcion y el texto salia como "undefined". Solo claves propias.
+  function tiene(k) { return Object.prototype.hasOwnProperty.call(COPY, k); }
+
   function idioma(forzado) {
     var lang = "es";
     try { lang = localStorage.getItem("zenorio-lang") || "es"; } catch (e) {}
+    if (!tiene(lang)) lang = "es";
     try {
       var q = new URLSearchParams(location.search).get("lang");
-      if (q && COPY[q]) lang = q;
+      if (q && tiene(q)) lang = q;
     } catch (e) {}
-    if (forzado && COPY[forzado]) lang = forzado;
+    if (forzado && tiene(forzado)) lang = forzado;
     return COPY[lang] || COPY.en;
   }
 

@@ -75,16 +75,21 @@
     },
   };
 
+  // COPY[x] resolvia tambien por la cadena de prototipos: ?lang=constructor
+  // devolvia una funcion y el banner se pintaba con la palabra "undefined".
+  function tiene(k) { return Object.prototype.hasOwnProperty.call(COPY, k); }
+
   function showBanner(langForce) {
     if (document.getElementById("ck-banner")) return;
     // Idioma: el mismo que usa i18n.js (?lang= o localStorage; por defecto ES)
     var lang = "es";
     try { lang = localStorage.getItem("zenorio-lang") || "es"; } catch (e) {}
+    if (!tiene(lang)) lang = "es";
     try {
       var q = new URLSearchParams(location.search).get("lang");
-      if (q && COPY[q]) lang = q;
+      if (q && tiene(q)) lang = q;
     } catch (e) {}
-    if (langForce && COPY[langForce]) lang = langForce;
+    if (langForce && tiene(langForce)) lang = langForce;
     var T = COPY[lang] || COPY.en;
     var el = document.createElement("div");
     el.id = "ck-banner";

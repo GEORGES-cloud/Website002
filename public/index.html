@@ -8,12 +8,11 @@
   <title data-i18n-content="meta.titleHome">Zeñorío · Restaurante en Marbella · Nueva Andalucía</title>
   <meta name="description" data-i18n-content="meta.descHome" content="Zeñorío, cocina mediterránea en Nueva Andalucía (Marbella): brasa de encina, arroces al momento y pescados de lonja en un jardín de palmeras. Reserva tu mesa." />
   <meta name="author" content="Zeñorío" />
-  <meta name="google" content="notranslate" />
   <meta name="google-site-verification" content="Y33ybrl6XxwxrRGqGGE_GSe6mY7ODWRJrT5hfrAabNY" />
   <link rel="canonical" href="https://zenorio.es/" />
 
   <!-- Open Graph / Social -->
-  <meta property="og:type" content="restaurant.restaurant" />
+  <meta property="og:type" content="website" />
   <meta property="og:locale" content="es_ES" />
   <meta property="og:site_name" content="Zeñorío Marbella" />
   <meta property="og:title" content="Zeñorío · Restaurante mediterráneo en Marbella" />
@@ -40,6 +39,13 @@
   <link rel="stylesheet" href="/css/styles.css?v=46" />
 
   <!-- Datos estructurados -->
+  <!-- Sin "geo" a proposito: las coordenadas que habia (36.5118, -4.9646)
+       caian en Calle Al-Andalus, Aloha Pueblo, a unos 2 km de la Avenida de
+       los Girasoles (comprobado con geocodificacion inversa el 2026-09-02).
+       Un geo que contradice a la direccion postal debilita la asociacion con
+       la ficha de Google; ausente no resta, porque Google geocodifica la
+       address. Para reponerlo hacen falta las coordenadas del pin real de la
+       ficha de Google Business, no una geocodificacion aproximada. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -65,7 +71,6 @@
       "postalCode": "29660",
       "addressCountry": "ES"
     },
-    "geo": { "@type": "GeoCoordinates", "latitude": 36.5118, "longitude": -4.9646 },
     "openingHoursSpecification": [{
       "@type": "OpeningHoursSpecification",
       "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
@@ -301,9 +306,9 @@
     <button class="fab fab--top" id="toTop" aria-label="Volver arriba" data-i18n-aria="a11y.backTop"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V6M6 12l6-6 6 6"/></svg></button>
   </div>
 
-  <script src="/js/cookies.js?v=5"></script>
+  <script src="/js/cookies.js?v=7"></script>
   <script src="/js/i18n.js?v=25"></script>
   <script src="/js/main.js?v=8"></script>
-  <script src="/js/musica.js?v=1"></script>
+  <script src="/js/musica.js?v=2"></script>
 </body>
 </html>

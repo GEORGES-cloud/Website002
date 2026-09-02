@@ -15,8 +15,12 @@ Cada `git push` a `main` que toque `public/` **sube los cambios solos a Hostinge
    (la primera sube todo, ~26 MB; las siguientes solo lo que cambie).
 
 > Si la cuenta FTP ya está limitada a `public_html`, edita el workflow y cambia
-> `server-dir: public_html/` por `./`. Si el servidor rechaza FTPS, cambia
-> `protocol: ftps` por `ftp`.
+> `server-dir: public_html/` por `./`.
+>
+> **No cambies `protocol: ftps` por `ftp`.** Aquí decía eso y era un mal consejo:
+> `ftp` a secas manda usuario y contraseña en claro por Internet, y esas
+> credenciales dan escritura sobre todo el sitio. Si FTPS falla, el problema es
+> del servidor o del certificado y hay que resolverlo ahí, no bajando el cifrado.
 
 Las opciones de abajo quedan como **manuales de respaldo**.
 

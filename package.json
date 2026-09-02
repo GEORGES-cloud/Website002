@@ -23,5 +23,8 @@
   "dependencies": {
     "compression": "^1.7.5",
     "express": "^4.21.2"
+  },
+  "overrides": {
+    "qs": "^6.16.0"
   }
 }

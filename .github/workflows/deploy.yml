@@ -78,7 +78,7 @@ jobs:
           async function intento(n) {
             const c = new ftp.Client(45000);
             try {
-              await c.access({ host: process.env.FTP_SERVER, user: process.env.FTP_USERNAME, password: process.env.FTP_PASSWORD, secure: true, secureOptions: { rejectUnauthorized: false } });
+              await c.access({ host: process.env.FTP_SERVER, user: process.env.FTP_USERNAME, password: process.env.FTP_PASSWORD, secure: true });
               await c.uploadFrom('public/.htaccess', '/nodejs/public/.htaccess');
               console.log('SUBIDO /nodejs/public/.htaccess (intento ' + n + ')');
               // El sync solo cubre public/: la app (server.mjs) se sube aparte.
