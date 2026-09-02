@@ -72,7 +72,13 @@ ErrorDocument 404 /404.html
   Header set Referrer-Policy "strict-origin-when-cross-origin"
   # HSTS: el sitio es https-only (http hace 301); un año, con subdominios.
   Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
-  Header append Vary Accept env=accept
+  # Vary: Accept en TODAS las imágenes, no solo cuando la regla WebP marca la
+  # variable de entorno: ese "env=accept" no llegaba a aplicarse en LiteSpeed y
+  # la CDN cacheaba los bytes .webp bajo la URL .jpg sin saber que la respuesta
+  # depende de la cabecera Accept.
+  <FilesMatch "\.(jpg|jpeg|png|webp)$">
+    Header always set Vary "Accept"
+  </FilesMatch>
   # Caché larga para binarios estables Y para css/js: van versionados con
   # ?v=N y la versión se sube en cada cambio (disciplina del repo), así que
   # pueden ser immutable sin riesgo de servir código viejo.
