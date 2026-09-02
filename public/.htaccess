@@ -72,13 +72,14 @@ ErrorDocument 404 /404.html
   Header set Referrer-Policy "strict-origin-when-cross-origin"
   # HSTS: el sitio es https-only (http hace 301); un año, con subdominios.
   Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
-  # Vary: Accept en TODAS las imágenes, no solo cuando la regla WebP marca la
-  # variable de entorno: ese "env=accept" no llegaba a aplicarse en LiteSpeed y
-  # la CDN cacheaba los bytes .webp bajo la URL .jpg sin saber que la respuesta
-  # depende de la cabecera Accept.
-  <FilesMatch "\.(jpg|jpeg|png|webp)$">
-    Header always set Vary "Accept"
-  </FilesMatch>
+  # OJO (comprobado 2026-09-02): las imágenes NO las sirve ni esta capa ni
+  # Express, sino la CDN de Hostinger (hcdn), que hace su propia negociación
+  # WebP. Sus respuestas no llevan ninguna de las cabeceras de este bloque, así
+  # que este "Vary" no se aplica a ellas — se deja por corrección formal. No
+  # hay riesgo de servir WebP a quien no lo acepta: se verificó pidiendo la
+  # misma URL con y sin "Accept: image/webp" y la CDN devuelve JPEG y WebP
+  # correctamente, luego sí distingue por Accept aunque no lo anuncie.
+  Header append Vary Accept env=accept
   # Caché larga para binarios estables Y para css/js: van versionados con
   # ?v=N y la versión se sube en cada cambio (disciplina del repo), así que
   # pueden ser immutable sin riesgo de servir código viejo.
