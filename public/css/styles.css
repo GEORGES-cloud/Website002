@@ -428,8 +428,8 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
      y forzarla a un cuadrado la deformaría. */
   width: 83%; height: 83%;
   background-color: #fff;
-  -webkit-mask: url(/assets/img/logo-z.svg?v=6) center / contain no-repeat;
-  mask: url(/assets/img/logo-z.svg?v=6) center / contain no-repeat;
+  -webkit-mask: url(/assets/img/logo-z.svg?v=7) center / contain no-repeat;
+  mask: url(/assets/img/logo-z.svg?v=7) center / contain no-repeat;
 }
 .loader__bar {
   position: absolute;
