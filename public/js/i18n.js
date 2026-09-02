@@ -6,6 +6,29 @@
 (function () {
   const DICT = {
   "en": {
+    "wa.evento": "Hi, I'd like information about holding an event at Zeñorío",
+    "wa.reserva": "Hi, I'd like to book a table at Zeñorío",
+    "tag.top": "Our pick",
+    "tag.campeona": "Spanish champion",
+    "alt.g1": "Oysters with caviar",
+    "alt.g2": "Bluefin tuna from the almadraba",
+    "alt.g3": "Galician-style octopus on potato parmentier with paprika",
+    "alt.g4": "Huevos rotos with carabinero prawn, and a glass of Ribera del Duero",
+    "alt.g5": "Bluefin tuna tartare on avocado",
+    "alt.g6": "Black rice with cuttlefish and prawns in the paella pan",
+    "alt.g7": "Zeñorío meat lasagne with pesto",
+    "alt.g8": "Seafood paella with carabinero prawn",
+    "alt.g9": "Fillet steak with pepper sauce and truffled mash",
+    "alt.g10": "Confit artichokes opened out like flowers",
+    "alt.bodega": "The wine cellar at Zeñorío, and lingering at the table after a meal",
+    "alt.jardin": "Zeñorío’s tropical garden: palm trees and the warm glow of a lantern",
+    "alt.evento": "A table laid for a private event at Zeñorío",
+    "alt.salon": "Zeñorío’s main dining room",
+    "alt.pescado": "The day’s market fish",
+    "ttl.motor": "Zeñorío booking engine",
+    "ttl.mapa": "Map showing Zeñorío Marbella",
+    "a11y.lang": "Language",
+    "carta.ud": "each",
     "ck.117": "← Back to the homepage",
     "ck.116": "Change my cookie preferences",
     "ck.115": "Consent required",
@@ -32,7 +55,7 @@
     "meta.titleCk": "Cookie policy · Zeñorío Marbella",
     "meta.titlePriv": "Privacy policy · Zeñorío Marbella",
     "meta.titleLegal": "Legal notice · Zeñorío Marbella",
-    "nf.2": "The page you are looking for isn't here. It may have moved, or the link may not be correct.",
+    "nf.2": "The page you are looking for isn’t here. It may have moved, or the link may not be correct.",
     "nf.1": "No table under that name",
     "ck.8": "You can also set your browser to block or delete cookies. Please note that some functions may then not be available.",
     "ck.7": "You can accept or reject non-essential cookies in the notice that appears when you arrive. You can also change your choice at any time:",
@@ -74,7 +97,7 @@
     "leg.16": "4. Intellectual and industrial property",
     "leg.15": "The user undertakes to make proper use of the contents and services and not to use them to engage in activities that are unlawful or contrary to good faith and the legal order. The owner reserves the right to modify, without prior notice, the information contained on the site, as well as its configuration and presentation.",
     "leg.14": "3. Conditions of use",
-    "leg.13": "The purpose of this website is to provide information about Zeñorío's restaurant services, its menu, its location and the making of booking requests. Accessing and using the site confers the status of user and implies acceptance of the conditions set out in this Legal notice.",
+    "leg.13": "The purpose of this website is to provide information about Zeñorío’s restaurant services, its menu, its location and the making of booking requests. Accessing and using the site confers the status of user and implies acceptance of the conditions set out in this Legal notice.",
     "leg.12": "2. Purpose",
     "leg.11": "<strong>Activity:</strong> Restaurant / hospitality services",
     "leg.10": "<strong>Email:</strong> <a href=\"mailto:info@zenorio.es\">info@zenorio.es</a>",
@@ -83,7 +106,7 @@
     "leg.7": "<strong>NIF/CIF (Spanish tax number):</strong> B22540777",
     "leg.6": "<strong>Trade name:</strong> Zeñorío",
     "leg.5": "<strong>Owner:</strong> ZEÑORIO GROUP, S.L.",
-    "leg.4": "In compliance with Ley 34/2002, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE) — Spain's Information Society Services and Electronic Commerce Act — the following details of the owner of this website are provided:",
+    "leg.4": "In compliance with Ley 34/2002, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE) — Spain’s Information Society Services and Electronic Commerce Act — the following details of the owner of this website are provided:",
     "leg.3": "1. Identification details",
     "leg.2": "Last updated: June 2026",
     "leg.1": "Legal notice",
@@ -182,7 +205,7 @@
     "res.eyebrow": "Reservations",
     "res.title": "Your table<br />is waiting",
     "res.p": "Book online in seconds, with instant confirmation. Pick your day, time and table; we take care of the rest.",
-    "res.alt": "Prefer a personal touch? Message us on <a href=\"https://wa.me/34625848936?text=Hi%2C%20I%27d%20like%20to%20book%20a%20table%20at%20Ze%C3%B1orio\" target=\"_blank\" rel=\"noopener\">WhatsApp</a> or call <a href=\"tel:+34625848936\">+34 625 84 89 36</a>.",
+    "res.alt": "Prefer a personal touch? Message us on <a href=\"https://wa.me/34625848936?text=Hi%2C%20I%27d%20like%20to%20book%20a%20table%20at%20Ze%C3%B1or%C3%ADo\" target=\"_blank\" rel=\"noopener\">WhatsApp</a> or call <a href=\"tel:+34625848936\">+34 625 84 89 36</a>.",
     "res.tel": "Phone & WhatsApp",
     "res.addr": "Where we are",
     "res.hours": "Opening hours",
@@ -234,6 +257,27 @@
     "rev.stars": "5 out of 5 stars"
   },
   "fr": {
+    "wa.evento": "Bonjour, je souhaiterais des informations pour un événement chez Zeñorío",
+    "wa.reserva": "Bonjour, je souhaiterais réserver une table chez Zeñorío",
+    "alt.g1": "Huîtres au caviar",
+    "alt.g2": "Thon rouge de l’almadraba",
+    "alt.g3": "Poulpe à la galicienne sur parmentier de pommes de terre au paprika",
+    "alt.g4": "Huevos rotos au carabinero et vin de Ribera del Duero",
+    "alt.g5": "Tartare de thon rouge sur avocat",
+    "alt.g6": "Riz noir à l’encre de seiche et gambas dans la poêle à paella",
+    "alt.g7": "Lasagnes Zeñorío à la viande et au pesto",
+    "alt.g8": "Paella de fruits de mer au carabinero",
+    "alt.g9": "Filet de bœuf au poivre et purée truffée",
+    "alt.g10": "Artichauts confits ouverts en fleur",
+    "alt.bodega": "La cave à vin de Zeñorío et les conversations qui s’étirent après le repas",
+    "alt.jardin": "Le jardin tropical de Zeñorío : palmiers et lanterne à la lumière chaude",
+    "alt.evento": "Table dressée pour un événement privé à Zeñorío",
+    "alt.salon": "La salle principale de Zeñorío",
+    "alt.pescado": "Le poisson du jour de la criée",
+    "ttl.motor": "Moteur de réservation de Zeñorío",
+    "ttl.mapa": "Carte de Zeñorío Marbella",
+    "a11y.lang": "Langue",
+    "carta.ud": "/pièce",
     "ck.117": "← Retour à l’accueil",
     "ck.116": "Modifier mes préférences de cookies",
     "ck.115": "Votre consentement est requis",
@@ -267,7 +311,7 @@
     "ck.6": "Gestion des cookies",
     "ck.5": "Types de cookies que nous utilisons",
     "ck.4": "Un cookie est un petit fichier qui est téléchargé sur votre appareil lorsque vous visitez un site web. Les cookies permettent au site de fonctionner correctement, de mémoriser vos préférences et, le cas échéant, de mesurer l’utilisation ou de vous montrer des contenus pertinents.",
-    "ck.3": "Que sont les cookies ?",
+    "ck.3": "Que sont les cookies ?",
     "ck.2": "Dernière mise à jour : juin 2026",
     "ck.1": "Politique de cookies",
     "priv.21": "Ce site utilise des cookies. Consultez notre <a href=\"/cookies.html\">Politique de cookies</a> pour plus d’informations.",
@@ -275,15 +319,15 @@
     "priv.19": "Vous pouvez exercer vos droits d’<strong>accès, de rectification, d’effacement, d’opposition, à la limitation du traitement et à la portabilité</strong> en écrivant à <a href=\"mailto:info@zenorio.es\">info@zenorio.es</a>, en joignant la copie d’un document d’identité. Vous pouvez également introduire une réclamation auprès de l’Agencia Española de Protección de Datos, l’autorité espagnole de protection des données (<a href=\"https://www.aepd.es\" target=\"_blank\" rel=\"noopener\">aepd.es</a>).",
     "priv.18": "6. Vos droits",
     "priv.17": "Nous ne cédons pas vos données à des tiers, sauf obligation légale ou aux prestataires qui nous fournissent des services (p. ex. plateforme de réservation, messagerie WhatsApp, envoi d’e-mails), lesquels agissent en qualité de sous-traitants conformément à la réglementation.",
-    "priv.16": "5. À qui communiquons-nous vos données ?",
+    "priv.16": "5. À qui communiquons-nous vos données ?",
     "priv.15": "Nous conserverons vos données pendant le temps nécessaire pour répondre à votre demande et, ensuite, pendant les délais légalement exigés. Les données destinées à des fins commerciales seront conservées jusqu’à ce que vous retiriez votre consentement.",
-    "priv.14": "4. Pendant combien de temps conservons-nous vos données ?",
+    "priv.14": "4. Pendant combien de temps conservons-nous vos données ?",
     "priv.13": "La base légale est votre <strong>consentement</strong> (lors de l’envoi du formulaire ou de votre abonnement) et l’<strong>exécution d’une relation précontractuelle</strong> dans le cas des réservations.",
     "priv.12": "3. Base légale",
     "priv.11": "Vous envoyer des <strong>nouveautés et des promotions</strong>, si vous vous êtes abonné(e) à la newsletter (consentement).",
     "priv.10": "Répondre à vos <strong>questions</strong> et communications.",
     "priv.9": "Gérer les <strong>demandes de réservation</strong> effectuées au moyen du formulaire ou de WhatsApp.",
-    "priv.8": "2. À quelles fins traitons-nous vos données ?",
+    "priv.8": "2. À quelles fins traitons-nous vos données ?",
     "priv.7": "<strong>E-mail :</strong> <a href=\"mailto:info@zenorio.es\">info@zenorio.es</a>",
     "priv.6": "<strong>Siège social :</strong> Avenida de los Girasoles, 23, 29660 Marbella (Málaga)",
     "priv.5": "<strong>NIF/CIF :</strong> B22540777",
@@ -373,13 +417,13 @@
     "meta.titleReserva": "Réserver une table à Marbella · Zeñorío · Nueva Andalucía",
     "meta.descExp": "Dîner en plein air à Marbella, sous les palmiers de notre jardin tropical. Musique live le week-end et événements privés. Réservez votre table en ligne.",
     "meta.titleExp": "Restaurant avec jardin à Marbella · Zeñorío",
-    "meta.descGaleria": "Photos de Zeñorío : les plats, le feu de la braise de chêne vert, la terrasse et le jardin de palmiers. Voilà notre maison à Nueva Andalucía, Marbella.",
+    "meta.descGaleria": "Photos de Zeñorío : les plats, le feu de la braise de chêne vert, la terrasse et le jardin de palmiers. Voilà notre maison à Nueva Andalucía, Marbella.",
     "meta.titleGaleria": "Galerie photo · Zeñorío · Plats et braise à Marbella",
-    "meta.descCasa": "L’histoire de Zeñorío, l’hommage d’un fils à son père : cuisine méditerranéenne du chef Federico Cardenete, braise de chêne vert et jardin tropical à Marbella.",
+    "meta.descCasa": "L’histoire de Zeñorío, l’hommage d’un fils à son père : cuisine méditerranéenne du chef Federico Cardenete, braise de chêne vert et jardin tropical à Marbella.",
     "meta.titleCasa": "La maison · Zeñorío · Restaurant familial à Marbella",
-    "meta.descCarta": "La carte méditerranéenne de Zeñorío : riz et paellas à la minute, poissons de la criée et braise de chêne vert à Nueva Andalucía, Marbella. Réservez votre table.",
+    "meta.descCarta": "La carte méditerranéenne de Zeñorío : riz et paellas à la minute, poissons de la criée et braise de chêne vert à Nueva Andalucía, Marbella. Réservez votre table.",
     "meta.titleCarta": "Riz et paellas à Marbella · La carte de Zeñorío",
-    "meta.descHome": "Zeñorío, cuisine méditerranéenne à Nueva Andalucía (Marbella) : braise de chêne vert, riz préparés à la minute et poissons de la criée dans un jardin de palmiers. Réservez votre table.",
+    "meta.descHome": "Zeñorío, cuisine méditerranéenne à Nueva Andalucía (Marbella) : braise de chêne vert, riz préparés à la minute et poissons de la criée dans un jardin de palmiers. Réservez votre table.",
     "meta.titleHome": "Zeñorío · Restaurant à Marbella · Nueva Andalucía",
     "home.localT": "Un restaurant et son jardin à Nueva Andalucía, Marbella",
     "home.localP": "Zeñorío est un restaurant de cuisine méditerranéenne à Nueva Andalucía, Marbella, né de l’hommage d’un fils à son père. En cuisine, c’est la braise de chêne vert qui donne le ton : poissons de la criée, riz et paellas préparés à la minute, jamais de raccourcis. Et quand le soir tombe, peu de choses font plus envie qu’un dîner en plein air, sous les palmiers du jardin tropical, la table dressée et le feu tout près. Envie de nous découvrir ? Jetez un œil à la carte et réservez votre table en un instant : nous ouvrons le soir, du mardi au dimanche, et ce sera un plaisir de vous recevoir.",
@@ -515,6 +559,27 @@
     "rev.stars": "5 étoiles sur 5"
   },
   "de": {
+    "wa.evento": "Hallo, ich hätte gerne Informationen zu einer Veranstaltung im Zeñorío",
+    "wa.reserva": "Hallo, ich möchte gerne einen Tisch im Zeñorío reservieren",
+    "alt.g1": "Austern mit Kaviar",
+    "alt.g2": "Roter Thun aus der Almadraba",
+    "alt.g3": "Pulpo auf galicische Art auf Kartoffelpüree mit Paprikapulver",
+    "alt.g4": "Huevos rotos mit Carabinero-Garnele und Wein aus der Ribera del Duero",
+    "alt.g5": "Tatar vom Roten Thun auf Avocado",
+    "alt.g6": "Schwarzer Reis mit Sepia und Garnelen in der Paellapfanne",
+    "alt.g7": "Lasagne Zeñorío mit Hackfleisch und Pesto",
+    "alt.g8": "Meeresfrüchte-Paella mit Carabinero-Garnele",
+    "alt.g9": "Rinderfilet in Pfeffersauce mit Trüffelpüree",
+    "alt.g10": "Konfierte Artischocken, blütenförmig aufgefächert",
+    "alt.bodega": "Der Weinkeller des Zeñorío und das lange Beisammensein nach dem Essen",
+    "alt.jardin": "Der tropische Garten des Zeñorío: Palmen und das warme Licht einer Laterne",
+    "alt.evento": "Für eine private Feier eingedeckter Tisch im Zeñorío",
+    "alt.salon": "Der Hauptgastraum des Zeñorío",
+    "alt.pescado": "Tagesfrischer Fisch vom Fischmarkt",
+    "ttl.motor": "Reservierungssystem von Zeñorío",
+    "ttl.mapa": "Karte mit Zeñorío Marbella",
+    "a11y.lang": "Sprache",
+    "carta.ud": "/Stk.",
     "ck.117": "← Zurück zur Startseite",
     "ck.116": "Meine Cookie-Einstellungen ändern",
     "ck.115": "Ihre Einwilligung ist erforderlich",
@@ -796,6 +861,27 @@
     "rev.stars": "5 von 5 Sternen"
   },
   "sv": {
+    "wa.evento": "Hej, jag skulle vilja ha information om ett evenemang på Zeñorío",
+    "wa.reserva": "Hej, jag skulle vilja boka ett bord på Zeñorío",
+    "alt.g1": "Ostron med kaviar",
+    "alt.g2": "Blåfenad tonfisk från almadraban",
+    "alt.g3": "Bläckfisk på galiciskt vis på potatispuré med paprikapulver",
+    "alt.g4": "Huevos rotos med carabineroräka och vin från Ribera del Duero",
+    "alt.g5": "Tartar av blåfenad tonfisk på avokado",
+    "alt.g6": "Arroz negro med bläckfisk och räkor i paellapannan",
+    "alt.g7": "Lasagne Zeñorío med köttfärs och pesto",
+    "alt.g8": "Skaldjurspaella med carabineroräka",
+    "alt.g9": "Oxfilé med pepparsås och potatispuré med tryffel",
+    "alt.g10": "Konfiterade kronärtskockor uppslagna som blommor",
+    "alt.bodega": "Vinkällaren på Zeñorío och det långa samtalet efter maten",
+    "alt.jardin": "Zeñoríos tropiska trädgård: palmer och det varma skenet från en lykta",
+    "alt.evento": "Dukat bord för ett privat evenemang på Zeñorío",
+    "alt.salon": "Zeñoríos stora matsal",
+    "alt.pescado": "Dagens fisk från fiskauktionen",
+    "ttl.motor": "Zeñoríos bokningssystem",
+    "ttl.mapa": "Karta över Zeñorío Marbella",
+    "a11y.lang": "Språk",
+    "carta.ud": "/st",
     "ck.117": "← Tillbaka till startsidan",
     "ck.116": "Ändra mina cookieinställningar",
     "ck.115": "Kräver ditt samtycke",
@@ -1025,7 +1111,7 @@
     "ev.t": "Fira ditt ögonblick<br />under palmerna",
     "ev.p": "Födelsedagar, företagsluncher, festligheter eller privata middagar. Vi skapar skräddarsydda menyer och reserverar plats för ditt sällskap, med hela trädgårdens charm.",
     "ev.l1": "Skräddarsydda gruppmenyer",
-    "ev.l2": "Trädgård, terrass eller lounge helt för er själva",
+    "ev.l2": "Trädgård, terrass eller lounge helt för ditt sällskap",
     "ev.l3": "Cocktails och musik till ditt evenemang",
     "ev.cta": "Kontakta oss",
     "gallery.eyebrow": "Galleriet",
@@ -1077,6 +1163,27 @@
     "rev.stars": "5 av 5 stjärnor"
   },
   "ru": {
+    "wa.evento": "Здравствуйте! Хотелось бы узнать об организации мероприятия в Zeñorío",
+    "wa.reserva": "Здравствуйте! Хотелось бы забронировать столик в Zeñorío",
+    "alt.g1": "Устрицы с икрой",
+    "alt.g2": "Голубой тунец с промысла альмадраба",
+    "alt.g3": "Осьминог по-галисийски на картофельном пюре с паприкой",
+    "alt.g4": "Яичница с картофелем и креветкой карабинеро, вино Ribera del Duero",
+    "alt.g5": "Тартар из голубого тунца на авокадо",
+    "alt.g6": "Чёрный рис с каракатицей и креветками в сковороде для паэльи",
+    "alt.g7": "Лазанья Zeñorío с мясом и песто",
+    "alt.g8": "Паэлья с морепродуктами и креветкой карабинеро",
+    "alt.g9": "Говяжья вырезка в перечном соусе с трюфельным пюре",
+    "alt.g10": "Артишоки конфи, раскрытые цветком",
+    "alt.bodega": "Винный погреб Zeñorío и долгая беседа за столом после ужина",
+    "alt.jardin": "Тропический сад Zeñorío: пальмы и тёплый свет фонаря",
+    "alt.evento": "Стол, накрытый для частного мероприятия в Zeñorío",
+    "alt.salon": "Главный зал Zeñorío",
+    "alt.pescado": "Рыба дневного улова",
+    "ttl.motor": "Система бронирования Zeñorío",
+    "ttl.mapa": "Карта: Zeñorío Marbella",
+    "a11y.lang": "Язык",
+    "carta.ud": "/шт.",
     "ck.117": "← Вернуться на главную",
     "ck.116": "Изменить мои настройки cookie",
     "ck.115": "Требуется ваше согласие",
@@ -1267,7 +1374,7 @@
     "foot.rights": "Все права защищены",
     "foot.legal": "Правовая информация",
     "foot.privacy": "Конфиденциальность",
-    "foot.cookies": "Cookies",
+    "foot.cookies": "Файлы cookie",
     "a11y.skipMenu": "Перейти к меню",
     "carta.title": "Главное — делиться",
     "carta.intro": "Особенные мгновения, рецепты, которые никогда не записывали, и тот самый вкус традиции.",
@@ -1328,7 +1435,7 @@
     "res.addr": "Где мы находимся",
     "res.hours": "Часы работы",
     "res.hoursVal": "Со вторника по воскресенье · 18:30 – 23:30<br />Понедельник — выходной",
-    "res.alt": "Предпочитаете личное общение? Напишите нам в <a href=\"https://wa.me/34625848936?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB(%D0%B0)%20%D0%B1%D1%8B%20%D0%B7%D0%B0%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D1%81%D1%82%D0%BE%D0%BB%D0%B8%D0%BA%20%D0%B2%20Ze%C3%B1or%C3%ADo\" target=\"_blank\" rel=\"noopener\">WhatsApp</a> или позвоните по номеру <a href=\"tel:+34625848936\">+34 625 84 89 36</a>.",
+    "res.alt": "Предпочитаете личное общение? Напишите нам в <a href=\"https://wa.me/34625848936?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%82%D0%B5%D0%BB%D0%BE%D1%81%D1%8C%20%D0%B1%D1%8B%20%D0%B7%D0%B0%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D1%81%D1%82%D0%BE%D0%BB%D0%B8%D0%BA%20%D0%B2%20Ze%C3%B1or%C3%ADo\" target=\"_blank\" rel=\"noopener\">WhatsApp</a> или позвоните по номеру <a href=\"tel:+34625848936\">+34 625 84 89 36</a>.",
     "loc.eyebrow": "Как добраться",
     "loc.title": "В самом сердце Нуэва-Андалусии",
     "loc.mon": "Понедельник",
@@ -1368,31 +1475,58 @@
 
   // Captura del español original (del HTML) para poder restaurarlo.
   const original = new Map();
-  const originalPh = new Map();
-  const originalAria = new Map();
+  // Atributos que el visitante lee igual que el cuerpo de la página: el
+  // placeholder de un campo, el nombre accesible de un control, el alt de una
+  // foto y el title de un iframe. El alt y el title se quedaban en español en
+  // los seis idiomas: quien navega con lector de pantalla en alemán oía
+  // "Pulpo a la gallega sobre parmentier" con fonética alemana, aunque el pie
+  // de foto de esa misma foto sí estuviera traducido.
+  const ATTRS = [
+    { attr: "placeholder", data: "data-i18n-ph", previo: new Map() },
+    { attr: "aria-label", data: "data-i18n-aria", previo: new Map() },
+    { attr: "alt", data: "data-i18n-alt", previo: new Map() },
+    { attr: "title", data: "data-i18n-title", previo: new Map() },
+  ];
   // El <title> y la meta descripción: se traducen con data-i18n-content, que
   // escribe el atributo content (o el texto, si es el propio <title>). Sin
   // esto la pestaña seguía en español en los seis idiomas.
   const originalContent = new Map();
+  // WhatsApp: el mensaje que va escrito de antemano en el enlace. Iba en
+  // español en los siete enlaces con texto salvo en el párrafo de la página
+  // de reservas, que por vivir dentro de una cadena traducida sí cambiaba de
+  // idioma. Resultado: un alemán pulsaba el botón flotante y se encontraba
+  // "Hola, me gustaría reservar en Zeñorío" ya escrito en su WhatsApp.
+  // Se traduce solo el parámetro text= para no repetir el teléfono en el
+  // diccionario: si algún día cambia el número, se cambia en el HTML y ya.
+  const originalWa = new Map();
 
   function cache() {
     document.querySelectorAll("[data-i18n]").forEach((el) => {
       original.set(el, el.innerHTML);
     });
-    document.querySelectorAll("[data-i18n-ph]").forEach((el) => {
-      originalPh.set(el, el.getAttribute("placeholder") || "");
-    });
-    document.querySelectorAll("[data-i18n-aria]").forEach((el) => {
-      originalAria.set(el, el.getAttribute("aria-label") || "");
+    ATTRS.forEach((a) => {
+      document.querySelectorAll("[" + a.data + "]").forEach((el) => {
+        a.previo.set(el, el.getAttribute(a.attr) || "");
+      });
     });
     document.querySelectorAll("[data-i18n-content]").forEach((el) => {
       originalContent.set(el, el.tagName === "TITLE" ? el.textContent : el.getAttribute("content") || "");
+    });
+    document.querySelectorAll("[data-i18n-wa]").forEach((el) => {
+      originalWa.set(el, el.getAttribute("href") || "");
     });
   }
 
   function ponerContent(el, valor) {
     if (el.tagName === "TITLE") el.textContent = valor;
     else el.setAttribute("content", valor);
+  }
+
+  function ponerWa(el, mensaje) {
+    const base = originalWa.get(el) || el.getAttribute("href") || "";
+    const corte = base.indexOf("?text=");
+    if (corte === -1) return;
+    el.setAttribute("href", base.slice(0, corte + 6) + encodeURIComponent(mensaje));
   }
 
   function apply(lang) {
@@ -1411,20 +1545,22 @@
     document.querySelectorAll(".dish__desc[data-i18n]").forEach((el) => {
       el.lang = map && map[el.getAttribute("data-i18n")] != null ? lang : "en";
     });
-    document.querySelectorAll("[data-i18n-ph]").forEach((el) => {
-      const key = el.getAttribute("data-i18n-ph");
-      if (map && map[key] != null) el.setAttribute("placeholder", map[key]);
-      else if (originalPh.has(el)) el.setAttribute("placeholder", originalPh.get(el));
-    });
-    document.querySelectorAll("[data-i18n-aria]").forEach((el) => {
-      const key = el.getAttribute("data-i18n-aria");
-      if (map && map[key] != null) el.setAttribute("aria-label", map[key]);
-      else if (originalAria.has(el)) el.setAttribute("aria-label", originalAria.get(el));
+    ATTRS.forEach((a) => {
+      document.querySelectorAll("[" + a.data + "]").forEach((el) => {
+        const key = el.getAttribute(a.data);
+        if (map && map[key] != null) el.setAttribute(a.attr, map[key]);
+        else if (a.previo.has(el)) el.setAttribute(a.attr, a.previo.get(el));
+      });
     });
     document.querySelectorAll("[data-i18n-content]").forEach((el) => {
       const key = el.getAttribute("data-i18n-content");
       if (map && map[key] != null) ponerContent(el, map[key]);
       else if (originalContent.has(el)) ponerContent(el, originalContent.get(el));
+    });
+    document.querySelectorAll("[data-i18n-wa]").forEach((el) => {
+      const key = el.getAttribute("data-i18n-wa");
+      if (map && map[key] != null) ponerWa(el, map[key]);
+      else if (originalWa.has(el)) el.setAttribute("href", originalWa.get(el));
     });
 
     document.documentElement.lang = lang;

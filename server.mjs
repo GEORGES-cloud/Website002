@@ -61,11 +61,16 @@ app.use((req, res, next) => {
 // URL canónica única por página: /carta -> /carta.html e /index.html -> /
 // (express.static con extensions:['html'] respondía 200 en ambas variantes:
 // contenido duplicado rastreable; el 301 consolida la señal).
+// Se arrastra la query: el idioma viaja en ?lang=xx y estos 301 la tiraban,
+// así que un enlace a /carta?lang=de o /index.html?lang=de aterrizaba en
+// español. Con el 301 de dominio no pasaba porque usa req.originalUrl.
 const PAGES = new Set(['carta', 'casa', 'experiencia', 'galeria', 'reserva', 'aviso-legal', 'privacidad', 'cookies']);
 app.use((req, res, next) => {
-  if (req.path === '/index.html') return res.redirect(301, '/');
+  const i = req.originalUrl.indexOf('?');
+  const query = i === -1 ? '' : req.originalUrl.slice(i);
+  if (req.path === '/index.html') return res.redirect(301, `/${query}`);
   const m = req.path.match(/^\/([a-z-]+)$/);
-  if (m && PAGES.has(m[1])) return res.redirect(301, `/${m[1]}.html`);
+  if (m && PAGES.has(m[1])) return res.redirect(301, `/${m[1]}.html${query}`);
   next();
 });
 
