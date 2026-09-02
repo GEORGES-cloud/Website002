@@ -50,27 +50,27 @@
     },
     en: {
       aria: "Cookie notice",
-      txt: "We use our own and third-party cookies to improve your experience and analyse site usage. You can accept them or reject the non-essential ones. <a href=\"/cookies.html\">More information</a>.",
+      txt: "We use first-party and third-party cookies to improve your experience and analyse how the site is used. You can accept them or reject the non-essential ones. <a href=\"/cookies.html\">More information</a>.",
       rej: "Reject", acc: "Accept",
     },
     fr: {
-      aria: "Avis sur les cookies",
-      txt: "Nous utilisons des cookies, propres et de tiers, pour améliorer votre expérience et analyser l'utilisation du site. Vous pouvez les accepter ou refuser les cookies non essentiels. <a href=\"/cookies.html\">Plus d'informations</a>.",
+      aria: "Information sur les cookies",
+      txt: "Nous utilisons nos propres cookies et des cookies tiers pour améliorer votre expérience et analyser l’utilisation du site. Vous pouvez les accepter ou refuser ceux qui ne sont pas essentiels. <a href=\"/cookies.html\">En savoir plus</a>.",
       rej: "Refuser", acc: "Accepter",
     },
     de: {
       aria: "Cookie-Hinweis",
-      txt: "Wir verwenden eigene und Cookies von Drittanbietern, um Ihr Erlebnis zu verbessern und die Nutzung der Website zu analysieren. Sie können sie akzeptieren oder die nicht notwendigen ablehnen. <a href=\"/cookies.html\">Mehr Informationen</a>.",
+      txt: "Wir verwenden eigene Cookies und Cookies von Drittanbietern, um Ihr Erlebnis zu verbessern und die Nutzung unserer Website zu analysieren. Sie können alle akzeptieren oder die nicht notwendigen Cookies ablehnen. <a href=\"/cookies.html\">Mehr Informationen</a>.",
       rej: "Ablehnen", acc: "Akzeptieren",
     },
     sv: {
       aria: "Cookie-meddelande",
-      txt: "Vi använder egna cookies och cookies från tredje part för att förbättra din upplevelse och analysera användningen av webbplatsen. Du kan acceptera dem eller neka de som inte är nödvändiga. <a href=\"/cookies.html\">Mer information</a>.",
+      txt: "Vi använder egna cookies och cookies från tredje part för att förbättra din upplevelse och analysera hur webbplatsen används. Du kan acceptera alla eller neka dem som inte är nödvändiga. <a href=\"/cookies.html\">Mer information</a>.",
       rej: "Neka", acc: "Acceptera",
     },
     ru: {
       aria: "Уведомление о файлах cookie",
-      txt: "Мы используем собственные и сторонние файлы cookie, чтобы улучшить ваш опыт и анализировать использование сайта. Вы можете принять их или отклонить необязательные. <a href=\"/cookies.html\">Подробнее</a>.",
+      txt: "Мы используем собственные и сторонние файлы cookie, чтобы вам было удобнее пользоваться сайтом и чтобы анализировать его посещаемость. Вы можете принять их или отклонить необязательные. <a href=\"/cookies.html\">Подробнее</a>.",
       rej: "Отклонить", acc: "Принять",
     },
   };
