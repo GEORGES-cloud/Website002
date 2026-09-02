@@ -22,18 +22,24 @@ ErrorDocument 404 /404.html
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
   RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
   RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
-  # /index.html -> / (URL canónica única; la capa estática sirve el archivo
-  # directamente y esta petición nunca llega al 301 equivalente de Express).
-  # Sin condición THE_REQUEST: aquí no hay riesgo de bucle porque "/" lo
-  # resuelve la app Node (Express), no el DirectoryIndex estático.
+  # /index.html -> / (URL canónica única).
+  # OJO (medido el 2026-09-02 con una sonda en producción): ESTA REGLA HOY NO
+  # HACE NADA, y no por estar mal escrita. Se desplegó otra idéntica sobre un
+  # fichero distinto que también existía y respondió 200, no 301. Esta capa
+  # aplica las CABECERAS de este .htaccess a los ficheros que existen (llegan
+  # el no-cache, X-Frame-Options, Referrer-Policy y HSTS) pero NO evalúa sus
+  # RewriteRule sobre ellos. Y por Express tampoco pasa: /index.html sale sin
+  # Permissions-Policy, que solo la pone Express, mientras que "/" sí la lleva.
+  # Es decir, la petición no la ve nadie que pueda redirigirla.
+  # No lo intentes por cuarta vez aquí (van c7da7d9, d1b5a3a y esta): la única
+  # salida sería que index.html no existiera en la carpeta servida, sacando la
+  # portada fuera de public/ y sirviéndola desde Express, lo que cambia cómo se
+  # entrega la página más importante del sitio a cambio de muy poco.
+  # Mientras tanto el duplicado ya está resuelto por donde Google lo mira: la
+  # portada declara canonical a https://zenorio.es/, el og:url apunta a "/" y
+  # el sitemap no lista /index.html. La regla se deja por si la plataforma
+  # cambia y vuelve a evaluarse.
   RewriteRule ^index\.html$ https://zenorio.es/ [R=301,L]
-  # SONDA TEMPORAL (quitar tras medir): la misma clase de regla que la de
-  # arriba pero sobre otro fichero que tambien existe. Si /__sonda.html
-  # responde 301, el RewriteRule si se evalua y el fallo esta en la regla de
-  # index.html. Si responde 200, esta capa no aplica rewrites a ficheros que
-  # existen y la solucion no esta aqui. Dos intentos previos fallaron a
-  # ciegas (c7da7d9 y d1b5a3a); esto lo zanja con una medida.
-  RewriteRule ^__sonda\.html$ https://zenorio.es/ [R=301,L]
 </IfModule>
 
 # --- WebP automático: sirve la versión .webp si el navegador la acepta
