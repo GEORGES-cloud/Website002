@@ -27,6 +27,13 @@ ErrorDocument 404 /404.html
   # Sin condición THE_REQUEST: aquí no hay riesgo de bucle porque "/" lo
   # resuelve la app Node (Express), no el DirectoryIndex estático.
   RewriteRule ^index\.html$ https://zenorio.es/ [R=301,L]
+  # SONDA TEMPORAL (quitar tras medir): la misma clase de regla que la de
+  # arriba pero sobre otro fichero que tambien existe. Si /__sonda.html
+  # responde 301, el RewriteRule si se evalua y el fallo esta en la regla de
+  # index.html. Si responde 200, esta capa no aplica rewrites a ficheros que
+  # existen y la solucion no esta aqui. Dos intentos previos fallaron a
+  # ciegas (c7da7d9 y d1b5a3a); esto lo zanja con una medida.
+  RewriteRule ^__sonda\.html$ https://zenorio.es/ [R=301,L]
 </IfModule>
 
 # --- WebP automático: sirve la versión .webp si el navegador la acepta
