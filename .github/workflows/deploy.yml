@@ -78,7 +78,16 @@ jobs:
           async function intento(n) {
             const c = new ftp.Client(45000);
             try {
-              await c.access({ host: process.env.FTP_SERVER, user: process.env.FTP_USERNAME, password: process.env.FTP_PASSWORD, secure: true });
+              // OJO: rejectUnauthorized:false NO es un descuido, y quitarlo rompe el
+              // despliegue. Se probo el 2026-09-02 (commit 4e97b3f): con la validacion
+              // activada este paso falla, no sube server.mjs ni el .htaccess y no pide
+              // el reinicio, asi que la app se queda con el codigo viejo. El certificado
+              // que presenta el FTPS de Hostinger no valida contra las CA del runner.
+              // Es un riesgo real y conocido: quien se ponga en medio entre GitHub y
+              // Hostinger puede quedarse con las credenciales de FTP, que dan escritura
+              // sobre todo el sitio. La solucion no es reactivar la validacion a secas,
+              // sino fijar la huella del certificado de Hostinger o pasar a SFTP.
+              await c.access({ host: process.env.FTP_SERVER, user: process.env.FTP_USERNAME, password: process.env.FTP_PASSWORD, secure: true, secureOptions: { rejectUnauthorized: false } });
               await c.uploadFrom('public/.htaccess', '/nodejs/public/.htaccess');
               console.log('SUBIDO /nodejs/public/.htaccess (intento ' + n + ')');
               // El sync solo cubre public/: la app (server.mjs) se sube aparte.
