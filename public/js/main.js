@@ -78,9 +78,12 @@
   }
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
-  toTop && toTop.addEventListener("click", () =>
-    window.scrollTo({ top: 0, behavior: "smooth" })
-  );
+  // behavior:"smooth" puesto a mano sobrevive al scroll-behavior:auto que aplica
+  // la media query de movimiento reducido, así que hay que mirarla aquí también.
+  toTop && toTop.addEventListener("click", () => {
+    const quieto = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: 0, behavior: quieto ? "auto" : "smooth" });
+  });
 
   /* ---- Reveal al hacer scroll ---- */
   const reveals = $$("[data-reveal]");
@@ -107,12 +110,33 @@
   /* ---- Menú móvil ---- */
   const burger = $("#burger");
   const navMobile = $("#navMobile");
+  // El resto de la página se marca inert mientras el menú está abierto: sin eso
+  // el tabulador salía al contenido de detrás, que está tapado por un velo casi
+  // opaco, y un lector de pantalla podía recorrerlo entero.
+  // La cabecera NO entra aqui: el propio burger es la X de cerrar y vive dentro,
+  // asi que inertizarla dejaba el menu sin salida por teclado y ademas el
+  // navegador quitaba el foco del boton recien pulsado.
+  const tapables = [$("main"), $(".footer"), $(".floaters")].filter(Boolean);
   function setMenu(open) {
     document.body.classList.toggle("menu-open", open);
     burger && burger.setAttribute("aria-expanded", String(open));
+    tapables.forEach((el) => { el.inert = open; });
     if (open && navMobile) {
-      const first = $("a", navMobile);
-      first && first.focus();
+      // El panel abre con una transicion de visibility de 0,5 s, y focus() sobre
+      // algo aun invisible no hace nada y se pierde en silencio: el foco se
+      // quedaba en el body y quien navega con teclado se encontraba el menu
+      // abierto sin estar dentro de el. Se reintenta hasta que el panel es
+      // visible de verdad, con tope por si la transicion no llega a dispararse.
+      const limite = Date.now() + 800;
+      (function enfocar() {
+        if (!document.body.classList.contains("menu-open")) return;
+        const first = $("a", navMobile);
+        if (first && getComputedStyle(navMobile).visibility === "visible") {
+          first.focus();
+          if (document.activeElement === first) return;
+        }
+        if (Date.now() < limite) requestAnimationFrame(enfocar);
+      })();
     }
   }
   document.addEventListener("keydown", (e) => {

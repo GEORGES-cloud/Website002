@@ -13,6 +13,9 @@
 html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
+  /* La cabecera es fixed: sin esto, seguir el skip link o cualquier ancla deja
+     el destino escondido debajo (WCAG 2.4.11). */
+  scroll-padding-top: 6rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -115,6 +118,9 @@ select { font: inherit; color: inherit; }
   --olive: #7E8A6B;
   --terra: #A9603E;
   --line: rgba(176, 138, 84, 0.26);
+  /* --line es un filete decorativo: a 1.48:1 no vale como borde de un control,
+     que necesita 3:1 (WCAG 1.4.11). --line-ui va al 0.64 de alfa = 3.09:1. */
+  --line-ui: rgba(176, 138, 84, 0.64);
   --line-soft: rgba(237, 228, 211, 0.12);
 
   /* Type — Bodoni Moda (display, optical-size) + Hanken Grotesk (texto/UI) */
@@ -364,7 +370,7 @@ h1, h2, h3, h4 {
   letter-spacing: 0.05em;
   color: var(--cream);
   background-color: transparent;
-  border: 1px solid var(--line);
+  border: 1px solid var(--line-ui);
   border-radius: 2px;
   padding: 0.5em 1.85em 0.5em 0.8em;
   line-height: 1;
@@ -729,7 +735,7 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
   transition: transform 0.3s var(--ease), background 0.3s;
 }
 .cookie-banner .ck-acc { background: var(--gold); color: var(--noir); }
-.cookie-banner .ck-rej { background: transparent; color: var(--cream); border: 1px solid var(--line); }
+.cookie-banner .ck-rej { background: transparent; color: var(--cream); border: 1px solid var(--line-ui); }
 .cookie-banner__btns button:hover { transform: translateY(-2px); }
 @media (max-width: 600px) {
   .cookie-banner__btns { width: 100%; }
@@ -838,11 +844,14 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
 .gallery figure::after {
   content: "";
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, transparent 50%, rgba(12,9,5,.55));
+  /* Antes: transparent 50% -> rgba(12,9,5,.55). Fallaban 6 de las 10 fotos,
+     con hasta el 67% del area del pie por debajo de 4.5:1. */
+  background: linear-gradient(180deg, transparent 30%, rgba(12,9,5,.86));
   opacity: 0;
   transition: opacity 0.5s;
 }
-.gallery figure:hover::after { opacity: 1; }
+.gallery figure:hover::after,
+.gallery figure:focus-within::after { opacity: 1; }
 .gallery figcaption {
   position: absolute;
   left: 1.1rem; bottom: 1rem;
@@ -855,7 +864,8 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
   opacity: 0;
   transition: transform 0.5s var(--ease), opacity 0.5s;
 }
-.gallery figure:hover figcaption { transform: none; opacity: 1; }
+.gallery figure:hover figcaption,
+.gallery figure:focus-within figcaption { transform: none; opacity: 1; }
 
 .g-a { grid-column: span 5; grid-row: span 2; }
 .g-b { grid-column: span 4; grid-row: span 1; }
@@ -999,7 +1009,7 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
 .socials { display: flex; gap: 0.8rem; }
 .socials a {
   width: 42px; height: 42px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--line-ui);
   border-radius: 50%;
   display: grid;
   place-items: center;
@@ -1039,7 +1049,7 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
   transition: transform 0.35s var(--ease), opacity 0.35s;
 }
 .fab--wa { background: #25d366; color: #fff; }
-.fab--top { background: var(--noir-2); color: var(--gold); border: 1px solid var(--line); opacity: 0; pointer-events: none; }
+.fab--top { background: var(--noir-2); color: var(--gold); border: 1px solid var(--line-ui); opacity: 0; pointer-events: none; }
 .fab--top.show { opacity: 1; pointer-events: auto; }
 .fab:hover { transform: scale(1.08) translateY(-2px); }
 
@@ -1211,6 +1221,14 @@ h1, h2, h3, h4, .h2, .h3 { font-weight: 500; }
 
 /* Eyebrow en oliva (no en latón) para que respire la paleta */
 .eyebrow { color: var(--olive); }
+/* Sobre fotografia el olivo se cae: medido, entre el 42% y el 65% del area
+   quedaba por debajo de 4.5:1, con el peor pixel a 1:1. Encima de foto va en
+   crema y con sombra, que es lo que sostiene el contraste sea cual sea el plano. */
+.feature .eyebrow,
+.exp__card .eyebrow {
+  color: var(--cream-2);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.85);
+}
 .eyebrow::before,
 .eyebrow.center::after { background: var(--olive); }
 
@@ -1431,7 +1449,8 @@ body > * { position: relative; z-index: 1; }
   margin-top: auto; font-size: 0.7rem; letter-spacing: 0.2em;
   text-transform: uppercase; color: var(--muted);
 }
-.review-card__src { color: var(--gold-deep); }
+/* --gold-deep sobre --noir-2 daba 3.53:1, por debajo del 4.5 exigido. */
+.review-card__src { color: var(--muted); }
 .reviews-hint {
   text-align: center; margin-top: 0.8rem;
   font-size: 0.68rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--muted-2);
@@ -1507,7 +1526,7 @@ body.lightbox-open { overflow: hidden; }
   display: grid;
   place-items: center;
   background: rgba(10, 8, 6, 0.5);
-  border: 1px solid var(--line);
+  border: 1px solid var(--line-ui);
   border-radius: 50%;
   color: var(--cream);
   font-family: inherit;
