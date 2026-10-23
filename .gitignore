@@ -15,3 +15,13 @@ Fotos/
 # Copias de seguridad de vídeo
 *-old.mp4
 media-archivo/
+
+# Cartas: los PDF que manda el restaurante y lo que escupe el generador por
+# el camino. Los PDF finales de menus/ si van al repo; el material de origen
+# pesa 15 MB y no hace falta para nada mas que volver a montar las portadas.
+menus/fuente/originales/
+menus/fuente/_trabajo/
+menus/fuente/*.html
+menus/fuente/__pycache__/
+menus/pruebas/
+menus/fuente/_prueba-*.svg
