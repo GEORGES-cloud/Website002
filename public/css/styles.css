@@ -1621,14 +1621,16 @@ body.lightbox-open { overflow: hidden; }
    no al revés, que es el término con svh: el cartel es 4:5, así que el
    0.8 es esa proporción invertida y los 90 px son el pie, que mide unos
    56 reales y lleva margen de sobra: ahí abajo ya solo va el botón,
-   porque todo lo demás lo dice el propio cartel. Comprobado en un móvil
-   de 360×640, que es el caso más apretado. */
+   porque todo lo demás lo dice el propio cartel. El 92svh es cuánto del
+   alto de la ventana se le deja ocupar; subirlo es lo que permite que el
+   cartel sea más ancho, porque en 4:5 ancho y alto van atados.
+   Comprobado en un móvil de 360×640, que es el caso más apretado. */
 .anuncio {
   position: fixed;
   left: 50%;
   top: 50%;
   z-index: 95; /* sobre los flotantes (80), bajo el de cookies (300) */
-  width: min(460px, 92vw, calc((88svh - 90px) * 0.8));
+  width: min(540px, 92vw, calc((92svh - 90px) * 0.8));
   opacity: 0;
   visibility: hidden;
   translate: -50% calc(-50% + 14px);
@@ -1682,8 +1684,11 @@ body.lightbox-open { overflow: hidden; }
   border-radius: 0;
 }
 
-/* No es una X de cerrar: es un minimizar. El anuncio no se destruye, se
-   guarda en la pestaña de Eventos y se vuelve a abrir desde ahí. */
+/* La X de cerrar de toda la vida. Se probó con un guion de minimizar,
+   que describía mejor lo que hace —el anuncio se guarda en la pestaña de
+   Eventos, no se destruye—, pero en pantalla se leía raro: en una tarjeta
+   la gente espera una X y un guion suelto parece un signo menos. La
+   pestaña de Eventos ya cuenta que se puede recuperar. */
 .anuncio__x {
   position: absolute;
   top: 8px;

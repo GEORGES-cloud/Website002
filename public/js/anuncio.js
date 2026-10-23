@@ -42,9 +42,7 @@
   dlg.setAttribute("aria-labelledby", "anuncio-ttl");
   dlg.innerHTML =
     '<div class="anuncio__caja">' +
-    // Un guion de minimizar, no una X: lo que hace es guardarlo en la
-    // pestaña de Eventos, no cerrarlo para siempre.
-    '<button class="anuncio__x" type="button" aria-label="Minimizar el anuncio" data-i18n-aria="hw.close">&minus;</button>' +
+    '<button class="anuncio__x" type="button" aria-label="Cerrar el anuncio" data-i18n-aria="hw.close">&times;</button>' +
     // data-src (no src): el cartel pesa ~200 KB y no debe competir con la
     // portada. Se pide cuando ya ha cargado todo lo demás — ver pedirFoto().
     '<img class="anuncio__img" data-src="/assets/img/halloween-2026.jpg" width="1080" height="1350" decoding="async" alt="Cartel de la cena de Halloween en Zeñorío: dos manos brindan con una copa sobre un fondo de cortinas rojas" data-i18n-alt="hw.alt" />' +
