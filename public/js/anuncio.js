@@ -47,13 +47,17 @@
     // portada. Se pide cuando ya ha cargado todo lo demás — ver pedirFoto().
     '<img class="anuncio__img" data-src="/assets/img/halloween-2026.jpg" width="1080" height="1350" decoding="async" alt="Cartel de la cena de Halloween en Zeñorío: dos manos brindan con una copa sobre un fondo de cortinas rojas" data-i18n-alt="hw.alt" />' +
     '<div class="anuncio__pie">' +
-    '<p class="anuncio__kicker" data-i18n="hw.kicker">31 de octubre</p>' +
-    // El título y el texto NO se ven: el cartel ya dice "Halloween Dinner",
-    // la hora, el DJ y el menú especial, así que repetirlo debajo era
-    // ocupar el doble de alto para contar lo mismo. Se quedan en el HTML
-    // con sr-only porque el cartel es una FOTO: quien usa lector de
-    // pantalla no se entera de nada de eso, y el alt describe la escena,
-    // no la oferta. Así el pie es una franja y nadie pierde información.
+    // Debajo del cartel NO se ve ni una línea de texto: solo el botón. Todo
+    // lo que hay que contar ya está impreso en el cartel, y cada línea que
+    // se repetía ahí abajo eran 30-40 px que le quitaba a la foto, que es
+    // lo que se mira.
+    //
+    // Pero el cartel es una FOTO: quien navega con lector de pantalla no se
+    // entera de que hay cena de Halloween, ni del día, ni de la hora, y el
+    // alt describe la escena (dos manos brindando), no la oferta. Por eso
+    // los tres textos se quedan en el HTML con sr-only: no ocupan un píxel
+    // y el anuncio sigue diciendo algo para quien no ve la imagen.
+    '<p class="anuncio__kicker sr-only" data-i18n="hw.kicker">31 de octubre</p>' +
     '<h2 class="anuncio__ttl sr-only" id="anuncio-ttl" data-i18n="hw.title">Cena de Halloween</h2>' +
     '<p class="anuncio__txt sr-only" data-i18n="hw.txt">DJ session y menú especial en el jardín de Zeñorío.</p>' +
     '<a class="btn anuncio__cta" href="/reserva.html" data-i18n="hw.cta">Reserva tu mesa</a>' +
