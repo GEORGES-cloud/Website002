@@ -61,13 +61,13 @@ textarea,
 select { font: inherit; color: inherit; }
 
 ::selection {
-  background: var(--gold);
+  background: var(--accent);
   color: var(--noir);
 }
 
 /* Accesibilidad: foco visible por teclado */
 :focus-visible {
-  outline: 2px solid var(--gold);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
   border-radius: 2px;
 }
@@ -87,11 +87,11 @@ select { font: inherit; color: inherit; }
   top: 0; left: 50%;
   transform: translate(-50%, -120%);
   z-index: 1100;
-  background: var(--gold);
+  background: var(--accent);
   color: var(--noir);
   padding: 0.7em 1.4em;
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   border-radius: 0 0 8px 8px;
@@ -110,17 +110,29 @@ select { font: inherit; color: inherit; }
   --cream: #EDE4D3;
   --cream-2: #DDD2BE;
   --ink: #1E1712;
-  --muted: #B8AC98;
-  --muted-2: #9C9077;
-  --gold: #B08A54;
-  --gold-2: #C6A473;
-  --gold-deep: #8C6B3F;
+  /* Los secundarios eran beige tostado: con el acento ya en crema, eran lo
+     unico que seguia tirando a dorado en los textos pequenos. Mismo valor
+     de gris, sin el tinte (y manteniendo el contraste sobre --noir: 7.3:1
+     y 5.1:1, por encima del 4.5 exigido). */
+  --muted: #ABA59B;
+  --muted-2: #8C8780;
+  /* Acento en crema, no en dorado. El oro viejo (#B08A54) daba a todo el
+     sitio un aire de plantilla y se comia el protagonismo de las fotos;
+     ahora el unico color de marca sobre el fondo oscuro es la crema, y el
+     contraste lo pone la luz, no el tono. Los nombres quedan en --accent-N
+     a proposito: si manana el acento vuelve a ser otro color, se cambia
+     aqui y no en ciento y pico sitios. */
+  --accent: #EDE4D3;
+  --accent-2: #FFFFFF;
+  --accent-3: #C9BEA9;
   --olive: #7E8A6B;
   --terra: #A9603E;
-  --line: rgba(176, 138, 84, 0.26);
-  /* --line es un filete decorativo: a 1.48:1 no vale como borde de un control,
-     que necesita 3:1 (WCAG 1.4.11). --line-ui va al 0.64 de alfa = 3.09:1. */
-  --line-ui: rgba(176, 138, 84, 0.64);
+  /* Los filetes, mas finos y en crema: con el dorado iban al 0.26 de alfa
+     para no cantar; en crema basta con 0.16 y la linea se ve mas limpia. */
+  --line: rgba(237, 228, 211, 0.16);
+  /* --line es un filete decorativo: a 1.3:1 no vale como borde de un control,
+     que necesita 3:1 (WCAG 1.4.11). --line-ui va al 0.38 de alfa = 3.3:1. */
+  --line-ui: rgba(237, 228, 211, 0.38);
   --line-soft: rgba(237, 228, 211, 0.12);
 
   /* Type — Bodoni Moda (display, optical-size) + Hanken Grotesk (texto/UI) */
@@ -160,10 +172,10 @@ h1, h2, h3, h4 {
 .eyebrow {
   font-family: var(--font-body);
   font-size: 0.72rem;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.42em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--accent);
   display: inline-flex;
   align-items: center;
   gap: 0.9rem;
@@ -172,14 +184,14 @@ h1, h2, h3, h4 {
   content: "";
   width: clamp(1.4rem, 4vw, 3rem);
   height: 1px;
-  background: var(--gold);
+  background: var(--accent);
   opacity: 0.7;
 }
 .eyebrow.center::after {
   content: "";
   width: clamp(1.4rem, 4vw, 3rem);
   height: 1px;
-  background: var(--gold);
+  background: var(--accent);
   opacity: 0.7;
 }
 
@@ -223,7 +235,7 @@ h1, h2, h3, h4 {
 
 /* ---------- 5. Buttons ---------- */
 .btn {
-  --bg: var(--gold);
+  --bg: var(--accent);
   --fg: var(--noir);
   display: inline-flex;
   align-items: center;
@@ -231,7 +243,7 @@ h1, h2, h3, h4 {
   gap: 0.7rem;
   padding: 1.05em 2.2em;
   font-size: 0.78rem;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--fg);
@@ -253,7 +265,7 @@ h1, h2, h3, h4 {
   z-index: -1;
 }
 .btn:hover {
-  color: var(--gold);
+  color: var(--accent);
   transform: translateY(-2px);
   box-shadow: 0 16px 40px -16px rgba(0, 0, 0, 0.7);
 }
@@ -262,11 +274,11 @@ h1, h2, h3, h4 {
 .btn--ghost {
   --bg: rgba(15, 12, 8, 0.34);
   --fg: var(--cream);
-  border: 1.5px solid rgba(237, 228, 211, 0.6);
+  border: 1px solid rgba(237, 228, 211, 0.55);
   backdrop-filter: blur(6px);
 }
-.btn--ghost::after { background: var(--gold); }
-.btn--ghost:hover { color: var(--noir); border-color: var(--gold); }
+.btn--ghost::after { background: var(--accent); }
+.btn--ghost:hover { color: var(--noir); border-color: var(--accent); }
 
 .btn--sm { padding: 0.78em 1.5em; font-size: 0.72rem; }
 .btn--block { width: 100%; }
@@ -274,7 +286,7 @@ h1, h2, h3, h4 {
 .link-underline {
   position: relative;
   display: inline-block;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.04em;
   padding-bottom: 2px;
 }
@@ -334,7 +346,7 @@ h1, h2, h3, h4 {
 }
 .nav__links a {
   font-size: 0.74rem;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--cream);
@@ -348,7 +360,7 @@ h1, h2, h3, h4 {
   position: absolute;
   left: 0; bottom: -2px;
   width: 100%; height: 1px;
-  background: var(--gold);
+  background: var(--accent);
   transform: scaleX(0);
   transform-origin: right;
   transition: transform 0.45s var(--ease);
@@ -366,7 +378,7 @@ h1, h2, h3, h4 {
   -moz-appearance: none;
   font-family: var(--font-body);
   font-size: 0.72rem;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.05em;
   color: var(--cream);
   background-color: transparent;
@@ -380,8 +392,8 @@ h1, h2, h3, h4 {
   background-position: right 0.62em center;
   transition: color 0.3s, border-color 0.3s;
 }
-.lang-select:hover { color: #fff; border-color: var(--gold-2); }
-.lang-select:focus-visible { outline: 2px solid var(--gold-2); outline-offset: 2px; }
+.lang-select:hover { color: #fff; border-color: var(--accent-2); }
+.lang-select:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 2px; }
 /* Lista desplegable nativa: legible (fondo claro, texto oscuro) */
 .lang-select option { color: #1E1712; background: #EDE4D3; }
 
@@ -423,7 +435,7 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
 .loader__mark {
   width: 96px; height: 96px;
   box-sizing: border-box;
-  border: 2px solid #fff;
+  border: 1.5px solid #fff;
   border-radius: var(--radius);
   display: grid; place-items: center;
   animation: floaty 3s ease-in-out infinite;
@@ -449,7 +461,7 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
   content: "";
   position: absolute;
   inset: 0;
-  background: var(--gold);
+  background: var(--accent);
   transform: translateX(-100%);
   animation: load 1.6s var(--ease) forwards;
 }
@@ -500,7 +512,7 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
   margin-bottom: 1.6rem;
   text-shadow: 0 2px 40px rgba(0, 0, 0, 0.5);
 }
-.hero h1 .serif-it { color: var(--gold-2); }
+.hero h1 .serif-it { color: var(--accent-2); }
 .hero__cta { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
 
 /* Skin "Papi Steak" — hero centrado con wordmark */
@@ -519,7 +531,7 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
   max-width: 24ch;
   margin: 1.7rem auto 0;
 }
-.hero--papi h1 .serif-it { color: var(--gold-2); }
+.hero--papi h1 .serif-it { color: var(--accent-2); }
 
 /* Accolades marquee */
 .marquee {
@@ -549,7 +561,7 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
 .marquee span::after {
   content: "✦";
   font-style: normal;
-  color: var(--gold);
+  color: var(--accent);
   font-size: 0.7em;
 }
 @keyframes marquee { to { transform: translateX(-50%); } }
@@ -581,8 +593,8 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
 .story__body .stat b {
   font-family: var(--font-display);
   font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 600;
-  color: var(--gold);
+  font-weight: 500;
+  color: var(--accent);
   display: block;
   line-height: 1;
 }
@@ -596,7 +608,7 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
   font-family: var(--font-display);
   font-style: italic;
   font-size: 1.8rem;
-  color: var(--gold);
+  color: var(--accent);
   margin-top: 2rem;
 }
 
@@ -627,7 +639,7 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
   text-transform: uppercase;
   letter-spacing: 0.08em;
   font-size: clamp(1.3rem, 2.6vw, 1.9rem);
-  color: var(--gold-2);
+  color: var(--accent-2);
   margin: clamp(2.6rem, 5vw, 4rem) 0 1.5rem;
   display: flex;
   align-items: center;
@@ -660,9 +672,9 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
 .dish__price {
   font-family: var(--font-display);
   font-size: 1.3rem;
-  color: var(--gold);
+  color: var(--accent);
   white-space: nowrap;
-  font-weight: 600;
+  font-weight: 500;
 }
 .dish__desc {
   grid-column: 1 / -1;
@@ -684,7 +696,7 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
   line-height: 1;
 }
 .tag--veg { color: var(--olive); }
-.tag--star { color: var(--gold-2); }
+.tag--star { color: var(--accent-2); }
 .tag--new { color: var(--terra); }
 
 .menu__note {
@@ -698,7 +710,7 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
 /* Lista de eventos */
 .ev-list { margin: 1.8rem 0 2.2rem; display: grid; gap: 0.8rem; }
 .ev-list li { position: relative; padding-left: 1.7rem; color: var(--cream-2); }
-.ev-list li::before { content: "✦"; position: absolute; left: 0; top: 2px; color: var(--gold); font-size: 0.85em; }
+.ev-list li::before { content: "✦"; position: absolute; left: 0; top: 2px; color: var(--accent); font-size: 0.85em; }
 
 /* Banner de cookies */
 .cookie-banner {
@@ -722,19 +734,19 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
   justify-content: space-between;
 }
 .cookie-banner__txt { color: var(--cream-2); font-size: 0.85rem; max-width: 64ch; margin: 0; line-height: 1.6; }
-.cookie-banner__txt a { color: var(--gold); text-decoration: underline; }
+.cookie-banner__txt a { color: var(--accent); text-decoration: underline; }
 .cookie-banner__btns { display: flex; gap: 0.7rem; flex-shrink: 0; }
 .cookie-banner__btns button {
   padding: 0.7em 1.6em;
   border-radius: 100px;
   font-size: 0.72rem;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   cursor: pointer;
   transition: transform 0.3s var(--ease), background 0.3s;
 }
-.cookie-banner .ck-acc { background: var(--gold); color: var(--noir); }
+.cookie-banner .ck-acc { background: var(--accent); color: var(--noir); }
 .cookie-banner .ck-rej { background: transparent; color: var(--cream); border: 1px solid var(--line-ui); }
 .cookie-banner__btns button:hover { transform: translateY(-2px); }
 @media (max-width: 600px) {
@@ -768,7 +780,7 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
   font-size: 0.6rem;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--gold-2);
+  color: var(--accent-2);
   margin-bottom: 0.6rem;
 }
 .gig__t {
@@ -786,12 +798,12 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
 }
 .gig__cta {
   display: inline-block;
-  background: var(--gold);
+  background: var(--accent);
   color: var(--noir);
   padding: 0.7em 1.6em;
   border-radius: 100px;
   font-size: 0.7rem;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   transition: transform 0.3s var(--ease);
@@ -919,10 +931,24 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
   gap: clamp(2.5rem, 6vw, 6rem);
   align-items: center;
 }
-/* Motor de reservas CoverManager incrustado */
+/* Motor de reservas CoverManager incrustado.
+   El alto NO es un numero al gusto: es el alto real del modulo, medido el
+   2026-10-23 cargandolo suelto y leyendo su scrollHeight a varios anchos.
+     375 px de ancho -> 1044 px de alto
+     654 px de ancho -> 1043 px
+     900 px de ancho -> 800 px (ahi el modulo pasa a dos columnas)
+   La columna que lo aloja nunca llega a 900 px (el grid la deja en ~730 en
+   la pantalla mas ancha), asi que el caso real es siempre el de ~1045.
+   Con los 640 px que habia antes, el modulo se quedaba con 400 px de scroll
+   PROPIO dentro de la pagina: al pasar el raton por encima, la rueda movia
+   la reserva en vez de la pagina. Dandole el alto que pide no le queda
+   scroll y la rueda vuelve a ser de la pagina.
+   CoverManager no manda su alto por postMessage (comprobado: cero mensajes
+   en 9 s), asi que no hay forma de ajustarlo solo. Si algun dia cambian el
+   modulo, hay que volver a medirlo igual. */
 .reserve__engine iframe {
   width: 100%;
-  height: 640px;
+  height: 1060px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: #fff;
@@ -934,7 +960,7 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
   color: var(--muted);
   text-align: center;
 }
-.reserve__alt a { color: var(--gold-2); text-decoration: underline; text-underline-offset: 3px; }
+.reserve__alt a { color: var(--accent-2); text-decoration: underline; text-underline-offset: 3px; }
 .reserve__aside .lead { margin: 1.5rem 0 2.5rem; }
 .reserve__contacts { display: grid; gap: 1.4rem; }
 .reserve__contacts > a,
@@ -944,7 +970,7 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
   align-items: flex-start;
 }
 .reserve__contacts .ic {
-  color: var(--gold);
+  color: var(--accent);
   flex: none;
   margin-top: 3px;
 }
@@ -977,7 +1003,7 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
   font-size: 0.95rem;
 }
 .loc__hours .row.closed { color: var(--muted-2); }
-.loc__hours .row b { color: var(--gold); font-weight: 600; }
+.loc__hours .row b { color: var(--accent); font-weight: 500; }
 .loc__map { min-height: 360px; position: relative; }
 .loc__map iframe { width: 100%; height: 100%; border: 0; filter: grayscale(0.3) contrast(1.05); }
 
@@ -998,7 +1024,7 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
   font-size: 0.7rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--accent);
   margin-bottom: 1.4rem;
   font-weight: 700;
 }
@@ -1016,7 +1042,7 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
   color: var(--cream);
   transition: background 0.4s, color 0.4s, transform 0.4s;
 }
-.socials a:hover { background: var(--gold); color: var(--noir); transform: translateY(-3px); }
+.socials a:hover { background: var(--accent); color: var(--noir); transform: translateY(-3px); }
 
 .footer__bottom {
   display: flex;
@@ -1029,7 +1055,7 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
   font-size: 0.78rem;
   color: var(--muted-2);
 }
-.footer__bottom a:hover { color: var(--gold); }
+.footer__bottom a:hover { color: var(--accent); }
 
 /* ---------- 19. Floating ---------- */
 .floaters {
@@ -1049,7 +1075,7 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
   transition: transform 0.35s var(--ease), opacity 0.35s;
 }
 .fab--wa { background: #25d366; color: #fff; }
-.fab--top { background: var(--noir-2); color: var(--gold); border: 1px solid var(--line-ui); opacity: 0; pointer-events: none; }
+.fab--top { background: var(--noir-2); color: var(--accent); border: 1px solid var(--line-ui); opacity: 0; pointer-events: none; }
 .fab--top.show { opacity: 1; pointer-events: auto; }
 .fab:hover { transform: scale(1.08) translateY(-2px); }
 
@@ -1077,7 +1103,7 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
   width: 100%;
   transform: scaleX(0);
   transform-origin: left;
-  background: linear-gradient(90deg, var(--gold-deep), var(--gold-2));
+  background: linear-gradient(90deg, var(--accent-3), var(--accent-2));
   z-index: 200;
 }
 
@@ -1115,7 +1141,7 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
     font-size: 2rem;
     color: var(--cream);
   }
-  .nav-mobile a:hover { color: var(--gold); }
+  .nav-mobile a:hover { color: var(--accent); }
   .nav-mobile .lang { margin-top: 1rem; }
   .nav-mobile .btn { margin-top: 0.5rem; }
 
@@ -1164,7 +1190,7 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
   gap: clamp(2.6rem, 5vw, 4rem);
   opacity: .9;
 }
-.marquee span::after { content: "·"; font-style: normal; color: var(--gold); opacity: .5; font-size: 1em; }
+.marquee span::after { content: "·"; font-style: normal; color: var(--accent); opacity: .5; font-size: 1em; }
 
 @media (max-width: 520px) {
   .marquee span { font-size: .64rem; }
@@ -1234,7 +1260,7 @@ h1, h2, h3, h4, .h2, .h3 { font-weight: 500; }
 
 /* Botones: bloque de latón nítido (2px) en Title Case — fuera píldoras y mayúsculas */
 .btn { border-radius: 2px; text-transform: none; letter-spacing: 0.03em; }
-.btn:hover { color: var(--gold-2); }
+.btn:hover { color: var(--accent-2); }
 
 /* Navegación en Title Case editorial (no en mayúsculas de plantilla) */
 .nav__links a { text-transform: none; letter-spacing: 0.015em; font-size: 0.78rem; }
@@ -1244,10 +1270,10 @@ h1, h2, h3, h4, .h2, .h3 { font-weight: 500; }
 .tag, .cookie-banner__btns button { border-radius: 2px; }
 
 /* Rombo grabado de latón: sustituye la ✦ del listado de eventos */
-.ev-list li::before { content: "\25C6"; font-size: 0.58em; top: 6px; color: var(--gold); }
+.ev-list li::before { content: "\25C6"; font-size: 0.58em; top: 6px; color: var(--accent); }
 
 /* Foco en latón claro */
-:focus-visible { outline-color: var(--gold-2); }
+:focus-visible { outline-color: var(--accent-2); }
 
 /* Datos (100% / 45 días): discreto — filete, divisor y numerales suaves */
 .story__body .stats {
@@ -1264,7 +1290,7 @@ h1, h2, h3, h4, .h2, .h3 { font-weight: 500; }
 .story__body .stat b {
   font-weight: 400;
   font-size: clamp(1.9rem, 3.2vw, 2.5rem);
-  color: var(--gold-2);
+  color: var(--accent-2);
 }
 .story__body .stat b .stat__u {
   font-size: 0.5em;
@@ -1296,10 +1322,18 @@ h1, h2, h3, h4, .h2, .h3 { font-weight: 500; }
 }
 
 /* =====================================================================
-   ORO FRÍO monocromo — el acento vuelve a ser claro, así que el texto
-   sobre rellenos de acento vuelve a oscuro (tinta) para el contraste.
+   RELLENOS CLAROS — el acento es crema, así que el texto que va ENCIMA
+   de un relleno de acento tiene que ser oscuro.
+   ---------------------------------------------------------------------
+   El :not() no es un adorno. Esta regla decía solo `.btn` y, por vivir
+   más abajo en la hoja, le ganaba al `--fg: var(--cream)` del botón
+   fantasma: el fantasma no tiene relleno claro, tiene un velo oscuro, y
+   se quedaba con la tinta casi negra encima. Contraste medido: 1,02. O
+   sea, invisible hasta que pasabas el ratón por encima. Se notaba en
+   "Llamar" (reservas) y en cualquier botón fantasma fuera de la portada,
+   que sí tenía su propio parche.
    ===================================================================== */
-.btn { --fg: var(--ink); }
+.btn:not(.btn--ghost) { --fg: var(--ink); }
 .btn--ghost:hover { color: var(--ink); }
 .lang button.active,
 .cookie-banner .ck-acc,
@@ -1316,15 +1350,17 @@ h1, h2, h3, h4, .h2, .h3 { font-weight: 500; }
   --fg: #1E1712;
 }
 .hero__cta .btn--ghost {
-  --fg: var(--cream);
+  /* El --fg ya lo pone el propio .btn--ghost; aquí solo se refuerzan el
+     velo y el borde, que sobre la foto del hero necesitan más cuerpo. */
   background: rgba(12, 9, 5, 0.5);
   border-color: rgba(237, 228, 211, 0.85);
 }
 
 /* =====================================================================
-   WHITE GOLD — highlights de texto en dorado pálido (--gold-2).
-   El vino oscuro (--gold) queda para rellenos, botones y bordes;
-   los detalles finos sobre fondo oscuro van en white gold para leerse.
+   DETALLES EN BLANCO — los trazos finos sobre fondo oscuro van en
+   --accent-2 (blanco puro). La crema (--accent) queda para rellenos,
+   botones y bordes, donde hay superficie de sobra; en un icono o en un
+   filete de un pixel la crema pierde fuerza y el blanco no.
    ===================================================================== */
 .signature,
 .dish__price,
@@ -1335,7 +1371,7 @@ h1, h2, h3, h4, .h2, .h3 { font-weight: 500; }
 .cookie-banner__txt a,
 .footer__bottom a:hover,
 .nav-mobile a:hover,
-.fab--top { color: var(--gold-2); }
+.fab--top { color: var(--accent-2); }
 
 /* =====================================================================
    HERO SLIDESHOW — Ken Burns por CSS (GPU, subpíxel: sin vibración).
@@ -1382,13 +1418,16 @@ h1, h2, h3, h4, .h2, .h3 { font-weight: 500; }
    cabecera de página, carrusel de reseñas y estado de nav.
    ===================================================================== */
 
-/* Fondo negro con reflejos sutiles (da profundidad sin aclarar) */
+/* Fondo negro con reflejos sutiles (da profundidad sin aclarar).
+   Los tres reflejos iban en dorado y en verde oliva: a esa opacidad no se
+   ven como color, pero juntos le daban al negro un tono amarillento que es
+   justo lo que se queria quitar. Ahora son luz crema, sin tinte. */
 body {
   background-color: var(--noir);
   background-image:
-    radial-gradient(120% 72% at 50% -18%, rgba(198, 164, 115, 0.07), transparent 55%),
-    radial-gradient(95% 60% at 100% 108%, rgba(126, 138, 107, 0.06), transparent 55%),
-    radial-gradient(70% 55% at -5% 42%, rgba(176, 138, 84, 0.05), transparent 60%);
+    radial-gradient(120% 72% at 50% -18%, rgba(237, 228, 211, 0.055), transparent 55%),
+    radial-gradient(95% 60% at 100% 108%, rgba(237, 228, 211, 0.035), transparent 55%),
+    radial-gradient(70% 55% at -5% 42%, rgba(237, 228, 211, 0.03), transparent 60%);
   background-attachment: fixed;
   background-repeat: no-repeat;
 }
@@ -1413,7 +1452,7 @@ body > * { position: relative; z-index: 1; }
 
 /* Enlace de navegación de la página actual */
 .nav__links a.active,
-.nav-mobile a.active { color: var(--gold); }
+.nav-mobile a.active { color: var(--accent); }
 
 /* Cabecera de página (título de sección en su propia página) */
 .page-head { text-align: center; padding: clamp(2.5rem, 6vw, 4.5rem) 0 clamp(1.5rem, 3vw, 2.5rem); }
@@ -1440,7 +1479,7 @@ body > * { position: relative; z-index: 1; }
   padding: clamp(1.6rem, 3vw, 2.4rem);
   display: flex; flex-direction: column; gap: 1.1rem;
 }
-.review-card__stars { color: var(--gold-2); letter-spacing: 0.14em; font-size: 0.9rem; }
+.review-card__stars { color: var(--accent-2); letter-spacing: 0.14em; font-size: 0.9rem; }
 .review-card p {
   font-family: var(--font-display); font-style: italic;
   font-size: clamp(1.05rem, 1.6vw, 1.3rem); line-height: 1.5; color: var(--cream); margin: 0;
@@ -1449,7 +1488,8 @@ body > * { position: relative; z-index: 1; }
   margin-top: auto; font-size: 0.7rem; letter-spacing: 0.2em;
   text-transform: uppercase; color: var(--muted);
 }
-/* --gold-deep sobre --noir-2 daba 3.53:1, por debajo del 4.5 exigido. */
+/* La fuente de la reseña va en --muted y no en el acento: es un dato
+   secundario y no debe competir con la cita. */
 .review-card__src { color: var(--muted); }
 .reviews-hint {
   text-align: center; margin-top: 0.8rem;
@@ -1513,7 +1553,7 @@ body.lightbox-open { overflow: hidden; }
   transform: translateX(-50%);
   font-size: 0.66rem;
   letter-spacing: 0.22em;
-  color: var(--gold-2);
+  color: var(--accent-2);
 }
 
 .lightbox__close,
@@ -1536,7 +1576,7 @@ body.lightbox-open { overflow: hidden; }
   transition: border-color 0.3s var(--ease), color 0.3s var(--ease);
 }
 .lightbox__close:hover,
-.lightbox__nav:hover { border-color: var(--gold); color: var(--gold); }
+.lightbox__nav:hover { border-color: var(--accent); color: var(--accent); }
 .lightbox__close { top: 20px; right: 20px; font-size: 1.7rem; }
 .lightbox__nav--prev { left: 18px; top: 50%; transform: translateY(-50%); }
 .lightbox__nav--next { right: 18px; top: 50%; transform: translateY(-50%); }
@@ -1551,4 +1591,144 @@ body.lightbox-open { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   .lightbox__img.slide-next,
   .lightbox__img.slide-prev { animation: none; }
+}
+
+/* =====================================================================
+   Anuncio de la cena de Halloween · cartel a pantalla completa
+   ---------------------------------------------------------------------
+   El cartel es lo que se mira, así que se lleva todo el alto que puede y
+   el pie es solo una franja fina debajo. El ancho se calcula también a
+   partir del alto de la ventana (el término con svh): el cartel es 4:5,
+   así que a 620 px de ancho mide 775 de alto y sin ese tope no cabía en
+   un portátil. El 0.8 es el 4:5 invertido y los 175 px son el pie, medido
+   en el idioma que más líneas gasta. Así se ajusta solo y nunca pide
+   scroll.
+   ===================================================================== */
+.anuncio {
+  position: fixed;
+  inset: 0;
+  z-index: 1300;
+  display: grid;
+  place-items: center;
+  padding: clamp(0.9rem, 3vw, 2rem);
+  background: rgba(8, 6, 5, 0.86);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.45s var(--ease), visibility 0.45s;
+}
+.anuncio.open { opacity: 1; visibility: visible; }
+body.anuncio-open { overflow: hidden; }
+
+.anuncio__caja {
+  position: relative;
+  width: min(620px, 94vw, calc((94svh - 175px) * 0.8));
+  max-height: 100%;
+  overflow-y: auto;
+  /* Sin fondo propio: el pie es de cristal y tiene que dejar pasar el velo
+     oscuro que hay detrás. Con un color sólido aquí el blur no se veía. */
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 50px 120px -40px rgba(0, 0, 0, 0.95);
+  transform: translateY(14px) scale(0.985);
+  transition: transform 0.5s var(--ease);
+}
+.anuncio.open .anuncio__caja { transform: none; }
+
+.anuncio__img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* El pie, en cristal esmerilado sobre el cartel: translúcido, desenfocado y
+   con un filo claro arriba, que es lo que hace que se lea como un cristal y
+   no como un bloque gris. */
+.anuncio__pie {
+  padding: 0.8rem clamp(1rem, 4vw, 1.6rem) 0.95rem;
+  text-align: center;
+  background: linear-gradient(180deg, rgba(58, 48, 38, 0.46), rgba(23, 19, 16, 0.58));
+  -webkit-backdrop-filter: blur(22px) saturate(150%);
+          backdrop-filter: blur(22px) saturate(150%);
+  border-top: 1px solid rgba(237, 228, 211, 0.16);
+  box-shadow: inset 0 1px 0 rgba(237, 228, 211, 0.07);
+}
+/* Navegadores sin backdrop-filter (Firefox con la opción desactivada): sin el
+   desenfoque, el translúcido deja el texto sobre la foto del fondo y no se
+   lee. Ahí se cae a un pie opaco. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .anuncio__pie { background: var(--noir-2); }
+}
+.anuncio__kicker {
+  margin: 0 0 0.3rem;
+  font-size: 0.58rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.anuncio__ttl {
+  margin: 0 0 0.25rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 3vw, 1.45rem);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--cream);
+}
+.anuncio__txt {
+  margin: 0 auto 0.75rem;
+  max-width: 44ch;
+  font-size: 0.76rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+/* El botón, también de cristal. El .btn de la casa viene en dorado macizo y
+   ahí dentro cantaba demasiado contra el rojo del cartel: aquí es un vidrio
+   con filo claro que al pasar por encima se rellena en crema. */
+.anuncio__cta {
+  --bg: rgba(237, 228, 211, 0.07);
+  --fg: var(--cream);
+  padding: 0.72em 1.7em;
+  font-size: 0.64rem;
+  font-weight: 500;
+  border: 1px solid rgba(237, 228, 211, 0.45);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+}
+.anuncio__cta::after { background: var(--cream); }
+.anuncio__cta:hover { color: var(--noir); border-color: var(--cream); }
+
+.anuncio__x {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(10, 8, 6, 0.55);
+  -webkit-backdrop-filter: blur(6px);
+          backdrop-filter: blur(6px);
+  border: 1px solid var(--line-ui);
+  border-radius: 50%;
+  color: var(--cream);
+  font-family: inherit;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color 0.3s var(--ease), color 0.3s var(--ease);
+}
+.anuncio__x:hover { border-color: var(--accent); color: var(--accent); }
+
+@media (max-width: 480px) {
+  .anuncio__x { width: 38px; height: 38px; top: 9px; right: 9px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .anuncio,
+  .anuncio__caja { transition: none; }
+  .anuncio__caja { transform: none; }
 }

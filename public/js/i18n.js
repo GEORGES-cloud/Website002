@@ -6,6 +6,12 @@
 (function () {
   const DICT = {
   "en": {
+    "hw.kicker": "31 October · From 7pm",
+    "hw.title": "Halloween Dinner",
+    "hw.txt": "DJ session and a special menu in Zeñorío’s garden.",
+    "hw.cta": "Book your table",
+    "hw.close": "Close the announcement",
+    "hw.alt": "Poster for the Halloween dinner at Zeñorío: two hands raising a cocktail against red curtains",
     "wa.evento": "Hi, I'd like information about holding an event at Zeñorío",
     "wa.reserva": "Hi, I'd like to book a table at Zeñorío",
     "tag.top": "Our pick",
@@ -257,6 +263,12 @@
     "rev.stars": "5 out of 5 stars"
   },
   "fr": {
+    "hw.kicker": "31 octobre · Dès 19h",
+    "hw.title": "Dîner d’Halloween",
+    "hw.txt": "DJ set et menu spécial dans le jardin du Zeñorío.",
+    "hw.cta": "Réserver une table",
+    "hw.close": "Fermer l’annonce",
+    "hw.alt": "Affiche du dîner d’Halloween au Zeñorío : deux mains trinquent avec un cocktail devant des rideaux rouges",
     "wa.evento": "Bonjour, je souhaiterais des informations pour un événement chez Zeñorío",
     "wa.reserva": "Bonjour, je souhaiterais réserver une table chez Zeñorío",
     "alt.g1": "Huîtres au caviar",
@@ -559,6 +571,12 @@
     "rev.stars": "5 étoiles sur 5"
   },
   "de": {
+    "hw.kicker": "31. Oktober · Ab 19 Uhr",
+    "hw.title": "Halloween-Dinner",
+    "hw.txt": "DJ-Session und ein besonderes Menü im Garten des Zeñorío.",
+    "hw.cta": "Tisch reservieren",
+    "hw.close": "Hinweis schließen",
+    "hw.alt": "Plakat zum Halloween-Dinner im Zeñorío: zwei Hände stoßen mit einem Cocktail vor roten Vorhängen an",
     "wa.evento": "Hallo, ich hätte gerne Informationen zu einer Veranstaltung im Zeñorío",
     "wa.reserva": "Hallo, ich möchte gerne einen Tisch im Zeñorío reservieren",
     "alt.g1": "Austern mit Kaviar",
@@ -861,6 +879,12 @@
     "rev.stars": "5 von 5 Sternen"
   },
   "sv": {
+    "hw.kicker": "31 oktober · Från kl. 19",
+    "hw.title": "Halloweenmiddag",
+    "hw.txt": "DJ-session och en särskild meny i Zeñoríos trädgård.",
+    "hw.cta": "Boka bord",
+    "hw.close": "Stäng meddelandet",
+    "hw.alt": "Affisch för halloweenmiddagen på Zeñorío: två händer skålar med en cocktail mot röda draperier",
     "wa.evento": "Hej, jag skulle vilja ha information om ett evenemang på Zeñorío",
     "wa.reserva": "Hej, jag skulle vilja boka ett bord på Zeñorío",
     "alt.g1": "Ostron med kaviar",
@@ -1163,6 +1187,12 @@
     "rev.stars": "5 av 5 stjärnor"
   },
   "ru": {
+    "hw.kicker": "31 октября · с 19:00",
+    "hw.title": "Ужин в Хэллоуин",
+    "hw.txt": "DJ-сет и особое меню в саду Zeñorío.",
+    "hw.cta": "Забронировать столик",
+    "hw.close": "Закрыть объявление",
+    "hw.alt": "Афиша ужина в Хэллоуин в Zeñorío: две руки чокаются бокалом на фоне красных штор",
     "wa.evento": "Здравствуйте! Хотелось бы узнать об организации мероприятия в Zeñorío",
     "wa.reserva": "Здравствуйте! Хотелось бы забронировать столик в Zeñorío",
     "alt.g1": "Устрицы с икрой",
