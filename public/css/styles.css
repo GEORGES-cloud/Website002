@@ -1136,12 +1136,18 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
     transition: opacity 0.5s var(--ease), visibility 0.5s;
   }
   body.menu-open .nav-mobile { opacity: 1; visibility: visible; }
-  .nav-mobile a {
+  /* :not(.btn) en los tres sitios donde el menu pinta sus enlaces. Aqui
+     dentro vive tambien el boton de reservar, que NO es un enlace mas:
+     tiene relleno crema y su texto lo pone su propio --fg. Sin acotarlo,
+     el boton salia en crema sobre crema y desaparecia con el menu
+     abierto (antes, con el acento dorado, se leia regular; con el acento
+     claro ya no se leia nada). */
+  .nav-mobile a:not(.btn) {
     font-family: var(--font-display);
     font-size: 2rem;
     color: var(--cream);
   }
-  .nav-mobile a:hover { color: var(--accent); }
+  .nav-mobile a:not(.btn):hover { color: var(--accent); }
   .nav-mobile .lang { margin-top: 1rem; }
   .nav-mobile .btn { margin-top: 0.5rem; }
 
@@ -1370,7 +1376,7 @@ h1, h2, h3, h4, .h2, .h3 { font-weight: 500; }
 .ev-list li::before,
 .cookie-banner__txt a,
 .footer__bottom a:hover,
-.nav-mobile a:hover,
+.nav-mobile a:not(.btn):hover,
 .fab--top { color: var(--accent-2); }
 
 /* =====================================================================
@@ -1452,7 +1458,7 @@ body > * { position: relative; z-index: 1; }
 
 /* Enlace de navegación de la página actual */
 .nav__links a.active,
-.nav-mobile a.active { color: var(--accent); }
+.nav-mobile a:not(.btn).active { color: var(--accent); }
 
 /* Cabecera de página (título de sección en su propia página) */
 .page-head { text-align: center; padding: clamp(2.5rem, 6vw, 4.5rem) 0 clamp(1.5rem, 3vw, 2.5rem); }
@@ -1687,7 +1693,11 @@ body.anuncio-open { overflow: hidden; }
 /* El botón, también de cristal. El .btn de la casa viene en dorado macizo y
    ahí dentro cantaba demasiado contra el rojo del cartel: aquí es un vidrio
    con filo claro que al pasar por encima se rellena en crema. */
-.anuncio__cta {
+/* .btn.anuncio__cta y no .anuncio__cta a secas: la regla de los rellenos
+   claros (.btn:not(.btn--ghost)) tiene dos clases y le ganaba por
+   especificidad, asi que este boton se quedaba con la tinta oscura encima
+   del cristal, que tambien es oscuro. Contraste 1,01: invisible. */
+.btn.anuncio__cta {
   --bg: rgba(237, 228, 211, 0.07);
   --fg: var(--cream);
   padding: 0.72em 1.7em;
@@ -1697,8 +1707,8 @@ body.anuncio-open { overflow: hidden; }
   -webkit-backdrop-filter: blur(8px);
           backdrop-filter: blur(8px);
 }
-.anuncio__cta::after { background: var(--cream); }
-.anuncio__cta:hover { color: var(--noir); border-color: var(--cream); }
+.btn.anuncio__cta::after { background: var(--cream); }
+.btn.anuncio__cta:hover { color: var(--noir); border-color: var(--cream); }
 
 .anuncio__x {
   position: absolute;
