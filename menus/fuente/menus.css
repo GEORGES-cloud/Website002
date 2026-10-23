@@ -1,18 +1,24 @@
 /* =====================================================================
-   Zeñorío · carta «Carbón»
+   Zeñorío · cartas
    ---------------------------------------------------------------------
-   Papel blanco envejecido y tinta carbón, sin un solo color. Orla de
-   filigrana en las cuatro esquinas y remate en el centro de los lados,
-   como una lámina grabada.
+   Papel blanco envejecido y tinta de pluma, sin un solo color. Orla fina
+   en las cuatro esquinas y remate en el centro de los lados, distinta
+   según el concepto de cada carta: olivo para los menús de grupos, rama
+   desnuda y luna para Halloween, chispas para Nochevieja.
 
    El blanco NO es #FFF y el negro NO es #000, y eso es lo que hace que
    parezca impreso y no una pantalla: el papel tiene un punto de hueso y
    se oscurece hacia los bordes, y la tinta es un gris muy cerrado con
-   algo de calidez, que es el color que deja el carboncillo.
+   algo de calidez, que es el color que deja una pluma.
+
+   Toda la letra es de mano: Pinyon Script —una inglesa de plumilla— en
+   los títulos, y Cormorant Garamond en cursiva para el resto. Antes los
+   títulos iban en capitales inscritas (Cinzel), que son de cincel y
+   piedra: justo lo contrario de lo que pedía el encargo.
    ===================================================================== */
 
 @import url("fuentes.css");
-@import url("_ornamento.css");   /* la orla · la dibuja ornamento.py */
+@import url("_ornamento.css");   /* las orlas · las dibuja ornamento.py */
 
 :root {
   --papel: #F6F2E9;
@@ -20,15 +26,20 @@
   --carbon: #2E2C29;        /* la tinta */
   --carbon-2: #4A4642;      /* lo secundario */
   --carbon-3: #6E6760;      /* descripciones y pie */
-  --filete: #2E2C29;
 
-  --caps: "Cinzel", "Trajan Pro", Georgia, serif;
+  --pluma: "Pinyon Script", "Snell Roundhand", cursive;
   --cursiva: "Cormorant Garamond", "EB Garamond", Georgia, serif;
 
-  /* Tamaño de la orla; lo lee _ornamento.css */
+  /* Tamaño de la orla; lo leen las reglas de _ornamento.css */
   --orla: 7rem;
   --remate: 11rem;
 }
+
+/* Cada concepto mueve el papel y la tinta un punto, no más: tienen que
+   verse como tres cartas de la misma casa, no como tres casas. El
+   ambiente de verdad lo pone la orla, que sí cambia de dibujo. */
+.tema-halloween { --papel: #F2EFE8; --papel-borde: #DED8C9; --carbon: #262320; }
+.tema-nochevieja { --papel: #F7F3EA; --papel-borde: #E9E1CF; --carbon: #33302B; }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 @page { margin: 0; }
@@ -49,15 +60,12 @@ body {
   height: var(--alto);
   overflow: hidden;
   /* El alto de los márgenes lo manda la orla, no el gusto: el remate del
-     centro mide --remate/4 de alto y arranca a 2,5rem del canto, así que
-     por arriba y por abajo hay que dejar libre eso más un respiro, o el
-     pie de página se cruza con el adorno. */
-  padding: 7.2rem 6.4rem 8rem;
+     centro arranca a 2,5rem del canto y mide --remate/4 de alto, así que
+     arriba y abajo hay que dejar libre eso más un respiro, o el pie de
+     página se cruza con el adorno. */
+  padding: 6.4rem 6.2rem 6.6rem;
   display: flex;
   flex-direction: column;
-  /* Papel viejo: claro en el centro, tostado en los cantos, y tres manchas
-     de humedad apenas perceptibles. Cada una por separado no se ve; juntas
-     quitan la planitud del color liso, que es lo que delata a un PDF. */
   background:
     radial-gradient(60% 45% at 22% 18%, rgba(160, 140, 105, 0.07), transparent 70%),
     radial-gradient(45% 35% at 82% 62%, rgba(160, 140, 105, 0.06), transparent 70%),
@@ -69,15 +77,15 @@ body {
 
 /* Grano del papel: turbulencia SVG, sin archivos que empaquetar. En
    multiply oscurece solo donde la trama es densa, que es como se comporta
-   la fibra del papel.
+   la fibra.
 
-   OJO CON EL TAMANO: la turbulencia no es vectorial de verdad, Chrome la
-   rasteriza al imprimir. Cubriendo la hoja entera metia un bitmap de pagina
-   completa a resolucion de impresion en cada PDF y los dejaba en 48 MB
-   (medido). Con un azulejo de 240 px que se repite, Chrome rasteriza el
-   azulejo UNA vez y lo tesela: el grano se ve igual y el PDF vuelve a pesar
-   lo que pesa su portada. El stitchTiles='stitch' es lo que hace que las
-   juntas del azulejo no se noten. */
+   OJO CON EL TAMAÑO: la turbulencia no es vectorial de verdad, Chrome la
+   rasteriza al imprimir. Cubriendo la hoja entera metía un bitmap de
+   página completa a resolución de impresión en cada PDF y los dejaba en
+   48 MB (medido). Con un azulejo de 240 px que se repite, Chrome rasteriza
+   el azulejo UNA vez y lo tesela: el grano se ve igual y el PDF vuelve a
+   pesar lo que pesa su portada. El stitchTiles='stitch' es lo que hace que
+   las juntas del azulejo no se noten. */
 .hoja::before {
   content: "";
   position: absolute;
@@ -97,15 +105,16 @@ body {
   content: "";
   position: absolute;
   inset: 3.1rem;
-  border: 0.9pt solid var(--filete);
+  border: 0.8pt solid var(--carbon);
   box-shadow:
     inset 0 0 0 2.4pt var(--papel),
-    inset 0 0 0 3pt var(--filete);
+    inset 0 0 0 2.9pt var(--carbon);
   pointer-events: none;
 }
 
 /* La Z gigante de fondo se va: este div pasa a ser la capa de la orla, que
-   es lo único que cabía en un HTML que no puedo tocar. */
+   es lo único que cabía en un HTML que no puedo tocar. El dibujo concreto
+   lo pone _ornamento.css según el tema de la hoja. */
 .marca-agua {
   position: absolute;
   inset: 2.5rem;
@@ -123,45 +132,46 @@ body {
 
 /* El sello: la Z en un cuadro de doble filete, como un ex libris. */
 .sello {
-  width: 3.5rem; height: 3.5rem;
-  margin: 0 auto 1.5rem;
+  width: 3.1rem; height: 3.1rem;
+  margin: 0 auto 1rem;
   display: flex; align-items: center; justify-content: center;
-  border: 0.9pt solid var(--carbon);
+  border: 0.8pt solid var(--carbon);
   box-shadow:
     inset 0 0 0 1.6pt var(--papel),
-    inset 0 0 0 2.1pt var(--carbon);
+    inset 0 0 0 2pt var(--carbon);
 }
 .sello svg { width: 40%; height: auto; color: var(--carbon); display: block; }
 
+/* El título, de plumilla y a lo grande. Pinyon Script tiene los rasgos muy
+   finos y una altura de x pequeñísima: a menos de 3rem no se lee, se
+   adivina. El padding de abajo es para los descendentes, que en una
+   inglesa bajan mucho y se comían el subtítulo. */
 .titulo {
-  font-family: var(--caps);
-  font-style: normal;              /* las capitales inscritas no tienen cursiva */
-  font-weight: 500;
-  font-size: 2.1rem;
-  line-height: 1.05;
-  letter-spacing: 0.22em;
-  text-indent: 0.22em;
+  font-family: var(--pluma);
+  font-style: normal;              /* la inglesa ya viene inclinada de fábrica */
+  font-weight: 400;
+  font-size: 3.7rem;
+  line-height: 1.02;
+  padding-bottom: 0.12em;
   color: var(--carbon);
 }
-.titulo .amp { font-family: var(--cursiva); font-style: italic; letter-spacing: 0; }
+.titulo .amp { font-family: var(--pluma); }
 
 .subtitulo {
   font-family: var(--cursiva);
   font-style: italic;
   font-weight: 400;
-  font-size: 1.45rem;
+  font-size: 1.35rem;
   line-height: 1.25;
-  margin-top: 0.45rem;
   color: var(--carbon-2);
 }
 
-/* El separador de debajo del título: el mismo gesto que los remates de la
-   orla, en pequeño — filete, rombo, filete. */
+/* El separador de debajo del título: filete, rombo, filete. */
 .filete {
   display: flex; align-items: center; justify-content: center;
   gap: 0.8rem;
-  width: 13rem;
-  margin: 1.4rem auto 0;
+  width: 12rem;
+  margin: 1.1rem auto 0;
 }
 .filete::before, .filete::after {
   content: ""; flex: 1; height: 0.7pt; background: var(--carbon);
@@ -169,40 +179,37 @@ body {
 .filete span { font-size: 0.45rem; line-height: 1; color: var(--carbon); }
 
 /* ---- Cuerpo ---- */
-/* space-evenly y no center: la carta de empresa tiene siete platos pelados
-   y la de Nochevieja nueve con descripción. Centrando, la primera quedaba
-   apretada en medio con dos huecos enormes; repartiendo, las dos respiran
-   igual y se leen como la misma carta. */
-/* Centrado y con un hueco generoso entre secciones, no space-evenly: con
-   un menú corto el reparto estiraba tanto los huecos que las secciones se
-   leían como cinco cartas sueltas. Dentro de una orla que ya llena la
-   hoja, el aire sobrante arriba y abajo no estorba: es el margen. */
+/* space-between y no center: la carta tiene que ocupar la hoja entera, con
+   las secciones repartidas de arriba abajo. Centrando, todo se apelotonaba
+   en el medio y quedaban dos huecos muertos arriba y abajo; repartiendo,
+   el aire va ENTRE los platos, que es donde se lee. El gap es el mínimo
+   que nunca se cruza cuando la carta viene cargada (Nochevieja, nueve
+   platos con descripción). */
 .cuerpo {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 1.6rem;
-  padding: 1.2rem 0;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 2rem 0 4rem;
 }
 
 .seccion { text-align: center; }
 .seccion__ttl {
-  font-family: var(--caps);
-  font-style: normal;
-  font-weight: 400;
-  font-size: 0.84rem;
+  font-family: var(--cursiva);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1rem;
   letter-spacing: 0.3em;
   text-indent: 0.3em;
+  text-transform: uppercase;
   color: var(--carbon-2);
-  margin-bottom: 0.9rem;
+  margin-bottom: 0.95rem;
 }
 .seccion__ttl .nota {
   display: block;
-  font-family: var(--cursiva);
-  font-style: italic;
   font-weight: 400;
-  font-size: 0.82rem;
+  font-size: 0.86rem;
   letter-spacing: 0.04em;
   text-indent: 0;
   text-transform: lowercase;
@@ -210,100 +217,99 @@ body {
   margin-top: 0.12rem;
 }
 
-.plato + .plato { margin-top: 0.8rem; }
+.plato + .plato { margin-top: 0.9rem; }
 .plato__n {
   font-family: var(--cursiva);
   font-style: italic;
   font-weight: 600;
-  font-size: 1.4rem;
-  line-height: 1.2;
+  font-size: 1.62rem;
+  line-height: 1.18;
   color: var(--carbon);
 }
 .plato__s {
   font-family: var(--cursiva);
   font-style: italic;
   font-weight: 400;
-  font-size: 1.08rem;
+  font-size: 1.22rem;
   line-height: 1.25;
   color: var(--carbon-3);
-  margin-top: 0.05rem;
+  margin-top: 0.06rem;
 }
 .plato__d {
   font-family: var(--cursiva);
   font-style: italic;
   font-weight: 400;
-  font-size: 0.98rem;
-  line-height: 1.35;
+  font-size: 1.06rem;
+  line-height: 1.32;
   color: var(--carbon-3);
-  max-width: 30rem;
+  max-width: 34rem;
   margin: 0.1rem auto 0;
 }
 
 /* ---- Cierre ---- */
 .cierre { text-align: center; }
 .incluye {
-  font-family: var(--caps);
-  font-style: normal;
-  font-size: 0.58rem;
-  letter-spacing: 0.22em;
-  text-indent: 0.22em;
+  font-family: var(--cursiva);
+  font-style: italic;
+  font-size: 0.9rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   color: var(--carbon-3);
   margin-bottom: 0.9rem;
 }
 .precio {
-  font-family: var(--cursiva);
-  font-style: italic;
-  font-weight: 600;
-  font-size: 2.9rem;
+  font-family: var(--pluma);
+  font-style: normal;
+  font-size: 3.3rem;
   line-height: 1;
   color: var(--carbon);
 }
 .precio small {
   display: block;
-  font-family: var(--caps);
-  font-style: normal;
-  font-size: 0.2em;
-  letter-spacing: 0.3em;
-  text-indent: 0.3em;
-  margin-top: 0.8em;
+  font-family: var(--cursiva);
+  font-style: italic;
+  font-size: 0.26em;
+  letter-spacing: 0.28em;
+  text-indent: 0.28em;
+  text-transform: uppercase;
+  margin-top: 0.45em;
   color: var(--carbon-3);
 }
 
-.notas { display: flex; gap: 1.1rem; margin-top: 1.4rem; }
+.notas { display: flex; gap: 1.2rem; margin-top: 1.4rem; }
 .nota-caja {
   flex: 1;
-  border: 0.6pt solid rgba(46, 44, 41, 0.35);
-  padding: 0.85rem 0.95rem;
+  border: 0.6pt solid rgba(46, 44, 41, 0.3);
+  padding: 0.85rem 1rem;
   text-align: center;
 }
 .nota-caja h4 {
-  font-family: var(--caps);
+  font-family: var(--pluma);
   font-style: normal;
   font-weight: 400;
-  font-size: 0.64rem;
-  letter-spacing: 0.2em;
-  text-indent: 0.2em;
-  color: var(--carbon-2);
-  margin-bottom: 0.4rem;
+  font-size: 1.5rem;
+  line-height: 1.1;
+  color: var(--carbon);
+  margin-bottom: 0.25rem;
 }
 .nota-caja p {
   font-family: var(--cursiva);
   font-style: italic;
   font-weight: 400;
-  font-size: 0.94rem;
-  line-height: 1.35;
+  font-size: 1rem;
+  line-height: 1.32;
   color: var(--carbon-3);
 }
 
-/* El pie, en redonda: son siglas y cifras a cuerpo 5,6 pt y la cursiva a
-   ese tamaño se emborrona al imprimir. */
+/* El pie, en redonda y no en cursiva: son siglas, cifras y una dirección a
+   cuerpo pequeño, y la cursiva ahí se emborrona al imprimir. */
 .credito {
   margin-top: auto;
-  padding-top: 1.6rem;
+  padding-top: 2.6rem;
   text-align: center;
-  font-family: var(--caps);
+  font-family: var(--cursiva);
   font-style: normal;
-  font-size: 0.56rem;
+  font-size: 0.72rem;
   letter-spacing: 0.18em;
   color: var(--carbon-3);
 }

@@ -64,8 +64,8 @@ def titulo_html(t):
     return esc(t).replace("&amp;", '<span class="amp">&amp;</span>')
 
 
-def hoja(pag, lang, zeta):
-    h = ['<section class="hoja">',
+def hoja(pag, lang, zeta, tema):
+    h = ['<section class="hoja tema-%s">' % tema,
          '<div class="marca-agua">%s</div>' % zeta,
          '<header class="cabecera">',
          '<div class="sello">%s</div>' % zeta,
@@ -115,7 +115,7 @@ def hoja(pag, lang, zeta):
 def documento(carta, lang, css="menus.css"):
     f = FORMATOS[carta["formato"]]
     zeta = z_svg()
-    hojas = "\n".join(hoja(p, lang, zeta) for p in carta["paginas"])
+    hojas = "\n".join(hoja(p, lang, zeta, carta["tema"]) for p in carta["paginas"])
     return """<!DOCTYPE html>
 <html lang="%s">
 <head>

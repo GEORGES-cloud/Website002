@@ -25,3 +25,4 @@ menus/fuente/*.html
 menus/fuente/__pycache__/
 menus/pruebas/
 menus/fuente/_prueba-*.svg
+menus/fuente/_prueba-*

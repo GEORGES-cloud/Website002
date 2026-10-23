@@ -1,69 +1,137 @@
 # -*- coding: utf-8 -*-
-"""Dibuja la orla de filigrana de la carta «Carbón» y la deja en _ornamento.css.
+"""Dibuja las orlas de las cartas y las deja en _ornamento.css.
 
    python ornamento.py
 
-La orla no es una imagen: es un SVG metido en el CSS como data URI, asi que
-no hay archivo que empaquetar, no se pixela por mucho que se amplie y el
-color se cambia en un sitio.
+Hay TRES juegos, uno por concepto, porque cada carta tiene que oler a lo
+suyo sin dejar de ser la misma casa:
 
-Se genera en vez de escribirse a mano porque son cuatro esquinas, dos
-remates arriba y abajo y dos medallones a los lados, y todos salen de DOS
-dibujos girados y espejados. A mano habria que copiar el mismo trazado ocho
-veces y mantenerlo sincronizado.
+  grupos      · rama de olivo. La mesa larga, el mediterraneo, lo de siempre.
+  halloween   · rama desnuda y luna creciente. Seco, de noche, sin un solo
+                guino de disfraz: lo que da miedo en una carta es lo barato.
+  nochevieja  · chispa de fuego de artificio y estrellas pequenas.
 
-El dibujo es la voluta de acanto de las orlas tipograficas del XIX: un
-roleo grande que gira hacia dentro, un contra-roleo mas pequeno, tres hojas
-y unas volutillas sueltas. Trazado en una caja de 120x120 con el vertice de
-la esquina en (0,0).
+Los tres comparten el mismo trazo —linea fina, sin relleno, como dibujado
+a pluma— para que cambien de ambiente pero no de familia.
+
+Las orlas no son imagenes: son SVG metidos en el CSS como data URI, asi
+que no hay archivos que empaquetar, no se pixelan por mucho que se amplien
+y el color se cambia en un sitio.
+
+Se generan en vez de escribirse a mano porque cada juego son cuatro
+esquinas y dos remates que salen de DOS dibujos girados y espejados. A
+mano habria que copiar el mismo trazado seis veces por concepto —
+dieciocho en total — y mantenerlos sincronizados.
+
+Cada dibujo va en una caja de 120x120 con el vertice de la esquina en el
+origen; los remates, en una de 240x60.
 """
 import io
 import os
 import re
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
-TINTA = "#2E2C29"   # carbon, nunca negro puro: el negro plano no es de papel
 
-# --- esquina, caja 120x120, vertice en el origen --------------------------
-ESQUINA = """
-<path d="M8 114 C8 68 26 36 58 19 C76 9 97 9 106 19 C114 28 111 43 100 47
-         C89 51 79 44 81 34 C83 26 93 23 98 30"/>
-<path d="M8 114 C12 88 24 70 45 60 C58 54 69 59 70 70 C71 80 61 86 54 81
-         C48 76 51 67 58 68"/>
-<path d="M30 46 C19 37 19 21 32 14 C40 25 40 39 30 46 Z"/>
-<path d="M58 23 C54 10 64 1 77 4 C77 17 70 23 58 23 Z"/>
-<path d="M22 86 C14 78 16 65 27 61 C32 71 30 82 22 86 Z"/>
-<path d="M44 92 C52 89 59 93 60 101 C52 104 45 100 44 92 Z"/>
-<path d="M74 52 C82 48 90 52 91 60 C83 64 76 60 74 52 Z"/>
-<path d="M8 114 C8 105 12 100 20 99"/>
-<path d="M16 102 C16 95 20 90 27 89"/>
-<circle cx="37" cy="56" r="2"/>
-<circle cx="63" cy="33" r="1.8"/>
-<circle cx="94" cy="12" r="1.8"/>
-<circle cx="18" cy="72" r="1.6"/>
+# --- grupos: rama de olivo ------------------------------------------------
+ESQUINA_GRUPOS = """
+<path d="M8 114 C8 76 24 46 52 27 C70 15 92 9 112 8"/>
+<path d="M30 78 C22 70 23 57 33 52 C39 61 38 73 30 78 Z"/>
+<path d="M44 60 C37 50 40 38 51 34 C56 44 53 56 44 60 Z"/>
+<path d="M62 42 C57 31 63 20 75 19 C78 31 72 40 62 42 Z"/>
+<path d="M84 27 C81 16 89 7 100 8 C101 19 94 27 84 27 Z"/>
+<path d="M22 92 C31 90 38 95 39 103 C31 106 23 101 22 92 Z"/>
+<path d="M40 70 C49 67 57 72 58 80 C50 83 42 79 40 70 Z"/>
+<path d="M58 50 C67 48 74 53 75 61 C67 64 60 59 58 50 Z"/>
+<circle cx="26" cy="86" r="1.7"/>
+<circle cx="47" cy="65" r="1.6"/>
+<circle cx="70" cy="45" r="1.6"/>
+"""
+REMATE_GRUPOS = """
+<path d="M8 30 L96 30"/>
+<path d="M112 30 C112 23 117 18 124 18 C124 25 119 30 112 30 Z"/>
+<path d="M128 30 C128 23 123 18 116 18 C116 25 121 30 128 30 Z"/>
+<path d="M120 12 L120 30"/>
+<circle cx="104" cy="30" r="2"/>
+<circle cx="136" cy="30" r="2"/>
+<path d="M144 30 L232 30"/>
 """
 
-# --- remate del centro de los lados: dos roleos enfrentados y un rombo ----
-REMATE = """
-<path d="M4 30 L74 30"/>
-<circle cx="80" cy="30" r="2"/>
-<path d="M90 30 C98 30 104 25 104 18 C104 12 98 9 94 12 C90 15 92 21 98 21"/>
-<path d="M90 30 C98 30 104 35 104 42 C104 48 98 51 94 48 C90 45 92 39 98 39"/>
-<path d="M120 20 L126 30 L120 40 L114 30 Z"/>
-<path d="M130 30 C138 30 144 25 144 18 C144 12 138 9 134 12 C130 15 132 21 138 21"/>
-<path d="M130 30 C138 30 144 35 144 42 C144 48 138 51 134 48 C130 45 132 39 138 39"/>
-<circle cx="160" cy="30" r="2"/>
-<path d="M166 30 L236 30"/>
+# --- halloween: rama desnuda y luna ---------------------------------------
+# Las ramillas NACEN del tronco (empiezan en un punto de la curva y salen
+# hacia fuera). En la primera version flotaban al lado y el dibujo parecia
+# un monton de arcos sueltos, no una rama.
+ESQUINA_HALLOWEEN = """
+<path d="M7 116 C7 78 21 48 47 28 C65 14 87 7 112 6"/>
+<path d="M13 88 C23 90 31 97 34 108"/>
+<path d="M22 70 C30 70 36 74 39 81"/>
+<path d="M34 53 C45 55 53 63 56 74"/>
+<path d="M47 38 C55 39 61 44 63 51"/>
+<path d="M62 23 C72 27 78 36 79 47"/>
+<path d="M79 14 C86 16 91 21 93 28"/>
+<path d="M99 9 C107 13 112 20 113 29"/>
+<path d="M34 108 C38 110 40 113 40 117"/>
+<path d="M56 74 C61 76 64 80 64 85"/>
+<path d="M79 47 C84 49 87 53 88 58"/>
+<circle cx="40" cy="117" r="1.4"/>
+<circle cx="64" cy="85" r="1.3"/>
+<circle cx="88" cy="58" r="1.3"/>
+<circle cx="113" cy="29" r="1.3"/>
+"""
+REMATE_HALLOWEEN = """
+<path d="M8 30 L100 30"/>
+<path d="M120 14 C111 16 105 23 105 31 C105 39 111 46 120 48
+         C113 44 109 38 109 31 C109 24 113 18 120 14 Z"/>
+<circle cx="108" cy="30" r="1.8"/>
+<circle cx="132" cy="30" r="1.8"/>
+<path d="M140 30 L232 30"/>
 """
 
+# --- nochevieja: chispa y estrellas ---------------------------------------
+def chispa(cx, cy, r):
+    """Estrella de cuatro puntas con los lados hundidos: la chispa de toda
+    la vida. Con cuatro lineas rectas salian cruces de farmacia."""
+    k = r * 0.26
+    return (
+        '<path d="M%g %g C%g %g %g %g %g %g C%g %g %g %g %g %g '
+        'C%g %g %g %g %g %g C%g %g %g %g %g %g Z"/>' % (
+            cx, cy - r,
+            cx + k, cy - k, cx + k, cy - k, cx + r, cy,
+            cx + k, cy + k, cx + k, cy + k, cx, cy + r,
+            cx - k, cy + k, cx - k, cy + k, cx - r, cy,
+            cx - k, cy - k, cx - k, cy - k, cx, cy - r))
 
-def svg(inner, caja, transform=""):
+
+ESQUINA_NOCHEVIEJA = (
+    '<path d="M8 114 C8 74 26 44 56 26 C74 15 94 9 114 8"/>'
+    + chispa(28, 86, 9)
+    + chispa(45, 64, 6)
+    + chispa(62, 46, 8.5)
+    + chispa(80, 31, 5.5)
+    + chispa(98, 19, 7)
+    + '<circle cx="17" cy="100" r="1.5"/>'
+    + '<circle cx="112" cy="11" r="1.5"/>'
+)
+REMATE_NOCHEVIEJA = (
+    '<path d="M8 30 L98 30"/>'
+    + chispa(120, 30, 16)
+    + chispa(104, 22, 5)
+    + chispa(136, 38, 5)
+    + '<path d="M142 30 L232 30"/>'
+)
+
+TEMAS = {
+    "grupos": (ESQUINA_GRUPOS, REMATE_GRUPOS, "#3A332A"),
+    "halloween": (ESQUINA_HALLOWEEN, REMATE_HALLOWEEN, "#2B2724"),
+    "nochevieja": (ESQUINA_NOCHEVIEJA, REMATE_NOCHEVIEJA, "#33302B"),
+}
+
+
+def svg(inner, caja, tinta, transform=""):
     g = '<g transform="%s">%s</g>' % (transform, inner) if transform else inner
     return (
         "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 %d %d' fill='none' "
-        "stroke='%s' stroke-width='%s' stroke-linecap='round' "
-        "stroke-linejoin='round'>%s</svg>"
-        % (caja[0], caja[1], TINTA, "1.7", g)
+        "stroke='%s' stroke-width='1.6' stroke-linecap='round' "
+        "stroke-linejoin='round'>%s</svg>" % (caja[0], caja[1], tinta, g)
     )
 
 
@@ -75,27 +143,16 @@ def uri(texto):
     return 'url("data:image/svg+xml,%s")' % t
 
 
-def main():
+def bloque(tema, esquina, remate, tinta):
     capas = [
-        uri(svg(ESQUINA, (120, 120))),                                   # arriba izq
-        uri(svg(ESQUINA, (120, 120), "translate(120,0) scale(-1,1)")),   # arriba der
-        uri(svg(ESQUINA, (120, 120), "translate(0,120) scale(1,-1)")),   # abajo izq
-        uri(svg(ESQUINA, (120, 120), "translate(120,120) scale(-1,-1)")),# abajo der
-        uri(svg(REMATE, (240, 60))),                                     # centro arriba
-        uri(svg(REMATE, (240, 60), "translate(0,60) scale(1,-1)")),      # centro abajo
+        uri(svg(esquina, (120, 120), tinta)),
+        uri(svg(esquina, (120, 120), tinta, "translate(120,0) scale(-1,1)")),
+        uri(svg(esquina, (120, 120), tinta, "translate(0,120) scale(1,-1)")),
+        uri(svg(esquina, (120, 120), tinta, "translate(120,120) scale(-1,-1)")),
+        uri(svg(remate, (240, 60), tinta)),
+        uri(svg(remate, (240, 60), tinta, "translate(0,60) scale(1,-1)")),
     ]
-
-    css = """/* =====================================================================
-   GENERADO POR ornamento.py — no editar a mano.
-
-   La orla de filigrana de la carta «Carbón»: cuatro esquinas (el mismo
-   roleo girado y espejado) y dos remates en el centro de los lados cortos.
-   Para cambiar el dibujo o el color se toca ornamento.py y se relanza.
-
-   Va en .marca-agua porque es el único hueco libre del HTML, que es fijo:
-   ese div llevaba la Z de fondo, que en esta carta se esconde.
-   ===================================================================== */
-.marca-agua {
+    return """.tema-%s .marca-agua {
   background-image:
     %s;
   background-repeat: no-repeat;
@@ -110,18 +167,40 @@ def main():
     var(--remate) calc(var(--remate) / 4),
     var(--remate) calc(var(--remate) / 4);
 }
-""" % ",\n    ".join(capas)
+""" % (tema, ",\n    ".join(capas))
 
-    destino = os.path.join(AQUI, "_ornamento.css")
-    io.open(destino, "w", encoding="utf-8", newline="").write(css)
-    print("escrito _ornamento.css ·", len(css), "bytes")
 
-    # Hojas sueltas para mirar los dos dibujos en grande antes de montarlos.
-    io.open(os.path.join(AQUI, "_prueba-esquina.svg"), "w", encoding="utf-8").write(
-        svg(ESQUINA, (120, 120)).replace("<svg ", "<svg width='460' height='460' "))
-    io.open(os.path.join(AQUI, "_prueba-remate.svg"), "w", encoding="utf-8").write(
-        svg(REMATE, (240, 60)).replace("<svg ", "<svg width='720' height='180' "))
-    print("pruebas: _prueba-esquina.svg · _prueba-remate.svg")
+def main():
+    cabecera = """/* =====================================================================
+   GENERADO POR ornamento.py — no editar a mano.
+
+   Una orla por concepto: olivo para los menús de grupos, rama desnuda y
+   luna para Halloween, chispa y estrellas para Nochevieja. Las tres con
+   el mismo trazo fino, de pluma, para que cambie el ambiente y no la casa.
+
+   Van en .marca-agua porque es el único hueco libre del HTML, que es fijo:
+   ese div llevaba la Z de fondo, que en estas cartas se esconde.
+
+   Para cambiar un dibujo o un color se toca ornamento.py y se relanza.
+   ===================================================================== */
+"""
+    css = cabecera + "\n".join(
+        bloque(tema, *datos) for tema, datos in TEMAS.items())
+    io.open(os.path.join(AQUI, "_ornamento.css"), "w",
+            encoding="utf-8", newline="").write(css)
+    print("escrito _ornamento.css ·", len(css), "bytes ·", len(TEMAS), "temas")
+
+    # Hojas sueltas para mirar los dibujos en grande antes de montarlos.
+    for tema, (esq, rem, tinta) in TEMAS.items():
+        for nombre, dibujo, caja in (("esquina", esq, (120, 120)),
+                                     ("remate", rem, (240, 60))):
+            ancho = 400 if nombre == "esquina" else 760
+            alto = 400 if nombre == "esquina" else 190
+            io.open(os.path.join(AQUI, "_prueba-%s-%s.svg" % (tema, nombre)),
+                    "w", encoding="utf-8").write(
+                svg(dibujo, caja, tinta).replace(
+                    "<svg ", "<svg width='%d' height='%d' " % (ancho, alto)))
+    print("pruebas: _prueba-<tema>-<esquina|remate>.svg")
 
 
 if __name__ == "__main__":

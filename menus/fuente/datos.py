@@ -6,6 +6,14 @@ algo que es de la casa —la brasa de encina, el jardin de palmeras y el propio
 Zenorio— y van de menos a mas. El nombre no se traduce (es un nombre propio);
 lo que cambia de idioma es el subtitulo.
 
+Cada carta declara su "tema", que es lo que le da el ambiente: la orla del
+borde y el tono del papel y la tinta. Los temas estan dibujados en
+ornamento.py y pintados en menus.css.
+
+Los titulos van en caja alta y baja, NO en versales: se componen en
+Pinyon Script, una inglesa de plumilla, y una inglesa en mayusculas no se
+lee —las capitales son pura floritura y "LA ENCINA" salia ilegible—.
+
 Un plato es (nombre, segunda linea). La segunda linea es el nombre tematico
 entre comillas en la de Halloween y la descripcion en la de Nochevieja; en
 las de empresa va vacia. Si algun dia cambia un plato o un precio, se cambia
@@ -23,12 +31,13 @@ CARTAS = [
     # ------------------------------------------------------------------ empresa
     {
         "slug": "empresa",
+        "tema": "grupos",
         "formato": "a4",
         "origen": "menu-empresa-es.pdf",
         "nombre": {"es": "MENÚ DE EMPRESA", "en": "COMPANY MENU"},
         "paginas": [
             {
-                "titulo": {"es": "LA ENCINA", "en": "LA ENCINA"},
+                "titulo": {"es": "La Encina", "en": "La Encina"},
                 "subtitulo": {"es": "La mesa de la brasa", "en": "The ember table"},
                 "secciones": [
                     {"ttl": {"es": "AL CENTRO DE LA MESA", "en": "TO SHARE AT THE TABLE"},
@@ -59,7 +68,7 @@ CARTAS = [
                 "precio": "55 €",
             },
             {
-                "titulo": {"es": "EL JARDÍN", "en": "EL JARDÍN"},
+                "titulo": {"es": "El Jardín", "en": "El Jardín"},
                 "subtitulo": {"es": "La mesa de las palmeras", "en": "The garden table"},
                 "secciones": [
                     {"ttl": {"es": "AL CENTRO DE LA MESA", "en": "TO SHARE AT THE TABLE"},
@@ -89,7 +98,7 @@ CARTAS = [
                 "precio": "75 €",
             },
             {
-                "titulo": {"es": "EL ZEÑORÍO", "en": "EL ZEÑORÍO"},
+                "titulo": {"es": "El Zeñorío", "en": "El Zeñorío"},
                 "subtitulo": {"es": "La mesa de la casa", "en": "The house table"},
                 "secciones": [
                     {"ttl": {"es": "AL CENTRO DE LA MESA", "en": "TO SHARE AT THE TABLE"},
@@ -126,12 +135,13 @@ CARTAS = [
     # ---------------------------------------------------------------- halloween
     {
         "slug": "halloween",
+        "tema": "halloween",
         "formato": "cartel",
         "origen": "menu-halloween-en.pdf",
         "nombre": {"es": "CENA DE HALLOWEEN", "en": "HALLOWEEN DINNER"},
         "paginas": [
             {
-                "titulo": {"es": "HALLOWEEN", "en": "HALLOWEEN"},
+                "titulo": {"es": "Halloween", "en": "Halloween"},
                 "subtitulo": {"es": "Cena del 31 de octubre", "en": "Dinner · 31 October"},
                 "secciones": [
                     {"ttl": {"es": "ENTRANTES", "en": "STARTERS"},
@@ -172,12 +182,13 @@ CARTAS = [
     # --------------------------------------------------------------- nochevieja
     {
         "slug": "nochevieja",
+        "tema": "nochevieja",
         "formato": "a4",
         "origen": "menu-nochevieja.pdf",
         "nombre": {"es": "NOCHEVIEJA 2027", "en": "NEW YEAR’S EVE 2027"},
         "paginas": [
             {
-                "titulo": {"es": "NOCHEVIEJA", "en": "NEW YEAR’S EVE"},
+                "titulo": {"es": "Nochevieja", "en": "New Year’s Eve"},
                 "subtitulo": {"es": "La última noche del año", "en": "The last night of the year"},
                 "secciones": [
                     {"ttl": {"es": "COPA DE BIENVENIDA", "en": "WELCOME DRINK"},
