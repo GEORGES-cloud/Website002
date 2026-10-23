@@ -1619,15 +1619,16 @@ body.lightbox-open { overflow: hidden; }
    El cartel se ve SIEMPRE ENTERO, también en el móvil: no se recorta por
    ningún lado. Eso obliga a que el ancho salga del alto de la ventana y
    no al revés, que es el término con svh: el cartel es 4:5, así que el
-   0.8 es esa proporción invertida y los 175 px son el pie (medido en el
-   idioma que más líneas gasta). Comprobado en un móvil de 360×640, que
-   es el caso más apretado: cartel de 388 px más pie, justo dentro. */
+   0.8 es esa proporción invertida y los 120 px son el pie, que mide 82
+   reales y lleva margen de sobra: ahí abajo ya solo van la fecha y el
+   botón, porque todo lo demás lo dice el propio cartel. Comprobado en un
+   móvil de 360×640, que es el caso más apretado. */
 .anuncio {
   position: fixed;
   left: 50%;
   top: 50%;
   z-index: 95; /* sobre los flotantes (80), bajo el de cookies (300) */
-  width: min(420px, 92vw, calc((88svh - 175px) * 0.8));
+  width: min(440px, 92vw, calc((88svh - 120px) * 0.8));
   opacity: 0;
   visibility: hidden;
   translate: -50% calc(-50% + 14px);
@@ -1653,32 +1654,22 @@ body.lightbox-open { overflow: hidden; }
 /* El pie: opaco, un punto más oscuro que la web y con un filo claro
    arriba que lo separa del cartel. */
 .anuncio__pie {
-  padding: 0.85rem 1rem 1rem;
+  padding: 0.75rem 1rem 0.85rem;
   text-align: center;
   background: #100E0B;
   border-top: 1px solid rgba(237, 228, 211, 0.14);
 }
 .anuncio__kicker {
-  margin: 0 0 0.3rem;
-  font-size: 0.56rem;
-  letter-spacing: 0.24em;
+  margin: 0 0 0.6rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.26em;
   text-transform: uppercase;
   color: var(--muted);
 }
-.anuncio__ttl {
-  margin: 0 0 0.3rem;
-  font-family: var(--font-display);
-  font-size: 1.15rem;
-  font-weight: 400;
-  line-height: 1.2;
-  color: var(--cream);
-}
-.anuncio__txt {
-  margin: 0 auto 0.85rem;
-  font-size: 0.74rem;
-  line-height: 1.5;
-  color: var(--muted);
-}
+/* .anuncio__ttl y .anuncio__txt no llevan estilo visual: van siempre con
+   sr-only. Están en el HTML solo para los lectores de pantalla, porque el
+   cartel es una foto y el alt describe la escena, no la oferta. Si algún
+   día vuelven a verse, habrá que darles cuerpo aquí. */
 
 /* El botón va en el relleno claro de la casa: sobre el pie opaco es lo
    que más se lee, y este botón ya se ha perdido dos veces por ir en

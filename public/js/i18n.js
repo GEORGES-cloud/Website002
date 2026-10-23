@@ -7,7 +7,7 @@
   const DICT = {
   "en": {
     "hw.abrir": "Events",
-    "hw.kicker": "31 October · From 7pm",
+    "hw.kicker": "31 October",
     "hw.title": "Halloween Dinner",
     "hw.txt": "DJ session and a special menu in Zeñorío’s garden.",
     "hw.cta": "Book your table",
@@ -265,7 +265,7 @@
   },
   "fr": {
     "hw.abrir": "Événements",
-    "hw.kicker": "31 octobre · Dès 19h",
+    "hw.kicker": "31 octobre",
     "hw.title": "Dîner d’Halloween",
     "hw.txt": "DJ set et menu spécial dans le jardin du Zeñorío.",
     "hw.cta": "Réserver une table",
@@ -574,7 +574,7 @@
   },
   "de": {
     "hw.abrir": "Veranstaltungen",
-    "hw.kicker": "31. Oktober · Ab 19 Uhr",
+    "hw.kicker": "31. Oktober",
     "hw.title": "Halloween-Dinner",
     "hw.txt": "DJ-Session und ein besonderes Menü im Garten des Zeñorío.",
     "hw.cta": "Tisch reservieren",
@@ -883,7 +883,7 @@
   },
   "sv": {
     "hw.abrir": "Evenemang",
-    "hw.kicker": "31 oktober · Från kl. 19",
+    "hw.kicker": "31 oktober",
     "hw.title": "Halloweenmiddag",
     "hw.txt": "DJ-session och en särskild meny i Zeñoríos trädgård.",
     "hw.cta": "Boka bord",
@@ -1192,7 +1192,7 @@
   },
   "ru": {
     "hw.abrir": "События",
-    "hw.kicker": "31 октября · с 19:00",
+    "hw.kicker": "31 октября",
     "hw.title": "Ужин в Хэллоуин",
     "hw.txt": "DJ-сет и особое меню в саду Zeñorío.",
     "hw.cta": "Забронировать столик",

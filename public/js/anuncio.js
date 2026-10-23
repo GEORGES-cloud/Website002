@@ -47,9 +47,15 @@
     // portada. Se pide cuando ya ha cargado todo lo demás — ver pedirFoto().
     '<img class="anuncio__img" data-src="/assets/img/halloween-2026.jpg" width="1080" height="1350" decoding="async" alt="Cartel de la cena de Halloween en Zeñorío: dos manos brindan con una copa sobre un fondo de cortinas rojas" data-i18n-alt="hw.alt" />' +
     '<div class="anuncio__pie">' +
-    '<p class="anuncio__kicker" data-i18n="hw.kicker">31 de octubre · Desde las 19:00</p>' +
-    '<h2 class="anuncio__ttl" id="anuncio-ttl" data-i18n="hw.title">Cena de Halloween</h2>' +
-    '<p class="anuncio__txt" data-i18n="hw.txt">DJ session y menú especial en el jardín de Zeñorío.</p>' +
+    '<p class="anuncio__kicker" data-i18n="hw.kicker">31 de octubre</p>' +
+    // El título y el texto NO se ven: el cartel ya dice "Halloween Dinner",
+    // la hora, el DJ y el menú especial, así que repetirlo debajo era
+    // ocupar el doble de alto para contar lo mismo. Se quedan en el HTML
+    // con sr-only porque el cartel es una FOTO: quien usa lector de
+    // pantalla no se entera de nada de eso, y el alt describe la escena,
+    // no la oferta. Así el pie es una franja y nadie pierde información.
+    '<h2 class="anuncio__ttl sr-only" id="anuncio-ttl" data-i18n="hw.title">Cena de Halloween</h2>' +
+    '<p class="anuncio__txt sr-only" data-i18n="hw.txt">DJ session y menú especial en el jardín de Zeñorío.</p>' +
     '<a class="btn anuncio__cta" href="/reserva.html" data-i18n="hw.cta">Reserva tu mesa</a>' +
     "</div></div>";
   document.body.appendChild(dlg);
