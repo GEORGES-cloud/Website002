@@ -1651,10 +1651,12 @@ body.lightbox-open { overflow: hidden; }
   height: auto;
 }
 
-/* El pie: opaco, un punto más oscuro que la web y con un filo claro
-   arriba que lo separa del cartel. */
+/* El pie ya no es una franja CON un botón: el pie ES el botón, de canto a
+   canto. Sin padding alrededor no se desperdicia ni un píxel debajo del
+   cartel y el área de toque pasa a ser toda la banda, que en un móvil es
+   la diferencia entre acertar y no. */
 .anuncio__pie {
-  padding: 0.6rem 1rem 0.7rem;
+  padding: 0;
   text-align: center;
   background: #100E0B;
   border-top: 1px solid rgba(237, 228, 211, 0.14);
@@ -1669,11 +1671,19 @@ body.lightbox-open { overflow: hidden; }
    que más se lee, y este botón ya se ha perdido dos veces por ir en
    translúcido sobre oscuro. */
 .btn.anuncio__cta {
-  padding: 0.7em 1.5em;
-  font-size: 0.62rem;
+  display: flex;
+  width: 100%;
+  padding: 1em 1rem;
+  font-size: 0.64rem;
   font-weight: 500;
+  /* Sin esquinas propias: las redondea la caja del banner, que ya recorta
+     con overflow hidden. Con su pastilla de 100px quedaban dos cantos de
+     fondo muertos a los lados. */
+  border-radius: 0;
 }
 
+/* No es una X de cerrar: es un minimizar. El anuncio no se destruye, se
+   guarda en la pestaña de Eventos y se vuelve a abrir desde ahí. */
 .anuncio__x {
   position: absolute;
   top: 8px;
