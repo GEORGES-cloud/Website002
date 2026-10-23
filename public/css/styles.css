@@ -1610,18 +1610,30 @@ body.lightbox-open { overflow: hidden; }
    En cristal translúcido se confundía con la página de detrás y no se
    sabía dónde acababa el anuncio.
    ===================================================================== */
+/* Centrado en pantalla, pero SIN velo y sin bloquear nada: la página
+   scrollea por detrás con normalidad. El truco es que el banner no tiene
+   scroll propio, así que la rueda del ratón encima de él no se la queda
+   nadie y acaba moviendo la página. Si algún día le pusiéramos
+   overflow:auto, volvería el problema que tenía el iframe de reservas.
+
+   El cartel se ve SIEMPRE ENTERO, también en el móvil: no se recorta por
+   ningún lado. Eso obliga a que el ancho salga del alto de la ventana y
+   no al revés, que es el término con svh: el cartel es 4:5, así que el
+   0.8 es esa proporción invertida y los 175 px son el pie (medido en el
+   idioma que más líneas gasta). Comprobado en un móvil de 360×640, que
+   es el caso más apretado: cartel de 388 px más pie, justo dentro. */
 .anuncio {
   position: fixed;
-  left: var(--gut);
-  bottom: clamp(1rem, 2vw, 1.8rem);
+  left: 50%;
+  top: 50%;
   z-index: 95; /* sobre los flotantes (80), bajo el de cookies (300) */
-  width: min(360px, calc(100vw - var(--gut) * 2));
+  width: min(420px, 92vw, calc((88svh - 175px) * 0.8));
   opacity: 0;
   visibility: hidden;
-  translate: 0 14px;
+  translate: -50% calc(-50% + 14px);
   transition: opacity 0.5s var(--ease), visibility 0.5s, translate 0.5s var(--ease);
 }
-.anuncio.open { opacity: 1; visibility: visible; translate: none; }
+.anuncio.open { opacity: 1; visibility: visible; translate: -50% -50%; }
 
 .anuncio__caja {
   position: relative;
@@ -1701,26 +1713,8 @@ body.lightbox-open { overflow: hidden; }
 }
 .anuncio__x:hover { border-color: var(--cream); color: var(--cream); }
 
-/* En móvil ocupa el ancho y el cartel se recorta por abajo: a 4:5 entero
-   se comía media pantalla y tapaba la web, que es justo lo que no quiere
-   un banner. */
-@media (max-width: 620px) {
-  .anuncio {
-    left: var(--gut);
-    right: var(--gut);
-    width: auto;
-    bottom: clamp(0.8rem, 2vw, 1.4rem);
-  }
-  .anuncio__img {
-    height: 52vw;
-    max-height: 285px;
-    object-fit: cover;
-    object-position: center 18%;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .anuncio { transition: none; translate: none; }
+  .anuncio { transition: none; translate: -50% -50%; }
 }
 
 /* La pestaña para volver a abrir el anuncio. Ocupa el sitio del banner
