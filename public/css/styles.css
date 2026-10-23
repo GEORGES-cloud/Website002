@@ -221,8 +221,8 @@ h1, h2, h3, h4 {
   margin-inline: auto;
   text-align: center;
 }
-.section-head .h2 { margin-top: 1.4rem; }
-.section-head .lead { margin-top: 1.6rem; }
+/* El ritmo de estos bloques esta mas abajo, en RITMO VERTICAL, para que
+   sea el mismo en todos y no haya que acordarse de replicarlo. */
 
 .grid { display: grid; gap: clamp(1.5rem, 3vw, 3rem); }
 
@@ -631,7 +631,6 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
 }
 .feature__card { max-width: 38rem; }
 .feature__card .h2 { margin: 1.4rem 0; }
-.feature__card .lead { margin-bottom: 2rem; }
 
 .menu-cat {
   font-family: var(--font-display);
@@ -651,14 +650,14 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
 .menu__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(1.4rem, 3vw, 2.6rem) clamp(2.5rem, 6vw, 6rem);
+  gap: clamp(1.9rem, 3.4vw, 3.2rem) clamp(2.5rem, 6vw, 6rem);
 }
 .dish {
   display: grid;
   grid-template-columns: 1fr auto;
-  gap: 0.4rem 1rem;
+  gap: 0.6rem 1rem;
   align-items: baseline;
-  padding-bottom: 1.4rem;
+  padding-bottom: 1.7rem;
   border-bottom: 1px dashed var(--line);
 }
 .dish__name {
@@ -1029,7 +1028,7 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
   font-weight: 700;
 }
 .footer__col a,
-.footer__col p { color: var(--muted); display: block; margin-bottom: 0.7rem; font-size: 0.92rem; transition: color 0.3s; }
+.footer__col p { color: var(--muted); display: block; margin-bottom: 0.85rem; font-size: 0.92rem; transition: color 0.3s; }
 .footer__col a:hover { color: var(--cream); }
 .footer__tagline { color: var(--muted); margin: 1.2rem 0 1.6rem; max-width: 32ch; font-size: 0.95rem; }
 .socials { display: flex; gap: 0.8rem; }
@@ -1598,50 +1597,40 @@ body.lightbox-open { overflow: hidden; }
   .lightbox__img.slide-next,
   .lightbox__img.slide-prev { animation: none; }
 }
-
 /* =====================================================================
-   Anuncio de la cena de Halloween · cartel a pantalla completa
+   Anuncio de la cena de Halloween · banner con el cartel
    ---------------------------------------------------------------------
-   El cartel es lo que se mira, así que se lleva todo el alto que puede y
-   el pie es solo una franja fina debajo. El ancho se calcula también a
-   partir del alto de la ventana (el término con svh): el cartel es 4:5,
-   así que a 620 px de ancho mide 775 de alto y sin ese tope no cabía en
-   un portátil. El 0.8 es el 4:5 invertido y los 175 px son el pie, medido
-   en el idioma que más líneas gasta. Así se ajusta solo y nunca pide
-   scroll.
+   No es una ventana modal: es un banner. Se queda abajo a la izquierda
+   —los flotantes de WhatsApp y "subir" viven a la derecha— y la página
+   sigue scrolleando por detrás con normalidad. Por eso aquí no hay velo,
+   ni bloqueo del scroll, ni trampa de foco, ni role="dialog": nada de
+   eso es correcto en algo que no bloquea.
+
+   El pie va en un negro MÁS cerrado que el de la web y opaco del todo.
+   En cristal translúcido se confundía con la página de detrás y no se
+   sabía dónde acababa el anuncio.
    ===================================================================== */
 .anuncio {
   position: fixed;
-  inset: 0;
-  z-index: 1300;
-  display: grid;
-  place-items: center;
-  padding: clamp(0.9rem, 3vw, 2rem);
-  background: rgba(8, 6, 5, 0.86);
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
+  left: var(--gut);
+  bottom: clamp(1rem, 2vw, 1.8rem);
+  z-index: 95; /* sobre los flotantes (80), bajo el de cookies (300) */
+  width: min(360px, calc(100vw - var(--gut) * 2));
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.45s var(--ease), visibility 0.45s;
+  translate: 0 14px;
+  transition: opacity 0.5s var(--ease), visibility 0.5s, translate 0.5s var(--ease);
 }
-.anuncio.open { opacity: 1; visibility: visible; }
-body.anuncio-open { overflow: hidden; }
+.anuncio.open { opacity: 1; visibility: visible; translate: none; }
 
 .anuncio__caja {
   position: relative;
-  width: min(620px, 94vw, calc((94svh - 175px) * 0.8));
-  max-height: 100%;
-  overflow-y: auto;
-  /* Sin fondo propio: el pie es de cristal y tiene que dejar pasar el velo
-     oscuro que hay detrás. Con un color sólido aquí el blur no se veía. */
-  background: transparent;
+  overflow: hidden;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  box-shadow: 0 50px 120px -40px rgba(0, 0, 0, 0.95);
-  transform: translateY(14px) scale(0.985);
-  transition: transform 0.5s var(--ease);
+  background: #100E0B;
+  box-shadow: 0 26px 60px -22px rgba(0, 0, 0, 0.85);
 }
-.anuncio.open .anuncio__caja { transform: none; }
 
 .anuncio__img {
   display: block;
@@ -1649,96 +1638,198 @@ body.anuncio-open { overflow: hidden; }
   height: auto;
 }
 
-/* El pie, en cristal esmerilado sobre el cartel: translúcido, desenfocado y
-   con un filo claro arriba, que es lo que hace que se lea como un cristal y
-   no como un bloque gris. */
+/* El pie: opaco, un punto más oscuro que la web y con un filo claro
+   arriba que lo separa del cartel. */
 .anuncio__pie {
-  padding: 0.8rem clamp(1rem, 4vw, 1.6rem) 0.95rem;
+  padding: 0.85rem 1rem 1rem;
   text-align: center;
-  background: linear-gradient(180deg, rgba(58, 48, 38, 0.46), rgba(23, 19, 16, 0.58));
-  -webkit-backdrop-filter: blur(22px) saturate(150%);
-          backdrop-filter: blur(22px) saturate(150%);
-  border-top: 1px solid rgba(237, 228, 211, 0.16);
-  box-shadow: inset 0 1px 0 rgba(237, 228, 211, 0.07);
-}
-/* Navegadores sin backdrop-filter (Firefox con la opción desactivada): sin el
-   desenfoque, el translúcido deja el texto sobre la foto del fondo y no se
-   lee. Ahí se cae a un pie opaco. */
-@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .anuncio__pie { background: var(--noir-2); }
+  background: #100E0B;
+  border-top: 1px solid rgba(237, 228, 211, 0.14);
 }
 .anuncio__kicker {
   margin: 0 0 0.3rem;
-  font-size: 0.58rem;
+  font-size: 0.56rem;
   letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--muted);
 }
 .anuncio__ttl {
-  margin: 0 0 0.25rem;
+  margin: 0 0 0.3rem;
   font-family: var(--font-display);
-  font-size: clamp(1.15rem, 3vw, 1.45rem);
+  font-size: 1.15rem;
   font-weight: 400;
   line-height: 1.2;
   color: var(--cream);
 }
 .anuncio__txt {
-  margin: 0 auto 0.75rem;
-  max-width: 44ch;
-  font-size: 0.76rem;
+  margin: 0 auto 0.85rem;
+  font-size: 0.74rem;
   line-height: 1.5;
   color: var(--muted);
 }
 
-/* El botón, también de cristal. El .btn de la casa viene en dorado macizo y
-   ahí dentro cantaba demasiado contra el rojo del cartel: aquí es un vidrio
-   con filo claro que al pasar por encima se rellena en crema. */
-/* .btn.anuncio__cta y no .anuncio__cta a secas: la regla de los rellenos
-   claros (.btn:not(.btn--ghost)) tiene dos clases y le ganaba por
-   especificidad, asi que este boton se quedaba con la tinta oscura encima
-   del cristal, que tambien es oscuro. Contraste 1,01: invisible. */
+/* El botón va en el relleno claro de la casa: sobre el pie opaco es lo
+   que más se lee, y este botón ya se ha perdido dos veces por ir en
+   translúcido sobre oscuro. */
 .btn.anuncio__cta {
-  --bg: rgba(237, 228, 211, 0.07);
-  --fg: var(--cream);
-  padding: 0.72em 1.7em;
-  font-size: 0.64rem;
+  padding: 0.7em 1.5em;
+  font-size: 0.62rem;
   font-weight: 500;
-  border: 1px solid rgba(237, 228, 211, 0.45);
-  -webkit-backdrop-filter: blur(8px);
-          backdrop-filter: blur(8px);
 }
-.btn.anuncio__cta::after { background: var(--cream); }
-.btn.anuncio__cta:hover { color: var(--noir); border-color: var(--cream); }
 
 .anuncio__x {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: 8px;
+  right: 8px;
   z-index: 2;
-  width: 42px;
-  height: 42px;
+  width: 30px;
+  height: 30px;
   padding: 0;
   display: grid;
   place-items: center;
-  background: rgba(10, 8, 6, 0.55);
+  background: rgba(10, 8, 6, 0.6);
   -webkit-backdrop-filter: blur(6px);
           backdrop-filter: blur(6px);
   border: 1px solid var(--line-ui);
   border-radius: 50%;
   color: var(--cream);
   font-family: inherit;
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   line-height: 1;
   cursor: pointer;
   transition: border-color 0.3s var(--ease), color 0.3s var(--ease);
 }
-.anuncio__x:hover { border-color: var(--accent); color: var(--accent); }
+.anuncio__x:hover { border-color: var(--cream); color: var(--cream); }
 
-@media (max-width: 480px) {
-  .anuncio__x { width: 38px; height: 38px; top: 9px; right: 9px; }
+/* En móvil ocupa el ancho y el cartel se recorta por abajo: a 4:5 entero
+   se comía media pantalla y tapaba la web, que es justo lo que no quiere
+   un banner. */
+@media (max-width: 620px) {
+  .anuncio {
+    left: var(--gut);
+    right: var(--gut);
+    width: auto;
+    bottom: clamp(0.8rem, 2vw, 1.4rem);
+  }
+  .anuncio__img {
+    height: 52vw;
+    max-height: 285px;
+    object-fit: cover;
+    object-position: center 18%;
+  }
 }
+
 @media (prefers-reduced-motion: reduce) {
-  .anuncio,
-  .anuncio__caja { transition: none; }
-  .anuncio__caja { transform: none; }
+  .anuncio { transition: none; translate: none; }
+}
+
+/* La pestaña para volver a abrir el anuncio. Ocupa el sitio del banner
+   cuando está cerrado, así que no estorba a los flotantes de la derecha. */
+.anuncio-abrir {
+  position: fixed;
+  left: var(--gut);
+  bottom: clamp(1rem, 2vw, 1.8rem);
+  z-index: 94;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.62em 1.15em;
+  background: #100E0B;
+  border: 1px solid var(--line-ui);
+  border-radius: 100px;
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 16px 36px -16px rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  visibility: hidden;
+  translate: 0 10px;
+  transition: opacity 0.4s var(--ease), visibility 0.4s, translate 0.4s var(--ease),
+              border-color 0.3s var(--ease);
+}
+.anuncio-abrir.show { opacity: 1; visibility: visible; translate: none; }
+.anuncio-abrir:hover { border-color: var(--cream); }
+.anuncio-abrir svg { flex-shrink: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .anuncio-abrir { transition: none; translate: none; }
+}
+
+
+/* =====================================================================
+   RITMO VERTICAL — el aire entre antetítulo, título, texto y botón
+   ---------------------------------------------------------------------
+   El reset deja todos los márgenes a cero, y el ritmo solo estaba puesto
+   en .section-head. En los demás bloques —la historia, las fichas de
+   feature, las cabeceras de página, la columna de reservas— el título
+   caía pegado al párrafo y el párrafo pegado al botón: todo junto y sin
+   respirar, que es justo lo que se veía en la home.
+
+   Va por pares y no con un "todo hijo lleva margen": el hueco que pide
+   un antetítulo antes de un titular no es el mismo que el que pide un
+   botón después de un párrafo, y con un valor único siempre hay uno de
+   los dos que queda mal.
+
+   Los bloques se nombran uno a uno a propósito. Con una regla global
+   `p + .btn` se colaban componentes que no son texto corrido —el banner
+   del anuncio, sin ir más lejos, que es compacto queriendo— y se les
+   metía un hueco que no les toca.
+   ===================================================================== */
+.section-head,
+.story__body,
+.page-head,
+.feature__card,
+.reserve__aside {
+  --aire-antetitulo: 1.7rem;
+  --aire-titulo: 2.1rem;
+  --aire-parrafo: 1.3rem;
+  --aire-boton: 3rem;
+}
+
+.section-head .eyebrow + *,
+.story__body .eyebrow + *,
+.page-head .eyebrow + *,
+.feature__card .eyebrow + *,
+.reserve__aside .eyebrow + * { margin-top: var(--aire-antetitulo); }
+
+.section-head .h2 + *,
+.story__body .h2 + *,
+.page-head .h2 + *,
+.feature__card .h2 + *,
+.reserve__aside .h2 + *,
+.section-head .h3 + *,
+.story__body .h3 + *,
+.feature__card .h3 + *,
+.reserve__aside .h3 + * { margin-top: var(--aire-titulo); }
+
+.section-head p + p,
+.story__body p + p,
+.page-head p + p,
+.feature__card p + p,
+.reserve__aside p + p { margin-top: var(--aire-parrafo); }
+
+.section-head p + .btn,
+.story__body p + .btn,
+.page-head p + .btn,
+.feature__card p + .btn,
+.reserve__aside p + .btn { margin-top: var(--aire-boton); }
+
+/* En pantallas pequeñas el mismo aire en rem se come la pantalla: el
+   titular ya ocupa tres líneas y el bloque entero deja de verse de una
+   vez. Se baja un punto, no se quita. */
+@media (max-width: 640px) {
+  .section-head,
+  .story__body,
+  .page-head,
+  .feature__card,
+  .reserve__aside {
+    --aire-antetitulo: 1.25rem;
+    --aire-titulo: 1.4rem;
+    --aire-parrafo: 1.05rem;
+    --aire-boton: 2rem;
+  }
 }

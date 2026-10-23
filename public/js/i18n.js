@@ -6,6 +6,7 @@
 (function () {
   const DICT = {
   "en": {
+    "hw.abrir": "Events",
     "hw.kicker": "31 October · From 7pm",
     "hw.title": "Halloween Dinner",
     "hw.txt": "DJ session and a special menu in Zeñorío’s garden.",
@@ -263,6 +264,7 @@
     "rev.stars": "5 out of 5 stars"
   },
   "fr": {
+    "hw.abrir": "Événements",
     "hw.kicker": "31 octobre · Dès 19h",
     "hw.title": "Dîner d’Halloween",
     "hw.txt": "DJ set et menu spécial dans le jardin du Zeñorío.",
@@ -571,6 +573,7 @@
     "rev.stars": "5 étoiles sur 5"
   },
   "de": {
+    "hw.abrir": "Veranstaltungen",
     "hw.kicker": "31. Oktober · Ab 19 Uhr",
     "hw.title": "Halloween-Dinner",
     "hw.txt": "DJ-Session und ein besonderes Menü im Garten des Zeñorío.",
@@ -879,6 +882,7 @@
     "rev.stars": "5 von 5 Sternen"
   },
   "sv": {
+    "hw.abrir": "Evenemang",
     "hw.kicker": "31 oktober · Från kl. 19",
     "hw.title": "Halloweenmiddag",
     "hw.txt": "DJ-session och en särskild meny i Zeñoríos trädgård.",
@@ -1187,6 +1191,7 @@
     "rev.stars": "5 av 5 stjärnor"
   },
   "ru": {
+    "hw.abrir": "События",
     "hw.kicker": "31 октября · с 19:00",
     "hw.title": "Ужин в Хэллоуин",
     "hw.txt": "DJ-сет и особое меню в саду Zeñorío.",
