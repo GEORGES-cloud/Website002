@@ -60,6 +60,7 @@
     '<p class="anuncio__kicker sr-only" data-i18n="hw.kicker">31 de octubre</p>' +
     '<h2 class="anuncio__ttl sr-only" id="anuncio-ttl" data-i18n="hw.title">Cena de Halloween</h2>' +
     '<p class="anuncio__txt sr-only" data-i18n="hw.txt">DJ session y menú especial en el jardín de Zeñorío.</p>' +
+    '<a class="btn btn--ghost anuncio__cta anuncio__cta--menu" href="/eventos.html#halloween" data-i18n="ev.verMenu">Ver el menú</a>' +
     '<a class="btn anuncio__cta" href="/reserva.html" data-i18n="hw.cta">Reserva tu mesa</a>' +
     "</div></div>";
   document.body.appendChild(dlg);
@@ -79,6 +80,7 @@
   const foto = dlg.querySelector(".anuncio__img");
   const btnX = dlg.querySelector(".anuncio__x");
   const cta = dlg.querySelector(".anuncio__cta");
+  const ctaMenu = dlg.querySelector(".anuncio__cta--menu");
 
   function pedirFoto() {
     const src = foto.getAttribute("data-src");
@@ -103,6 +105,7 @@
   // vuelve atrás y el navegador restaura la página de caché, no se encuentre
   // el banner otra vez encima.
   cta.addEventListener("click", cerrar);
+  ctaMenu.addEventListener("click", cerrar);
 
   // Escape cierra, que es lo que espera cualquiera con un aviso en pantalla.
   // No hay trampa de foco: el banner no bloquea nada y el tabulador tiene que

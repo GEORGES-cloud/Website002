@@ -28,6 +28,10 @@ FAMILIAS = [
     "Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;"
     "1,300;1,400;1,500;1,600",
     "Pinyon+Script",
+    # Italiana: una romana de asta finisima y mucho caracter. Sustituye a la
+    # inglesa de plumilla en los titulos, que era elegante pero remitia a
+    # invitacion de boda y no a carta de restaurante.
+    "Italiana",
 ]
 
 

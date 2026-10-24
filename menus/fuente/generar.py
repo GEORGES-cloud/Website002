@@ -2,6 +2,7 @@
 """Genera las cartas en PDF: portada original + hojas de menu nuevas.
 
    python generar.py                          # las cartas buenas, a menus/
+   python generar.py --web                    # copias ligeras, a public/cartas/
    python generar.py variantes/jazz.css       # una propuesta, a menus/pruebas/
 
 Para cada carta y cada idioma arma un HTML con la hoja de estilo, lo imprime
@@ -145,28 +146,81 @@ def imprimir(html_path, pdf_path):
     ], check=True, capture_output=True, timeout=180)
 
 
-def montar(origen, generado, salida):
-    """Portada original + hojas nuevas."""
+def montar(origen, generado, salida, web=False):
+    """Portada original + hojas nuevas.
+
+    Con web=True la portada se rehace a 150 ppp en JPEG en vez de copiarse
+    tal cual. La portada que manda el restaurante lleva la foto a
+    resolucion de imprenta y es el 95% del peso del PDF: los seis juntos
+    pasan de 37 MB a unos 4. Para mandar por WhatsApp o colgar en la web,
+    150 ppp sobra; para imprimir se usan los de menus/, que van intactos.
+    """
     doc = fitz.open()
     with fitz.open(origen) as src:
-        doc.insert_pdf(src, from_page=0, to_page=0)
+        if web:
+            pagina = src[0]
+            pix = pagina.get_pixmap(dpi=150)
+            # JPEG y no el pixmap pelado: insert_image con un pixmap guarda
+            # la imagen SIN comprimir y la portada pesaba mas que el
+            # original. Pasandola a JPEG primero, baja de 8 MB a menos de 1.
+            nueva = doc.new_page(width=pagina.rect.width, height=pagina.rect.height)
+            nueva.insert_image(nueva.rect, stream=pix.tobytes("jpeg", jpg_quality=78))
+        else:
+            doc.insert_pdf(src, from_page=0, to_page=0)
     with fitz.open(generado) as nuevo:
         doc.insert_pdf(nuevo)
-    doc.save(salida, deflate=True, garbage=4)
+    doc.save(salida, deflate=True, deflate_images=True, garbage=4)
     n = doc.page_count
     doc.close()
     return n
 
 
+def revisar(ruta_pdf):
+    """Avisa si algo se sale de la hoja.
+
+    Existe porque ya paso: al subir el cuerpo de letra, las dos cajas del
+    brindis de Nochevieja se salieron por abajo y el PDF se genero igual,
+    sin una queja. Un desbordamiento no da error en ningun sitio —Chrome
+    recorta y a correr—, asi que si no se mira pagina a pagina no se ve.
+    """
+    # No basta con mirar si el texto cabe en la HOJA: cabiendo en la hoja se
+    # puede estar metiendo encima de la orla, que es lo que paso con el pie
+    # de Nochevieja. El margen es la zona que ocupa el adorno (2,5rem del
+    # canto + 2,75rem de alto del remate = 52,5 pt) mas un pelo.
+    MARGEN = 56
+    avisos = []
+    with fitz.open(ruta_pdf) as doc:
+        for n in range(1, doc.page_count):   # la portada es una foto, no cuenta
+            page = doc[n]
+            ancho, alto = page.rect.width, page.rect.height
+            escala = ancho / 595.0           # el cartel de Halloween es mas grande
+            m = MARGEN * escala
+            for b in page.get_text("blocks"):
+                x0, y0, x1, y1 = b[:4]
+                if y1 > alto - m or y0 < m or x0 < m or x1 > ancho - m:
+                    avisos.append("  pagina %d: '%s' pisa el margen "
+                                  "(ocupa y %.0f-%.0f, x %.0f-%.0f; hoja %.0fx%.0f)"
+                                  % (n + 1, b[4].strip().splitlines()[0][:34],
+                                     y0, y1, x0, x1, ancho, alto))
+    return avisos
+
+
 def main():
     if not CHROME:
         sys.exit("No encuentro Chrome ni Edge para imprimir el PDF.")
-    css = sys.argv[1] if len(sys.argv) > 1 else "menus.css"
+    args = [a for a in sys.argv[1:] if a != "--web"]
+    web = "--web" in sys.argv
+    css = args[0] if args else "menus.css"
     propuesta = css != "menus.css"
     if not os.path.exists(os.path.join(AQUI, css)):
         sys.exit("No existe la hoja de estilo: " + css)
     marca = os.path.splitext(os.path.basename(css))[0]
-    destino = os.path.join(MENUS, "pruebas") if propuesta else MENUS
+    if web:
+        destino = os.path.join(RAIZ, "public", "cartas")
+    elif propuesta:
+        destino = os.path.join(MENUS, "pruebas")
+    else:
+        destino = MENUS
     os.makedirs(destino, exist_ok=True)
     os.makedirs(TRABAJO, exist_ok=True)
 
@@ -174,19 +228,26 @@ def main():
         origen = os.path.join(ORIGINALES, carta["origen"])
         if not os.path.exists(origen):
             sys.exit("Falta el PDF original: " + origen)
-        for lang in (("es",) if propuesta else ("es", "en")):
+        for lang in (("es",) if propuesta and not web else ("es", "en")):
             base = "%s-%s-%s" % (marca, carta["slug"], lang)
             html_path = os.path.join(AQUI, base + ".html")
             io.open(html_path, "w", encoding="utf-8").write(documento(carta, lang, css))
             crudo = os.path.join(TRABAJO, base + ".pdf")
             imprimir(html_path, crudo)
-            if propuesta:
+            if web:
+                # minusculas y sin acentos: son URLs
+                salida = os.path.join(destino, "zenorio-%s-%s.pdf" % (carta["slug"], lang))
+            elif propuesta:
                 salida = os.path.join(destino, "%s-%s.pdf" % (marca.upper(), carta["slug"]))
             else:
                 salida = os.path.join(
                     destino, "ZENORIO-%s-%s.pdf" % (carta["slug"].upper(), lang.upper()))
-            n = montar(origen, crudo, salida)
-            print("%-46s %d paginas" % (os.path.basename(salida), n))
+            n = montar(origen, crudo, salida, web=web)
+            avisos = revisar(salida)
+            print("%-46s %d paginas%s" % (os.path.basename(salida), n,
+                                          "  <-- SE SALE" if avisos else ""))
+            for a in avisos:
+                print(a)
 
 
 if __name__ == "__main__":

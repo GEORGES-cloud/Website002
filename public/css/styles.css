@@ -1657,8 +1657,12 @@ body.lightbox-open { overflow: hidden; }
    canto. Sin padding alrededor no se desperdicia ni un píxel debajo del
    cartel y el área de toque pasa a ser toda la banda, que en un móvil es
    la diferencia entre acertar y no. */
+/* Los dos botones se reparten la banda al 50%. flex y no grid porque el
+   pie lleva además los tres textos de sr-only, que no ocupan sitio pero sí
+   serían celdas en un grid y descuadrarían el reparto. */
 .anuncio__pie {
   padding: 0;
+  display: flex;
   text-align: center;
   background: #100E0B;
   border-top: 1px solid rgba(237, 228, 211, 0.14);
@@ -1674,15 +1678,26 @@ body.lightbox-open { overflow: hidden; }
    translúcido sobre oscuro. */
 .btn.anuncio__cta {
   display: flex;
-  width: 100%;
-  padding: 1em 1rem;
-  font-size: 0.64rem;
+  flex: 1;
+  min-width: 0;
+  padding: 1em 0.8rem;
+  font-size: 0.62rem;
   font-weight: 500;
   /* Sin esquinas propias: las redondea la caja del banner, que ya recorta
      con overflow hidden. Con su pastilla de 100px quedaban dos cantos de
      fondo muertos a los lados. */
   border-radius: 0;
 }
+/* El de ver el menú es el secundario: va en fantasma y con un filete que
+   lo separa del de reservar, que es el que tiene que pesar. */
+.btn.anuncio__cta--menu {
+  border: 0;
+  border-right: 1px solid rgba(237, 228, 211, 0.16);
+  --bg: rgba(237, 228, 211, 0.06);
+  --fg: var(--cream);
+}
+.btn.anuncio__cta--menu::after { background: var(--cream); }
+.btn.anuncio__cta--menu:hover { color: var(--noir); }
 
 /* La X de cerrar de toda la vida. Se probó con un guion de minimizar,
    que describía mejor lo que hace —el anuncio se guarda en la pestaña de
@@ -1826,4 +1841,86 @@ body.lightbox-open { overflow: hidden; }
     --aire-parrafo: 1.05rem;
     --aire-boton: 2rem;
   }
+}
+
+/* =====================================================================
+   EVENTOS — grupos, empresas y noches señaladas
+   ---------------------------------------------------------------------
+   Reaprovecha el story__grid y la ficha de sección que ya usan las demás
+   páginas; lo único propio son las tres cartas de menú, el precio suelto
+   y la fila de dos botones.
+   ===================================================================== */
+
+/* Alterna el lado de la foto para que las secciones no caigan todas con
+   la imagen a la izquierda. En una columna (móvil) el orden vuelve al
+   natural: foto arriba, texto debajo. */
+@media (min-width: 861px) {
+  .story__grid--flip .story__media { order: 2; }
+}
+
+/* El cartel de Halloween es 4:5 como las fotos, pero es un cartel, no una
+   foto de ambiente: no se recorta, se ve entero. */
+.story__media--cartel img { object-fit: contain; }
+
+.ev-menus {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.5rem, 3vw, 2.6rem);
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+.ev-menu {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(1.6rem, 3vw, 2.4rem);
+  text-align: center;
+  background: rgba(237, 228, 211, 0.02);
+}
+.ev-menu .h3 { font-size: clamp(1.4rem, 2.2vw, 1.9rem); }
+.ev-menu__sub {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.02rem;
+  color: var(--muted);
+  margin-top: 0.3rem;
+}
+.ev-menu__precio,
+.ev-precio {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.4vw, 2.8rem);
+  line-height: 1;
+  color: var(--cream);
+  margin-top: 1.2rem;
+}
+.ev-menu__precio small,
+.ev-precio small {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+  margin-top: 0.6rem;
+}
+.ev-menu__p {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--muted);
+  margin-top: 1.2rem;
+}
+
+.ev-cta { margin-top: clamp(2.2rem, 4vw, 3.4rem); text-align: center; }
+
+/* Los dos botones de las noches señaladas. flex-wrap y no un grid de dos:
+   en un móvil estrecho "Reserva tu mesa" y "Ver el menú" no caben en la
+   misma línea y tienen que apilarse sin dejar uno a media anchura. */
+.ev-botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 860px) {
+  .ev-menus { grid-template-columns: 1fr; }
 }

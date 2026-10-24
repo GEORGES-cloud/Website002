@@ -66,7 +66,7 @@ app.use(compression());
 // Se arrastra la query: el idioma viaja en ?lang=xx y estos 301 la tiraban,
 // así que un enlace a /carta?lang=de o /index.html?lang=de aterrizaba en
 // español. Con el 301 de dominio no pasaba porque usa req.originalUrl.
-const PAGES = new Set(['carta', 'casa', 'experiencia', 'galeria', 'reserva', 'aviso-legal', 'privacidad', 'cookies']);
+const PAGES = new Set(['carta', 'casa', 'experiencia', 'eventos', 'galeria', 'reserva', 'aviso-legal', 'privacidad', 'cookies']);
 app.use((req, res, next) => {
   const i = req.originalUrl.indexOf('?');
   const query = i === -1 ? '' : req.originalUrl.slice(i);

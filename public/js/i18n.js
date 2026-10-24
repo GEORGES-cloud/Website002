@@ -6,6 +6,43 @@
 (function () {
   const DICT = {
   "en": {
+    "nav.events": "Events",
+    "meta.titleEv": "Events, groups and companies · Zeñorío Marbella",
+    "meta.descEv": "Company lunches and dinners, celebrations and group menus in Marbella. Halloween dinner, New Year's Eve and live music in Zeñorío's garden.",
+    "ev.eyebrow": "Events",
+    "ev.title": "Groups, companies<br />and special nights",
+    "ev.intro": "Long tables beneath the palms, company lunches with a set menu, and nights that only come round once a year. Tell us how many you are and we'll take care of the rest.",
+    "ev.corpE": "Corporate events",
+    "ev.corpT": "Company lunches and dinners",
+    "ev.corpP": "Year-end parties, launches, team lunches and dinners with clients. A set menu so nobody has to decide anything, a private room if you need one, and a clean invoice at the end.",
+    "ev.corpCta": "See the group menus",
+    "ev.celE": "Celebrations",
+    "ev.celT": "Special moments",
+    "ev.celP": "Birthdays, anniversaries, christenings, communions and those dinners that take months to plan. Cake, a toast and the table laid wherever you like: in the garden, in the wine cellar or in the dining room.",
+    "ev.celCta": "Let's talk about your date",
+    "ev.menE": "Group menus",
+    "ev.menT": "Three tables, three levels",
+    "ev.menP": "All three come with starters to share, a main course of your choice, dessert, and water, beer, wine and coffee included.",
+    "ev.m1t": "La Encina",
+    "ev.m1s": "The ember table",
+    "ev.m1p": "Boiled prawns, croquettes and Russian salad to share. Shellfish bisque, entrecôte or salmon, and brownie.",
+    "ev.m2t": "El Jardín",
+    "ev.m2s": "The garden table",
+    "ev.m2p": "Adds acorn-fed Iberian ham and marinated salmon. Clam and prawn soup, beef tenderloin or turbot, and lemon pie.",
+    "ev.m3t": "El Zeñorío",
+    "ev.m3s": "The house table",
+    "ev.m3p": "Brioche with steak tartare and truffle, scallop with Iberian ham, lobster ravioli, wild sea bass or tenderloin with foie gras.",
+    "ev.menCta": "See the full menu",
+    "ev.pp": "per person",
+    "ev.verMenu": "See the menu",
+    "ev.hwP": "From 7pm, with a DJ session and a special menu: three starters and three mains to choose from, cheesecake, and water, beer and wine included.",
+    "ev.nyE": "31 December",
+    "ev.nyT": "New Year's Eve 2027",
+    "ev.nyP": "A welcome glass of champagne, Iberian ham and brioche with steak tartare to share, lobster ravioli, sea bass or tenderloin with foie gras, and the last dessert of the year. Twelve grapes, champagne and a DJ session until the night runs out.",
+    "ev.musE": "Live music",
+    "ev.musT": "Piano on Fridays,<br />saxophone on Saturdays",
+    "ev.musP": "Live music in the garden every week of the year. Dine beneath the palms and stay for the after-dinner: pick your night and book a table.",
+    "alt.terraza": "Zeñorío's terrace at dusk",
     "hw.abrir": "Events",
     "hw.kicker": "31 October",
     "hw.title": "Halloween Dinner",
@@ -264,6 +301,43 @@
     "rev.stars": "5 out of 5 stars"
   },
   "fr": {
+    "nav.events": "Événements",
+    "meta.titleEv": "Événements, groupes et entreprises · Zeñorío Marbella",
+    "meta.descEv": "Déjeuners et dîners d'entreprise, célébrations et menus de groupe à Marbella. Dîner d'Halloween, Saint-Sylvestre et musique live dans le jardin du Zeñorío.",
+    "ev.eyebrow": "Événements",
+    "ev.title": "Groupes, entreprises<br />et soirées d'exception",
+    "ev.intro": "De grandes tablées sous les palmiers, des déjeuners d'entreprise au menu fixe et des soirées qui n'arrivent qu'une fois par an. Dites-nous combien vous êtes et nous nous occupons du reste.",
+    "ev.corpE": "Événements d'entreprise",
+    "ev.corpT": "Déjeuners et dîners d'entreprise",
+    "ev.corpP": "Fêtes de fin d'année, lancements, repas d'équipe et dîners avec vos clients. Un menu fixe pour que personne n'ait à choisir, un salon privé si besoin, et une facture claire à la fin.",
+    "ev.corpCta": "Voir les menus de groupe",
+    "ev.celE": "Célébrations",
+    "ev.celT": "Les grands moments",
+    "ev.celP": "Anniversaires, baptêmes, communions et ces dîners qui se préparent des mois à l'avance. Le gâteau, le toast et la table dressée où vous voulez : au jardin, à la cave ou en salle.",
+    "ev.celCta": "Parlons de votre date",
+    "ev.menE": "Menus de groupe",
+    "ev.menT": "Trois tables, trois niveaux",
+    "ev.menP": "Les trois comprennent des entrées à partager, un plat au choix, un dessert, et l'eau, la bière, le vin et le café.",
+    "ev.m1t": "La Encina",
+    "ev.m1s": "La table de la braise",
+    "ev.m1p": "Crevettes, croquettes et salade russe à partager. Bisque de fruits de mer, entrecôte ou saumon, et brownie.",
+    "ev.m2t": "El Jardín",
+    "ev.m2s": "La table des palmiers",
+    "ev.m2p": "Ajoute le jambon ibérique de bellota et le saumon mariné. Soupe de palourdes et crevettes, filet de bœuf ou turbot, et lemon pie.",
+    "ev.m3t": "El Zeñorío",
+    "ev.m3s": "La table de la maison",
+    "ev.m3p": "Brioche au steak tartare et truffe, saint-jacques au jambon ibérique, ravioli de homard, bar sauvage ou filet de bœuf au foie gras.",
+    "ev.menCta": "Voir la carte complète",
+    "ev.pp": "par personne",
+    "ev.verMenu": "Voir le menu",
+    "ev.hwP": "Dès 19h, avec DJ set et menu spécial : trois entrées et trois plats au choix, cheesecake, et eau, bière et vin compris.",
+    "ev.nyE": "31 décembre",
+    "ev.nyT": "Saint-Sylvestre 2027",
+    "ev.nyP": "Coupe de champagne de bienvenue, jambon ibérique et brioche au steak tartare à partager, ravioli de homard, bar ou filet de bœuf au foie gras, et le dernier dessert de l'année. Les douze grains de raisin, le champagne et un DJ set jusqu'au bout de la nuit.",
+    "ev.musE": "Musique live",
+    "ev.musT": "Piano le vendredi,<br />saxophone le samedi",
+    "ev.musP": "De la musique live au jardin, toutes les semaines de l'année. Dînez sous les palmiers et restez pour l'après-dîner : choisissez votre soirée et réservez votre table.",
+    "alt.terraza": "La terrasse du Zeñorío à la tombée de la nuit",
     "hw.abrir": "Événements",
     "hw.kicker": "31 octobre",
     "hw.title": "Dîner d’Halloween",
@@ -573,6 +647,43 @@
     "rev.stars": "5 étoiles sur 5"
   },
   "de": {
+    "nav.events": "Veranstaltungen",
+    "meta.titleEv": "Veranstaltungen, Gruppen und Firmen · Zeñorío Marbella",
+    "meta.descEv": "Geschäftsessen, Feiern und Gruppenmenüs in Marbella. Halloween-Dinner, Silvester und Livemusik im Garten des Zeñorío.",
+    "ev.eyebrow": "Veranstaltungen",
+    "ev.title": "Gruppen, Firmen<br />und besondere Abende",
+    "ev.intro": "Lange Tafeln unter den Palmen, Firmenessen mit festem Menü und Abende, die es nur einmal im Jahr gibt. Sagen Sie uns, wie viele Sie sind — um alles Weitere kümmern wir uns.",
+    "ev.corpE": "Firmenveranstaltungen",
+    "ev.corpT": "Geschäftsessen, mittags und abends",
+    "ev.corpP": "Jahresabschluss, Produktvorstellungen, Teamessen und Abendessen mit Kunden. Ein festes Menü, damit niemand sich entscheiden muss, auf Wunsch ein eigener Raum und am Ende eine saubere Rechnung.",
+    "ev.corpCta": "Gruppenmenüs ansehen",
+    "ev.celE": "Feiern",
+    "ev.celT": "Besondere Momente",
+    "ev.celP": "Geburtstage, Jubiläen, Taufen, Kommunionen und jene Abendessen, die man monatelang plant. Torte, ein Toast und der Tisch gedeckt, wo Sie möchten: im Garten, im Weinkeller oder im Saal.",
+    "ev.celCta": "Sprechen wir über Ihren Termin",
+    "ev.menE": "Gruppenmenüs",
+    "ev.menT": "Drei Tafeln, drei Stufen",
+    "ev.menP": "Alle drei mit Vorspeisen zum Teilen, Hauptgang nach Wahl, Dessert sowie Wasser, Bier, Wein und Kaffee inklusive.",
+    "ev.m1t": "La Encina",
+    "ev.m1s": "Die Tafel der Glut",
+    "ev.m1p": "Garnelen, Kroketten und russischer Salat zum Teilen. Meeresfrüchte-Bisque, Entrecôte oder Lachs, und Brownie.",
+    "ev.m2t": "El Jardín",
+    "ev.m2s": "Die Tafel der Palmen",
+    "ev.m2p": "Dazu Eichel-Ibérico-Schinken und marinierter Lachs. Muschel-Garnelen-Suppe, Rinderfilet oder Steinbutt, und Lemon Pie.",
+    "ev.m3t": "El Zeñorío",
+    "ev.m3s": "Die Tafel des Hauses",
+    "ev.m3p": "Brioche mit Steak Tatar und Trüffel, Jakobsmuschel mit Ibérico, Hummer-Ravioli, wilder Wolfsbarsch oder Filet mit Foie gras.",
+    "ev.menCta": "Ganze Karte ansehen",
+    "ev.pp": "pro Person",
+    "ev.verMenu": "Menü ansehen",
+    "ev.hwP": "Ab 19 Uhr, mit DJ-Session und besonderem Menü: drei Vorspeisen und drei Hauptgänge zur Wahl, Cheesecake sowie Wasser, Bier und Wein inklusive.",
+    "ev.nyE": "31. Dezember",
+    "ev.nyT": "Silvester 2027",
+    "ev.nyP": "Ein Glas Champagner zur Begrüßung, Ibérico-Schinken und Brioche mit Steak Tatar zum Teilen, Hummer-Ravioli, Wolfsbarsch oder Filet mit Foie gras und das letzte Dessert des Jahres. Die zwölf Trauben, Champagner und DJ-Session bis zum Ende der Nacht.",
+    "ev.musE": "Livemusik",
+    "ev.musT": "Freitags Klavier,<br />samstags Saxofon",
+    "ev.musP": "Jede Woche im Jahr Livemusik im Garten. Essen Sie unter den Palmen und bleiben Sie danach sitzen: Wählen Sie Ihren Abend und reservieren Sie einen Tisch.",
+    "alt.terraza": "Die Terrasse des Zeñorío in der Abenddämmerung",
     "hw.abrir": "Veranstaltungen",
     "hw.kicker": "31. Oktober",
     "hw.title": "Halloween-Dinner",
@@ -882,6 +993,43 @@
     "rev.stars": "5 von 5 Sternen"
   },
   "sv": {
+    "nav.events": "Evenemang",
+    "meta.titleEv": "Evenemang, grupper och företag · Zeñorío Marbella",
+    "meta.descEv": "Företagsluncher och -middagar, fester och gruppmenyer i Marbella. Halloweenmiddag, nyårsafton och livemusik i Zeñoríos trädgård.",
+    "ev.eyebrow": "Evenemang",
+    "ev.title": "Grupper, företag<br />och särskilda kvällar",
+    "ev.intro": "Långbord under palmerna, företagsluncher med fast meny och kvällar som bara kommer en gång om året. Säg hur många ni är, så sköter vi resten.",
+    "ev.corpE": "Företagsevenemang",
+    "ev.corpT": "Luncher och middagar för företag",
+    "ev.corpP": "Årsavslutningar, lanseringar, teamluncher och middagar med kunder. Fast meny så att ingen behöver välja, eget rum om det behövs och en ren faktura på slutet.",
+    "ev.corpCta": "Se gruppmenyerna",
+    "ev.celE": "Fester",
+    "ev.celT": "Särskilda stunder",
+    "ev.celP": "Födelsedagar, jubileer, dop, konfirmationer och de där middagarna som planeras i månader. Tårta, en skål och bordet dukat där ni vill: i trädgården, i vinkällaren eller i matsalen.",
+    "ev.celCta": "Berätta om ert datum",
+    "ev.menE": "Gruppmenyer",
+    "ev.menT": "Tre bord, tre nivåer",
+    "ev.menP": "Alla tre med förrätter att dela, huvudrätt efter eget val, efterrätt samt vatten, öl, vin och kaffe.",
+    "ev.m1t": "La Encina",
+    "ev.m1s": "Glödens bord",
+    "ev.m1p": "Räkor, kroketter och rysk sallad att dela. Skaldjursbisque, entrecôte eller lax, och brownie.",
+    "ev.m2t": "El Jardín",
+    "ev.m2s": "Palmernas bord",
+    "ev.m2p": "Dessutom ekollonmatad ibérico-skinka och gravad lax. Musslo- och räksoppa, oxfilé eller piggvar, och lemon pie.",
+    "ev.m3t": "El Zeñorío",
+    "ev.m3s": "Husets bord",
+    "ev.m3p": "Brioche med råbiff och tryffel, pilgrimsmussla med ibérico, hummerravioli, vild havsabborre eller oxfilé med foie gras.",
+    "ev.menCta": "Se hela menyn",
+    "ev.pp": "per person",
+    "ev.verMenu": "Se menyn",
+    "ev.hwP": "Från kl. 19, med DJ-session och särskild meny: tre förrätter och tre huvudrätter att välja mellan, cheesecake samt vatten, öl och vin.",
+    "ev.nyE": "31 december",
+    "ev.nyT": "Nyårsafton 2027",
+    "ev.nyP": "Ett glas champagne som välkomst, ibérico-skinka och brioche med råbiff att dela, hummerravioli, havsabborre eller oxfilé med foie gras, och årets sista efterrätt. De tolv druvorna, champagne och DJ-session tills natten tar slut.",
+    "ev.musE": "Livemusik",
+    "ev.musT": "Piano på fredagar,<br />saxofon på lördagar",
+    "ev.musP": "Livemusik i trädgården varje vecka hela året. Ät under palmerna och stanna kvar efteråt: välj din kväll och boka bord.",
+    "alt.terraza": "Zeñoríos terrass i skymningen",
     "hw.abrir": "Evenemang",
     "hw.kicker": "31 oktober",
     "hw.title": "Halloweenmiddag",
@@ -1191,6 +1339,43 @@
     "rev.stars": "5 av 5 stjärnor"
   },
   "ru": {
+    "nav.events": "События",
+    "meta.titleEv": "События, группы и компании · Zeñorío Marbella",
+    "meta.descEv": "Корпоративные обеды и ужины, торжества и меню для групп в Марбелье. Ужин в Хэллоуин, Новый год и живая музыка в саду Zeñorío.",
+    "ev.eyebrow": "События",
+    "ev.title": "Группы, компании<br />и особые вечера",
+    "ev.intro": "Длинные столы под пальмами, корпоративные обеды с готовым меню и вечера, которые бывают раз в году. Скажите, сколько вас, — остальное мы берём на себя.",
+    "ev.corpE": "Корпоративные события",
+    "ev.corpT": "Обеды и ужины для компаний",
+    "ev.corpP": "Итоги года, презентации, обеды с командой и ужины с клиентами. Готовое меню, чтобы никому не пришлось выбирать, отдельный зал при необходимости и аккуратный счёт в конце.",
+    "ev.corpCta": "Посмотреть меню для групп",
+    "ev.celE": "Торжества",
+    "ev.celT": "Особые моменты",
+    "ev.celP": "Дни рождения, годовщины, крестины, причастия и те ужины, которые готовят месяцами. Торт, тост и накрытый стол там, где скажете: в саду, в винном погребе или в зале.",
+    "ev.celCta": "Обсудим вашу дату",
+    "ev.menE": "Меню для групп",
+    "ev.menT": "Три стола, три уровня",
+    "ev.menP": "Во всех трёх — закуски на стол, горячее на выбор, десерт, а также вода, пиво, вино и кофе.",
+    "ev.m1t": "La Encina",
+    "ev.m1s": "Стол углей",
+    "ev.m1p": "Креветки, крокеты и русский салат на стол. Бисквий из морепродуктов, антрекот или лосось и брауни.",
+    "ev.m2t": "El Jardín",
+    "ev.m2s": "Стол пальм",
+    "ev.m2p": "Добавляются иберийский хамон из желудёвых свиней и маринованный лосось. Суп из моллюсков и креветок, вырезка или палтус и лимонный пирог.",
+    "ev.m3t": "El Zeñorío",
+    "ev.m3s": "Стол дома",
+    "ev.m3p": "Бриошь с тартаром и трюфелем, гребешок с иберийским хамоном, равиоли с омаром, дикий сибас или вырезка с фуа-гра.",
+    "ev.menCta": "Посмотреть меню целиком",
+    "ev.pp": "с человека",
+    "ev.verMenu": "Посмотреть меню",
+    "ev.hwP": "С 19:00, с DJ-сетом и особым меню: три закуски и три горячих на выбор, чизкейк, а также вода, пиво и вино.",
+    "ev.nyE": "31 декабря",
+    "ev.nyT": "Новый год 2027",
+    "ev.nyP": "Приветственный бокал шампанского, иберийский хамон и бриошь с тартаром на стол, равиоли с омаром, сибас или вырезка с фуа-гра и последний десерт года. Двенадцать виноградин, шампанское и DJ-сет до конца ночи.",
+    "ev.musE": "Живая музыка",
+    "ev.musT": "По пятницам рояль,<br />по субботам саксофон",
+    "ev.musP": "Живая музыка в саду каждую неделю круглый год. Ужинайте под пальмами и оставайтесь после: выберите вечер и забронируйте стол.",
+    "alt.terraza": "Терраса Zeñorío в сумерках",
     "hw.abrir": "События",
     "hw.kicker": "31 октября",
     "hw.title": "Ужин в Хэллоуин",
@@ -1534,6 +1719,12 @@
   // Se traduce solo el parámetro text= para no repetir el teléfono en el
   // diccionario: si algún día cambia el número, se cambia en el HTML y ya.
   const originalWa = new Map();
+  // Las cartas en PDF estan en espanol y en ingles. Un enlace con
+  // data-i18n-pdf apunta al archivo -es.pdf en el HTML y aqui se le cambia
+  // la terminacion segun el idioma de la pagina: espanol para 'es' e ingles
+  // para los otros cinco, que es lo que hay. Se guarda el href original para
+  // poder volver sin reconstruir la ruta a mano.
+  const originalPdf = new Map();
 
   function cache() {
     document.querySelectorAll("[data-i18n]").forEach((el) => {
@@ -1549,6 +1740,9 @@
     });
     document.querySelectorAll("[data-i18n-wa]").forEach((el) => {
       originalWa.set(el, el.getAttribute("href") || "");
+    });
+    document.querySelectorAll("[data-i18n-pdf]").forEach((el) => {
+      originalPdf.set(el, el.getAttribute("href") || "");
     });
   }
 
@@ -1596,6 +1790,10 @@
       const key = el.getAttribute("data-i18n-wa");
       if (map && map[key] != null) ponerWa(el, map[key]);
       else if (originalWa.has(el)) el.setAttribute("href", originalWa.get(el));
+    });
+    document.querySelectorAll("[data-i18n-pdf]").forEach((el) => {
+      const base = originalPdf.get(el) || el.getAttribute("href") || "";
+      el.setAttribute("href", base.replace(/-es\.pdf$/, lang === "es" ? "-es.pdf" : "-en.pdf"));
     });
 
     document.documentElement.lang = lang;
