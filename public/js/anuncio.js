@@ -1,5 +1,5 @@
 /* =====================================================================
-   Zeñorío · anuncio de la cena de Halloween
+   Zeñorío · anuncio de la cena de Nochevieja
    ---------------------------------------------------------------------
    Banner con el cartel, abajo a la izquierda. NO es una ventana modal:
    la página sigue scrolleando por detrás, así que aquí no hay bloqueo
@@ -21,9 +21,9 @@
   "use strict";
 
   // Fin del anuncio: la madrugada siguiente a la cena. Sin esto el cartel
-  // seguiría saliendo en noviembre y habría que acordarse de quitarlo a mano.
-  const FIN = new Date("2026-11-01T06:00:00");
-  const VISTO = "zenorio-anuncio-hw26";
+  // seguiría saliendo en enero y habría que acordarse de quitarlo a mano.
+  const FIN = new Date("2027-01-01T06:00:00");
+  const VISTO = "zenorio-anuncio-nv27";
   const ESPERA = 900; // ms desde que la página está lista hasta que aparece
 
   if (Date.now() > FIN.getTime()) return;
@@ -42,10 +42,10 @@
   dlg.setAttribute("aria-labelledby", "anuncio-ttl");
   dlg.innerHTML =
     '<div class="anuncio__caja">' +
-    '<button class="anuncio__x" type="button" aria-label="Cerrar el anuncio" data-i18n-aria="hw.close">&times;</button>' +
+    '<button class="anuncio__x" type="button" aria-label="Cerrar el anuncio" data-i18n-aria="anu.close">&times;</button>' +
     // data-src (no src): el cartel pesa ~200 KB y no debe competir con la
     // portada. Se pide cuando ya ha cargado todo lo demás — ver pedirFoto().
-    '<img class="anuncio__img" data-src="/assets/img/halloween-2026.jpg" width="1080" height="1350" decoding="async" alt="Cartel de la cena de Halloween en Zeñorío: dos manos brindan con una copa sobre un fondo de cortinas rojas" data-i18n-alt="hw.alt" />' +
+    '<img class="anuncio__img" data-src="/assets/img/nochevieja-2027.jpg?v=2" width="1080" height="1509" decoding="async" alt="Cartel de la cena de Nochevieja en Zeñorío: se sirve champagne en una copa entre invitados vestidos de fiesta" data-i18n-alt="nv.alt" />' +
     '<div class="anuncio__pie">' +
     // Debajo del cartel NO se ve ni una línea de texto: solo el botón. Todo
     // lo que hay que contar ya está impreso en el cartel, y cada línea que
@@ -53,15 +53,15 @@
     // lo que se mira.
     //
     // Pero el cartel es una FOTO: quien navega con lector de pantalla no se
-    // entera de que hay cena de Halloween, ni del día, ni de la hora, y el
-    // alt describe la escena (dos manos brindando), no la oferta. Por eso
+    // entera de que hay cena de Nochevieja, ni del día, ni de la hora, y el
+    // alt describe la escena del cartel, no la oferta. Por eso
     // los tres textos se quedan en el HTML con sr-only: no ocupan un píxel
     // y el anuncio sigue diciendo algo para quien no ve la imagen.
-    '<p class="anuncio__kicker sr-only" data-i18n="hw.kicker">31 de octubre</p>' +
-    '<h2 class="anuncio__ttl sr-only" id="anuncio-ttl" data-i18n="hw.title">Cena de Halloween</h2>' +
-    '<p class="anuncio__txt sr-only" data-i18n="hw.txt">DJ session y menú especial en el jardín de Zeñorío.</p>' +
-    '<a class="btn btn--ghost anuncio__cta anuncio__cta--menu" href="/eventos.html#halloween" data-i18n="ev.verMenu">Ver el menú</a>' +
-    '<a class="btn anuncio__cta" href="/reserva.html" data-i18n="hw.cta">Reserva tu mesa</a>' +
+    '<p class="anuncio__kicker sr-only" data-i18n="ev.nyE">31 de diciembre</p>' +
+    '<h2 class="anuncio__ttl sr-only" id="anuncio-ttl" data-i18n="ev.nyT">Nochevieja 2027</h2>' +
+    '<p class="anuncio__txt sr-only" data-i18n="ev.nyP">Copa de bienvenida con champagne, las doce uvas y DJ session en el jardín de Zeñorío.</p>' +
+    '<a class="btn btn--ghost anuncio__cta anuncio__cta--menu" href="/eventos.html#nochevieja" data-i18n="ev.verMenu">Ver el menú</a>' +
+    '<a class="btn anuncio__cta" href="/reserva.html" data-i18n="anu.cta">Reserva tu mesa</a>' +
     "</div></div>";
   document.body.appendChild(dlg);
 
@@ -74,7 +74,7 @@
   abrir_btn.innerHTML =
     '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">' +
     '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>' +
-    '<span data-i18n="hw.abrir">Eventos</span>';
+    '<span data-i18n="anu.abrir">Eventos</span>';
   document.body.appendChild(abrir_btn);
 
   const foto = dlg.querySelector(".anuncio__img");
