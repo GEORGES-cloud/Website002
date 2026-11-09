@@ -27,3 +27,16 @@ menus/pruebas/
 menus/fuente/_prueba-*.svg
 menus/fuente/_prueba-*
 menus/_*.png
+
+# La fuente comprada: en el repo NO.
+# Este repositorio es publico. El sitio solo necesita el .woff2 -asi es como
+# se sirve una fuente en web, y es el uso que contempla la licencia-, asi que
+# el woff2 va al repo y los .ttf no. Un .ttf en un repo publico es un fichero
+# instalable que cualquiera se descarga: eso ya no es servir la letra en una
+# web, es repartirla. Lo mismo para el original sin tocar de Creatype Studio.
+# Quien quiera rehacer la BlastyesES pone su copia comprada en
+# tipografia/blastyes/original/ y corre los dos scripts. Lo explica el LEEME.
+public/assets/fonts/BlastyesES.ttf
+tipografia/blastyes/original/
+tipografia/blastyes/BlastyesES.ttf
+tipografia/blastyes/BlastyesES.woff2

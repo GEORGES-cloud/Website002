@@ -99,6 +99,32 @@ select { font: inherit; color: inherit; }
 }
 .skip-link:focus-visible { transform: translate(-50%, 0); }
 
+/* ---------- La letra de la casa ----------
+   Blastyes, de Rian Rahardi para Creatype Studio. Licencia comprada por la
+   casa. El fichero que se sirve no es el original: la fuente venía sin tilde
+   ni eñe —escribía "Zenorio" aunque tecleases "Zeñorío"— y se le han añadido
+   los acentos castellanos sobre sus propios trazos. Va renombrada a
+   "Blastyes ES" para no pisar a la original si alguien la tiene instalada.
+   Se sirve desde nuestro servidor, no desde Google. 17 KB, y con swap para
+   que el texto se lea desde el primer momento aunque la fuente tarde. */
+@font-face {
+  font-family: "Blastyes ES";
+  src: url("/assets/fonts/BlastyesES.woff2?v=1") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* La manuscrita que dibujamos aquí, cuando Blastyes no estaba. Se queda de
+   reserva: el navegador solo la descarga si la de arriba falla. */
+@font-face {
+  font-family: "Zenorio Mano";
+  src: url("/assets/fonts/ZenorioMano.woff2?v=1") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ---------- 2. Tokens ---------- */
 :root {
   /* Color — blanco y negro, sin tintes. El fondo es negro puro y el texto
@@ -126,6 +152,17 @@ select { font: inherit; color: inherit; }
   --accent: #FFFFFF;
   --accent-2: #FFFFFF;
   --accent-3: #BFBFBF;
+  /* Oro blanco. No es un color: es un reflejo. Puesto plano daría un gris
+     claro igual a los que ya hay y no se notaría nada; lo que lo hace leer
+     como metal es el degradado, que imita la luz corriendo por una
+     superficie pulida. Va de #9C9C9C a blanco y no de negro a blanco a
+     propósito: un contraste más duro se ve como un logotipo cromado de los
+     noventa, y lo que se busca aquí es lo contrario, que parezca que
+     siempre estuvo ahí. Hasta su punto más oscuro da 7.6:1 sobre el negro,
+     así que no cuesta legibilidad. Los grados impares (104) y los cortes
+     desiguales son queridos: un degradado perfectamente regular canta a
+     efecto. */
+  --oro: linear-gradient(104deg, #9C9C9C 0%, #E9E9E9 18%, #FFFFFF 34%, #C2C2C2 52%, #F2F2F2 70%, #A8A8A8 88%, #D8D8D8 100%);
   /* Eran verde oliva y terracota, los dos últimos tonos cálidos que
      quedaban. Ahora son grises con su misma luminancia, salvo el terracota,
      que sube un poco porque a 4.4:1 no llegaba al 4.5 de WCAG. Siguen
@@ -146,6 +183,13 @@ select { font: inherit; color: inherit; }
 
   /* Type — Bodoni Moda (display, optical-size) + Hanken Grotesk (texto/UI) */
   --font-display: "Bodoni Moda", "Didot", "Bodoni MT", Georgia, "Times New Roman", serif;
+  /* La manuscrita. Blastyes, comprada; con los acentos injertados arriba.
+     El último recurso de la pila es la Bodoni a propósito: si alguna vez
+     se escribe un titular en ruso —que la web se traduce— Blastyes no
+     tiene cirílico, y es mejor que caiga en la letra de la casa que en
+     una cursiva cualquiera del sistema. */
+  --font-firma: "Blastyes ES", "Zenorio Mano", "Snell Roundhand",
+                "Bodoni Moda", Georgia, serif;
   --font-body: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
   /* Rhythm */
@@ -593,6 +637,27 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
   border-radius: var(--radius);
 }
 .story__media video { display: block; }
+/* El titular de la portada, en una sola línea. Llevaba un <br> a mano que lo
+   partía en "Un homenaje / de hijo a padre"; quitarlo no basta, porque aquí
+   el titular vive en la columna estrecha del grid (~525 px) y a cuerpo
+   completo se seguía partiendo solo. En La casa no hace falta nada de esto:
+   allí ocupa el ancho entero y cabe de sobra.
+   Así que aquí el cuerpo se mide contra la COLUMNA y no contra la ventana:
+   medido en el navegador, la frase escrita a mano ocupa 5,85 veces su cuerpo
+   de ancho —la manuscrita es mucho más estrecha que la Bodoni, que gastaba
+   13—, así que 100/5,85 = 17,1cqw la dejaría justa de justa; se queda en
+   15,5 para que respire por los lados. El min() impide que crezca por
+   encima del .h2 normal, nunca por debajo.
+   Solo en español a propósito: en alemán la frase es media línea más larga
+   y no cabe en una línea ni encogiéndola, así que allí no se toca el cuerpo
+   y parte donde tenga que partir. El lang del <html> lo mantiene i18n.js.
+   Sin white-space: nowrap, que sacaría el texto fuera de la columna en vez
+   de partirlo si algún día la frase crece. */
+html[lang="es"] .story__body--una-linea { container-type: inline-size; }
+html[lang="es"] .story__body--una-linea .h2 {
+  font-size: min(clamp(2.4rem, 5.2vw, 4.4rem), 15.5cqw);
+}
+
 .story__body .stats {
   display: flex;
   gap: clamp(1.5rem, 4vw, 3rem);
@@ -613,10 +678,15 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
   text-transform: uppercase;
   color: var(--muted);
 }
+/* La firma del chef, de su puño y letra. Sube de 1.8rem a 2.6 porque las
+   manuscritas tienen la equis diminuta: al mismo cuerpo que la Bodoni se
+   leería la mitad de bien. Y se le quita la cursiva, que ya viene inclinada
+   de serie: aplicarle italic encima la tumba el doble y se deforma. */
 .signature {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 1.8rem;
+  font-family: var(--font-firma);
+  font-style: normal;
+  font-size: clamp(2.1rem, 3.4vw, 2.8rem);
+  line-height: 1.2;
   color: var(--accent);
   margin-top: 2rem;
 }
@@ -1257,7 +1327,37 @@ h1, h2, h3, h4, .dish__name, .dish__price,
 
 /* Titulares con algo más de cuerpo (Bodoni a 400 quedaba demasiado fino) */
 h1, h2, h3, h4, .h2, .h3 { font-weight: 500; }
-.dish__name, .menu-cat, .signature, .story__body .stat b { font-weight: 500; }
+
+/* ---------- Los titulares, de puño ----------
+   Solo la clase .h2, que es la que llevan los titulares de sección de las
+   páginas de contenido. Los <h2> pelados de aviso legal, privacidad y
+   cookies se quedan en Bodoni: un epígrafe que dice «4. Propiedad
+   intelectual» escrito a mano sería una broma.
+
+   El cuerpo sube un 30% sobre la Bodoni y no es capricho. Esta letra tiene
+   la altura de equis en 0.28 del em (la Bodoni la tiene en 0.48) y las
+   mayúsculas en 1.14. Al mismo font-size se lee la mitad de grande. Se
+   iguala por la equis, que es lo que gobierna cómo de grande PARECE un
+   renglón, no por la caja.
+
+   El interlineado va holgado porque las mayúsculas de esta fuente bajan
+   hasta -1.1 em por debajo de la línea base: la A y la M llevan rasgo largo,
+   y con el 1.04 de la Bodoni se cruzaban con el renglón de abajo.
+
+   El peso vuelve a 400 por lo mismo que la firma: solo existe en 400 y el
+   navegador le fabrica la negrita engordando el trazo. */
+.h2 {
+  font-family: var(--font-firma);
+  font-weight: 400;
+  line-height: 1.22;
+  letter-spacing: 0;
+  font-size: clamp(2.4rem, 5.2vw, 4.4rem);
+}
+/* .signature sale de este grupo: el 500 se puso para dar cuerpo a la Bodoni,
+   pero la manuscrita solo existe en 400 y el navegador le fabricaba la
+   negrita engordando el trazo. Una monolínea engordada a la fuerza deja de
+   ser una monolínea: parecía una itálica de contraste, no una firma. */
+.dish__name, .menu-cat, .story__body .stat b { font-weight: 500; }
 
 /* Eyebrow en oliva (no en latón) para que respire la paleta */
 .eyebrow { color: var(--olive); }
@@ -1271,6 +1371,24 @@ h1, h2, h3, h4, .h2, .h3 { font-weight: 500; }
 }
 .eyebrow::before,
 .eyebrow.center::after { background: var(--olive); }
+
+/* ---------- Oro blanco: los botones ----------
+   El único "color" del sitio, y ni siquiera lo es: un reflejo, y solo en
+   los botones. Titulares, antetítulos y filetes se quedan en blanco liso.
+   Si el metal estuviera en todas partes habría dejado de ser un detalle.
+   Entra como background-image y no cambiando --bg porque --bg es un color
+   y esto es un degradado; debajo sigue quedando el blanco de --bg, que es
+   justo la reserva que queremos si algún día el degradado no pintara.
+   El ::after del hover barre en negro por encima, así que el estado de
+   paso no cambia. El texto sigue en --ink: sobre la zona más oscura del
+   metal (#9C9C9C) da 7.6:1, de sobra para un botón. */
+.btn:not(.btn--ghost),
+.cookie-banner .ck-acc {
+  background-image: var(--oro);
+}
+/* El fantasma solo enseña el metal al pasar por encima, que es cuando se
+   rellena; en reposo sigue siendo un borde blanco sobre casi nada. */
+.btn--ghost::after { background: var(--oro); }
 
 /* Botones: bloque de latón nítido (2px) en Title Case — fuera píldoras y mayúsculas */
 .btn { border-radius: 2px; text-transform: none; letter-spacing: 0.03em; }
