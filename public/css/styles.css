@@ -157,17 +157,6 @@ select { font: inherit; color: inherit; }
   --accent: #FFFFFF;
   --accent-2: #FFFFFF;
   --accent-3: #BFBFBF;
-  /* Oro blanco. No es un color: es un reflejo. Puesto plano daría un gris
-     claro igual a los que ya hay y no se notaría nada; lo que lo hace leer
-     como metal es el degradado, que imita la luz corriendo por una
-     superficie pulida. Va de #9C9C9C a blanco y no de negro a blanco a
-     propósito: un contraste más duro se ve como un logotipo cromado de los
-     noventa, y lo que se busca aquí es lo contrario, que parezca que
-     siempre estuvo ahí. Hasta su punto más oscuro da 7.6:1 sobre el negro,
-     así que no cuesta legibilidad. Los grados impares (104) y los cortes
-     desiguales son queridos: un degradado perfectamente regular canta a
-     efecto. */
-  --oro: linear-gradient(104deg, #9C9C9C 0%, #E9E9E9 18%, #FFFFFF 34%, #C2C2C2 52%, #F2F2F2 70%, #A8A8A8 88%, #D8D8D8 100%);
   /* Eran verde oliva y terracota, los dos últimos tonos cálidos; luego
      grises; ahora blanco, como el resto de la letra. Las dos etiquetas que
      los usan (veg y nuevo) se distinguen por su texto, que además es lo
@@ -1467,23 +1456,14 @@ html[lang="ru"] .menu-cat::after { transform: none; }
 .eyebrow::before,
 .eyebrow.center::after { background: var(--olive); }
 
-/* ---------- Oro blanco: los botones ----------
-   El único "color" del sitio, y ni siquiera lo es: un reflejo, y solo en
-   los botones. Titulares, antetítulos y filetes se quedan en blanco liso.
-   Si el metal estuviera en todas partes habría dejado de ser un detalle.
-   Entra como background-image y no cambiando --bg porque --bg es un color
-   y esto es un degradado; debajo sigue quedando el blanco de --bg, que es
-   justo la reserva que queremos si algún día el degradado no pintara.
-   El ::after del hover barre en negro por encima, así que el estado de
-   paso no cambia. El texto sigue en --ink: sobre la zona más oscura del
-   metal (#9C9C9C) da 7.6:1, de sobra para un botón. */
-.btn:not(.btn--ghost),
-.cookie-banner .ck-acc {
-  background-image: var(--oro);
-}
-/* El fantasma solo enseña el metal al pasar por encima, que es cuando se
-   rellena; en reposo sigue siendo un borde blanco sobre casi nada. */
-.btn--ghost::after { background: var(--oro); }
+/* ---------- Los botones, en blanco liso ----------
+   Aqui hubo un degradado de oro blanco: un reflejo metalico, el unico
+   "color" que le quedaba al sitio. Fuera. Un degradado es un efecto, y un
+   efecto en el unico elemento que se pulsa se lee como adorno de
+   plantilla, justo lo que no queremos. El boton vuelve a lo que ya dice
+   .btn por defecto: fondo blanco liso, tinta negra, 21:1. Lo que destaca
+   un boton no es el brillo, es que sea el unico rectangulo claro de la
+   pantalla. */
 
 /* Botones: bloque de latón nítido (2px) en Title Case — fuera píldoras y mayúsculas */
 .btn { border-radius: 2px; text-transform: none; letter-spacing: 0.03em; }
@@ -1686,7 +1666,114 @@ body > * { position: relative; z-index: 1; }
 .page-head .h2 { margin-top: 1rem; }
 .page-head .lead { margin: 1.4rem auto 0; max-width: 48ch; }
 
-/* Reseñas: carrusel horizontal deslizable con muchas tarjetas */
+/* =====================================================================
+   RESENAS DE GOOGLE
+   Aqui entra el unico color de la web, y entra con permiso: la G de cuatro
+   colores y el amarillo de las estrellas son la firma de quien avala, no
+   una decoracion. Si lo pintaramos en blanco y negro como el resto, la
+   resena perderia justo lo que la hace valer, que es de donde viene.
+   Las tarjetas van en blanco porque asi las pinta Google y porque, sobre
+   una web entera en negro, un rectangulo blanco es lo que mas contrasta
+   que existe: 21:1. No hace falta nada mas para que este bloque sea el
+   que te para al bajar.
+   Dentro de la tarjeta los colores se escriben a pelo (#202124, #3c4043,
+   #70757a) y no con los tokens del sitio: los tokens son todos blancos
+   porque el fondo del sitio es negro, y aqui el fondo es blanco. Es el
+   unico sitio de la hoja donde eso pasa, y por eso no hay token para
+   ello: un token con un solo uso no es un token, es un nombre de mas.
+   ===================================================================== */
+.greviews .reviews-rail { align-items: stretch; }
+
+/* La cabecera: nota, estrellas y recuento, enlazando a la ficha */
+.gr__head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  text-decoration: none;
+  color: var(--cream);
+  padding: 0.6rem 0 0.2rem;
+}
+.gr__head:hover .gr__count { text-decoration: underline; }
+.gr__g { flex: none; display: block; }
+.gr__score { display: inline-flex; align-items: baseline; gap: 0.5rem; }
+.gr__num {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  line-height: 1;
+  color: var(--cream);
+}
+/* El amarillo es el de Google (#FBBC04). Sobre negro da 11.9:1, asi que no
+   hay que tocarlo por contraste; se deja tal cual, que es lo que lo hace
+   reconocible al instante. */
+.gr__stars { color: #FBBC04; letter-spacing: 0.08em; font-size: 1.05rem; }
+.gr__count {
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* La tarjeta */
+.g-card {
+  scroll-snap-align: center;
+  flex: 0 0 min(84%, 380px);
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  background: #FFFFFF;
+  border-radius: 8px;
+  padding: 1.4rem 1.5rem 1.6rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+.g-card__head { display: flex; align-items: center; gap: 0.7rem; }
+/* El avatar con la inicial es lo que pone Google cuando no hay foto. Y es
+   lo que ponemos siempre: las fotos de perfil se sirven desde un dominio
+   de Google con direcciones que caducan, asi que enlazarlas seria dejar
+   doce huecos rotos dentro de unos meses. */
+.g-card__av {
+  flex: none;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--av, #4285F4);
+  color: #FFFFFF;
+  display: grid; place-items: center;
+  font-size: 1rem; font-weight: 500; line-height: 1;
+}
+.g-card__who { display: flex; flex-direction: column; gap: 0.1rem; min-width: 0; }
+.g-card__name {
+  font-size: 0.86rem; font-weight: 500; color: #202124;
+  letter-spacing: 0; text-transform: none;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.g-card__when { font-size: 0.78rem; color: #70757a; }
+.g-card__g { flex: none; margin-left: auto; opacity: 0.85; }
+.g-card__stars { color: #FBBC04; letter-spacing: 0.06em; font-size: 0.92rem; }
+.g-card p {
+  margin: 0;
+  font-family: var(--font-body);
+  font-style: normal;
+  font-size: 0.92rem;
+  line-height: 1.62;
+  color: #3c4043;
+  letter-spacing: 0;
+  /* Seis lineas y corta, con sus puntos suspensivos. Las doce del HTML ya
+     vienen cortas, pero las que trae la API vienen como las escribiera
+     quien las escribio: una de treinta lineas estiraria a las once
+     restantes, que en un carril de alturas iguales es una tarjeta vacia
+     al lado de un ladrillo. El enlace a la ficha esta justo debajo para
+     quien quiera leerla entera. */
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.greviews .reviews-hint { margin-top: 0.4rem; }
+.greviews .link-underline { margin-top: 1.4rem; display: inline-block; }
+
+/* El carril, que lo comparten las dos versiones */
 .reviews-rail {
   display: flex;
   gap: clamp(1rem, 2vw, 1.6rem);
@@ -1697,30 +1784,51 @@ body > * { position: relative; z-index: 1; }
   scrollbar-width: none;
 }
 .reviews-rail::-webkit-scrollbar { display: none; }
-.review-card {
-  scroll-snap-align: center;
-  flex: 0 0 min(84%, 400px);
-  background: var(--noir-2);
-  border: 1px solid var(--line);
-  border-radius: 4px;
-  padding: clamp(1.6rem, 3vw, 2.4rem);
-  display: flex; flex-direction: column; gap: 1.1rem;
-}
-.review-card__stars { color: var(--accent-2); letter-spacing: 0.14em; font-size: 0.9rem; }
-.review-card p {
-  font-family: var(--font-display); font-style: italic;
-  font-size: clamp(1.05rem, 1.6vw, 1.3rem); line-height: 1.5; color: var(--cream); margin: 0;
-}
-.review-card footer {
-  margin-top: auto; font-size: 0.7rem; letter-spacing: 0.2em;
-  text-transform: uppercase; color: var(--muted);
-}
-/* La fuente de la reseña va en --muted y no en el acento: es un dato
-   secundario y no debe competir con la cita. */
-.review-card__src { color: var(--muted); }
 .reviews-hint {
   text-align: center; margin-top: 0.8rem;
   font-size: 0.68rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--muted-2);
+}
+
+/* =====================================================================
+   EL ACEITE DE LA CASA  ->  realdecote.es
+   Venta cruzada entre dos negocios de la misma familia. La botella se
+   queda sobre su fondo blanco de estudio en vez de recortarla: el vidrio
+   es negro y el oro del grabado solo se lee contra claro. Recortada sobre
+   el negro del sitio desapareceria la botella y quedaria el escudo
+   flotando, que es exactamente lo contrario de lo que se quiere ensenar.
+   Y de paso el panel blanco rima con las tarjetas de Google de arriba:
+   las dos cosas nuevas de esta pagina son insertos, y se nota que lo son.
+   ===================================================================== */
+.aceite__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+}
+.aceite__media { margin: 0; }
+.aceite__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #FFFFFF;
+  border-radius: 4px;
+}
+.aceite__media figcaption {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 0.68rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+}
+.aceite__texto .h2 { margin-top: 0.9rem; }
+.aceite__texto .lead { margin: 1.3rem 0 2.1rem; }
+
+@media (max-width: 860px) {
+  .aceite__grid { grid-template-columns: 1fr; gap: 2.2rem; }
+  .aceite__media { max-width: 320px; margin: 0 auto; }
+  .aceite__texto { text-align: center; }
+  .aceite__texto .eyebrow { justify-content: center; }
 }
 
 /* =====================================================================

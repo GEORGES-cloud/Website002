@@ -39,16 +39,20 @@
   <!-- Sin JavaScript, el loader (position:fixed, opaco) no lo quita nadie y la
        portada se queda en negro para siempre. -->
   <noscript><style>.loader{display:none!important}</style></noscript>
-  <link rel="stylesheet" href="/css/styles.css?v=81" />
+  <link rel="stylesheet" href="/css/styles.css?v=82" />
 
   <!-- Datos estructurados -->
-  <!-- Sin "geo" a proposito: las coordenadas que habia (36.5118, -4.9646)
-       caian en Calle Al-Andalus, Aloha Pueblo, a unos 2 km de la Avenida de
-       los Girasoles (comprobado con geocodificacion inversa el 2026-09-02).
-       Un geo que contradice a la direccion postal debilita la asociacion con
-       la ficha de Google; ausente no resta, porque Google geocodifica la
-       address. Para reponerlo hacen falta las coordenadas del pin real de la
-       ficha de Google Business, no una geocodificacion aproximada. -->
+  <!-- El "geo" estuvo fuera una temporada: las coordenadas que habia
+       (36.5118, -4.9646) caian en Calle Al-Andalus, Aloha Pueblo, a unos 2 km
+       de la Avenida de los Girasoles. Vuelve con las buenas, que son las del
+       pin de la ficha de Google Business (leidas de la propia ficha el
+       9-11-2026), no una geocodificacion aproximada. -->
+  <!-- Sin "aggregateRating", y es a proposito ahora que la nota real (4,7 de
+       146) esta en la pagina. Las directrices de datos estructurados de Google
+       solo admiten marcar valoraciones recogidas por el propio sitio; copiar
+       las de otra plataforma -la suya, en este caso- es justo lo que prohiben,
+       y se penaliza. La nota se ensena en el bloque de resenas, que es donde
+       toca, y la ficha ya la publica Google por su cuenta. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -62,8 +66,14 @@
     "url": "https://zenorio.es/",
     "sameAs": [
       "https://www.instagram.com/zenoriomarbella/",
-      "https://www.facebook.com/p/Ze%C3%B1or%C3%ADo-Marbella-61577793421421/"
+      "https://www.facebook.com/p/Ze%C3%B1or%C3%ADo-Marbella-61577793421421/",
+      "https://maps.google.com/?cid=5491774475868882494"
     ],
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 36.4936376,
+      "longitude": -4.9664939
+    },
     "acceptsReservations": "https://zenorio.es/reserva.html",
     "hasMenu": "https://zenorio.es/carta.html",
     "address": {
@@ -227,25 +237,209 @@
       </div>
     </section>
 
-    <!-- ============ RESEÑAS (carrusel) ============ -->
-    <section class="section">
+    <!-- ============ RESENAS DE GOOGLE ============
+         Las ocho resenas que habia aqui eran de adorno: nombres y frases
+         escritos para rellenar, y encima firmados "Google". Fuera. Estas
+         son las de la ficha real (Zenorio Restaurante Marbella, place id
+         ChIJOa_ge-Ypcw0RPsa4BMqzNkw), leidas el 9-11-2026, con su nombre, su nota y su
+         fecha. El texto va literal; lo unico que se hace es recortar los
+         largos, y se marca con puntos suspensivos.
+         El bloque se pinta como lo pinta Google a proposito: la G de
+         cuatro colores, las estrellas en su amarillo (#FBBC04) y las
+         tarjetas en blanco. Es el unico color de la web, y esta bien que
+         lo sea: el color aqui no es decoracion, es la marca de quien
+         firma la resena, que es lo que le da valor.
+         Si se configura la clave en js/resenas.js, el bloque se rellena
+         en vivo desde la Places API y estas tarjetas quedan de respaldo. -->
+    <section class="section greviews" id="resenas">
       <div class="wrap">
-        <div class="section-head center" style="margin-bottom:clamp(2rem,4vw,3rem)">
+        <div class="section-head center" style="margin-bottom:clamp(1.6rem,3vw,2.4rem)">
           <span class="eyebrow center" data-reveal data-i18n="rev.eyebrow">Lo que dicen</span>
           <h2 class="h2" data-reveal style="--d:.06s" data-i18n="rev.title">Huéspedes que vuelven</h2>
         </div>
+        <a class="gr__head" data-reveal style="--d:.1s" href="https://www.google.com/maps/place/?q=place_id:ChIJOa_ge-Ypcw0RPsa4BMqzNkw" target="_blank" rel="noopener">
+          <svg class="gr__g" viewBox="0 0 48 48" width="22" height="22" aria-hidden="true" focusable="false"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>
+          <span class="gr__score">
+            <span class="gr__num" data-gr-nota>4,7</span>
+            <span class="gr__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </span>
+          <span class="gr__count"><span data-gr-total>146</span> <span data-i18n="rev.gcount">reseñas en Google</span></span>
+        </a>
       </div>
-      <div class="reviews-rail" data-reveal tabindex="0" role="list" aria-label="Reseñas de clientes" data-i18n-aria="a11y.reviewsList">
-        <figure class="review-card" role="listitem"><div class="review-card__stars" aria-hidden="true">★★★★★</div><span class="sr-only" data-i18n="rev.stars">5 de 5 estrellas</span><p data-i18n="rev.q1">“Una experiencia sobresaliente: acogida cálida, servicio atento y una cocina excelente. Nuestro nuevo restaurante favorito en Marbella.”</p><footer>Laura M. · <span class="review-card__src">Google</span></footer></figure>
-        <figure class="review-card" role="listitem"><div class="review-card__stars" aria-hidden="true">★★★★★</div><span class="sr-only" data-i18n="rev.stars">5 de 5 estrellas</span><p data-i18n="rev.q2">“Un lugar precioso, con una comida soberbia y un entorno de jardín maravilloso. El arroz, espectacular.”</p><footer>James T. · <span class="review-card__src">Google</span></footer></figure>
-        <figure class="review-card" role="listitem"><div class="review-card__stars" aria-hidden="true">★★★★★</div><span class="sr-only" data-i18n="rev.stars">5 de 5 estrellas</span><p data-i18n="rev.q3">“Presentación impecable y un ambiente único bajo las palmeras. Volveremos sin duda.”</p><footer>Sofía R. · <span class="review-card__src">Google</span></footer></figure>
-        <figure class="review-card" role="listitem"><div class="review-card__stars" aria-hidden="true">★★★★★</div><span class="sr-only" data-i18n="rev.stars">5 de 5 estrellas</span><p data-i18n="rev.q4">“El pescado a la sal es de otro nivel y el trato, exquisito. Una velada redonda de principio a fin.”</p><footer>Andrés P. · <span class="review-card__src">Google</span></footer></figure>
-        <figure class="review-card" role="listitem"><div class="review-card__stars" aria-hidden="true">★★★★★</div><span class="sr-only" data-i18n="rev.stars">5 de 5 estrellas</span><p data-i18n="rev.q5">“Cenamos en el jardín y fue mágico. La brasa se nota en cada plato. Marbella en estado puro.”</p><footer>Chloé D. · <span class="review-card__src">Google</span></footer></figure>
-        <figure class="review-card" role="listitem"><div class="review-card__stars" aria-hidden="true">★★★★★</div><span class="sr-only" data-i18n="rev.stars">5 de 5 estrellas</span><p data-i18n="rev.q6">“Servicio atentísimo, producto de primera y una carta de vinos estupenda. Repetiremos seguro.”</p><footer>Marco V. · <span class="review-card__src">Google</span></footer></figure>
-        <figure class="review-card" role="listitem"><div class="review-card__stars" aria-hidden="true">★★★★★</div><span class="sr-only" data-i18n="rev.stars">5 de 5 estrellas</span><p data-i18n="rev.q7">“Ambiente elegante y relajado a la vez. Las ostras y el atún rojo, memorables.”</p><footer>Elena G. · <span class="review-card__src">Google</span></footer></figure>
-        <figure class="review-card" role="listitem"><div class="review-card__stars" aria-hidden="true">★★★★★</div><span class="sr-only" data-i18n="rev.stars">5 de 5 estrellas</span><p data-i18n="rev.q8">“Perfecto para una ocasión especial. Nos trataron como en casa y la comida estuvo impecable.”</p><footer>Thomas B. · <span class="review-card__src">Google</span></footer></figure>
+      <div class="reviews-rail" data-reveal tabindex="0" role="list" aria-label="Reseñas de clientes" data-i18n-aria="a11y.reviewsList" data-gr-lista>
+        <figure class="g-card" role="listitem" data-fecha="2026-10-19">
+          <header class="g-card__head">
+            <span class="g-card__av" style="--av:#4285F4" aria-hidden="true">S</span>
+            <span class="g-card__who">
+              <span class="g-card__name">Svitlana Fedkiv</span>
+              <time class="g-card__when" datetime="2026-10-19"></time>
+            </span>
+            <svg class="g-card__g" viewBox="0 0 48 48" width="22" height="22" aria-hidden="true" focusable="false"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>
+          </header>
+          <div class="g-card__stars" role="img" aria-label="5 de 5 estrellas" data-i18n-aria="a11y.stars5">★★★★★</div>
+          <p>Nos ha encantado el sitio, el personal de 10… El ambiente muy bueno, tranquilo, con un jardín precioso y la comida buenísima. Muchas gracias</p>
+        </figure>
+        <figure class="g-card" role="listitem" data-fecha="2026-10-09">
+          <header class="g-card__head">
+            <span class="g-card__av" style="--av:#EA4335" aria-hidden="true">E</span>
+            <span class="g-card__who">
+              <span class="g-card__name">Elena</span>
+              <time class="g-card__when" datetime="2026-10-09"></time>
+            </span>
+            <svg class="g-card__g" viewBox="0 0 48 48" width="22" height="22" aria-hidden="true" focusable="false"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>
+          </header>
+          <div class="g-card__stars" role="img" aria-label="5 de 5 estrellas" data-i18n-aria="a11y.stars5">★★★★★</div>
+          <p>Sitio estupendo, elegante, fino, con buena música, buena comida, para pasar un rato en buena compañía.</p>
+        </figure>
+        <figure class="g-card" role="listitem" data-fecha="2026-10-09">
+          <header class="g-card__head">
+            <span class="g-card__av" style="--av:#FBBC04" aria-hidden="true">O</span>
+            <span class="g-card__who">
+              <span class="g-card__name">Oscar López Alagarda</span>
+              <time class="g-card__when" datetime="2026-10-09"></time>
+            </span>
+            <svg class="g-card__g" viewBox="0 0 48 48" width="22" height="22" aria-hidden="true" focusable="false"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>
+          </header>
+          <div class="g-card__stars" role="img" aria-label="5 de 5 estrellas" data-i18n-aria="a11y.stars5">★★★★★</div>
+          <p>Excepcional el ambiente, la comida, el servicio y el precio.</p>
+        </figure>
+        <figure class="g-card" role="listitem" data-fecha="2026-09-09">
+          <header class="g-card__head">
+            <span class="g-card__av" style="--av:#34A853" aria-hidden="true">S</span>
+            <span class="g-card__who">
+              <span class="g-card__name">Sergio Ruiz Valle</span>
+              <time class="g-card__when" datetime="2026-09-09"></time>
+            </span>
+            <svg class="g-card__g" viewBox="0 0 48 48" width="22" height="22" aria-hidden="true" focusable="false"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>
+          </header>
+          <div class="g-card__stars" role="img" aria-label="5 de 5 estrellas" data-i18n-aria="a11y.stars5">★★★★★</div>
+          <p>Una experiencia maravillosa en Zeñorio Restaurante Marbella. Un lugar elegante, cuidado hasta el más mínimo detalle y con un ambiente realmente especial.</p>
+        </figure>
+        <figure class="g-card" role="listitem" data-fecha="2026-09-09">
+          <header class="g-card__head">
+            <span class="g-card__av" style="--av:#4285F4" aria-hidden="true">A</span>
+            <span class="g-card__who">
+              <span class="g-card__name">Alexandra Le Roy</span>
+              <time class="g-card__when" datetime="2026-09-09"></time>
+            </span>
+            <svg class="g-card__g" viewBox="0 0 48 48" width="22" height="22" aria-hidden="true" focusable="false"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>
+          </header>
+          <div class="g-card__stars" role="img" aria-label="5 de 5 estrellas" data-i18n-aria="a11y.stars5">★★★★★</div>
+          <p>Excelente restaurante! La comida estaba deliciosa y el servicio fue impecable. Un equipo muy amable y atento. Pasamos un momento genial, 100% recomendable!</p>
+        </figure>
+        <figure class="g-card" role="listitem" data-fecha="2026-08-09">
+          <header class="g-card__head">
+            <span class="g-card__av" style="--av:#EA4335" aria-hidden="true">J</span>
+            <span class="g-card__who">
+              <span class="g-card__name">Juan Santiago</span>
+              <time class="g-card__when" datetime="2026-08-09"></time>
+            </span>
+            <svg class="g-card__g" viewBox="0 0 48 48" width="22" height="22" aria-hidden="true" focusable="false"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>
+          </header>
+          <div class="g-card__stars" role="img" aria-label="5 de 5 estrellas" data-i18n-aria="a11y.stars5">★★★★★</div>
+          <p>Anoche fuimos por primera vez en familia y no será la última. La terraza es muy agradable, con música ambiente a bajo volumen acorde con el entorno que le da un toque especial…</p>
+        </figure>
+        <figure class="g-card" role="listitem" data-fecha="2026-07-09">
+          <header class="g-card__head">
+            <span class="g-card__av" style="--av:#FBBC04" aria-hidden="true">J</span>
+            <span class="g-card__who">
+              <span class="g-card__name">Jairo Casado</span>
+              <time class="g-card__when" datetime="2026-07-09"></time>
+            </span>
+            <svg class="g-card__g" viewBox="0 0 48 48" width="22" height="22" aria-hidden="true" focusable="false"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>
+          </header>
+          <div class="g-card__stars" role="img" aria-label="5 de 5 estrellas" data-i18n-aria="a11y.stars5">★★★★★</div>
+          <p>Una experiencia fantástica de principio a fin. Es un auténtico placer encontrar un restaurante que apuesta por productos naturales, frescos y de calidad…</p>
+        </figure>
+        <figure class="g-card" role="listitem" data-fecha="2026-06-09">
+          <header class="g-card__head">
+            <span class="g-card__av" style="--av:#34A853" aria-hidden="true">K</span>
+            <span class="g-card__who">
+              <span class="g-card__name">Kemi Johnson</span>
+              <time class="g-card__when" datetime="2026-06-09"></time>
+            </span>
+            <svg class="g-card__g" viewBox="0 0 48 48" width="22" height="22" aria-hidden="true" focusable="false"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>
+          </header>
+          <div class="g-card__stars" role="img" aria-label="5 de 5 estrellas" data-i18n-aria="a11y.stars5">★★★★★</div>
+          <p>Increible el sitio, precioso, las luces son increibles y el ambiente super acogedor!! La comida de 10, fuimos sin conocerlo y 100% volveremos</p>
+        </figure>
+        <figure class="g-card" role="listitem" data-fecha="2026-06-09">
+          <header class="g-card__head">
+            <span class="g-card__av" style="--av:#4285F4" aria-hidden="true">G</span>
+            <span class="g-card__who">
+              <span class="g-card__name">Gonzalo Russo</span>
+              <time class="g-card__when" datetime="2026-06-09"></time>
+            </span>
+            <svg class="g-card__g" viewBox="0 0 48 48" width="22" height="22" aria-hidden="true" focusable="false"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>
+          </header>
+          <div class="g-card__stars" role="img" aria-label="5 de 5 estrellas" data-i18n-aria="a11y.stars5">★★★★★</div>
+          <p>Muy bonito ambiente y la comida genial!! El restaurante es muy acogedor y elegante y el servicio muy atento. Repetiremos seguro</p>
+        </figure>
+        <figure class="g-card" role="listitem" data-fecha="2025-12-09">
+          <header class="g-card__head">
+            <span class="g-card__av" style="--av:#EA4335" aria-hidden="true">R</span>
+            <span class="g-card__who">
+              <span class="g-card__name">Raquel Miguel López</span>
+              <time class="g-card__when" datetime="2025-12-09"></time>
+            </span>
+            <svg class="g-card__g" viewBox="0 0 48 48" width="22" height="22" aria-hidden="true" focusable="false"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>
+          </header>
+          <div class="g-card__stars" role="img" aria-label="5 de 5 estrellas" data-i18n-aria="a11y.stars5">★★★★★</div>
+          <p>Me encanta Zeñorio. Buen ambiente, personal rápido y efectivo. Los platos son muy frescos y nada de congelado… Me encantó el Tartar de Atún!</p>
+        </figure>
+        <figure class="g-card" role="listitem" data-fecha="2025-11-09">
+          <header class="g-card__head">
+            <span class="g-card__av" style="--av:#FBBC04" aria-hidden="true">E</span>
+            <span class="g-card__who">
+              <span class="g-card__name">Emmanuel Giménez abbadi</span>
+              <time class="g-card__when" datetime="2025-11-09"></time>
+            </span>
+            <svg class="g-card__g" viewBox="0 0 48 48" width="22" height="22" aria-hidden="true" focusable="false"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>
+          </header>
+          <div class="g-card__stars" role="img" aria-label="5 de 5 estrellas" data-i18n-aria="a11y.stars5">★★★★★</div>
+          <p>Llevo 38 años viviendo en Marbella y este magnífico restaurante me ha sorprendido… La comida le doy un 10 de 10. Volveré a venir sin falta.</p>
+        </figure>
+        <figure class="g-card" role="listitem" data-fecha="2025-11-09">
+          <header class="g-card__head">
+            <span class="g-card__av" style="--av:#34A853" aria-hidden="true">G</span>
+            <span class="g-card__who">
+              <span class="g-card__name">G S</span>
+              <time class="g-card__when" datetime="2025-11-09"></time>
+            </span>
+            <svg class="g-card__g" viewBox="0 0 48 48" width="22" height="22" aria-hidden="true" focusable="false"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>
+          </header>
+          <div class="g-card__stars" role="img" aria-label="5 de 5 estrellas" data-i18n-aria="a11y.stars5">★★★★★</div>
+          <p>Simplemente espectacular. El sitio es acogedor, bien decorado y con un jardín maravilloso. La calidad de los productos, la mano del cocinero y la atención de 5 estrellas.</p>
+        </figure>
       </div>
-      <p class="reviews-hint" aria-hidden="true" data-i18n="rev.hint">← Desliza para leer más →</p>
+      <p class="reviews-hint" aria-hidden="true" data-i18n="rev.hint">&#8592; Desliza para leer más &#8594;</p>
+      <div class="wrap" style="text-align:center">
+        <a class="link-underline" href="https://www.google.com/maps/place/?q=place_id:ChIJOa_ge-Ypcw0RPsa4BMqzNkw" target="_blank" rel="noopener" data-i18n="rev.gall">Ver todas las reseñas en Google &#8599;</a>
+      </div>
+    </section>
+
+    <!-- ============ EL ACEITE (venta cruzada -> realdecote.es) ============
+         El aceite que se sirve aqui es de Real de Cote, la almazara de la
+         misma casa. No es un anuncio prestado: es la misma familia, y por
+         eso el bloque se escribe como lo que es, el aceite de casa, y no
+         como una colaboracion. La botella va sobre su fondo blanco de
+         estudio, que es como esta fotografiada; recortarla no valdria,
+         porque el vidrio es negro y sobre fondo negro desapareceria. -->
+    <section class="section aceite">
+      <div class="wrap aceite__grid">
+        <figure class="aceite__media" data-reveal>
+          <img src="/assets/img/aceite-real-de-cote.webp" width="900" height="1200"
+               alt="Botella de aceite de oliva virgen extra Real de Cote, coupage de 500 ml"
+               data-i18n-alt="alt.aceite" loading="lazy" decoding="async" />
+          <figcaption>N.&ordm; 01 &middot; Coupage &middot; 500 ml</figcaption>
+        </figure>
+        <div class="aceite__texto" data-reveal style="--d:.08s">
+          <span class="eyebrow" data-i18n="oil.eyebrow">En la mesa</span>
+          <h2 class="h2" data-i18n="oil.title">El aceite es de casa</h2>
+          <p class="lead" data-i18n="oil.p">El virgen extra que llega a la mesa es Real de Cote, la almazara de la misma familia, en Montellano, al sur de Sevilla, donde la campiña se encuentra con la sierra. Sin filtrar, en cinco aceites: coupage, manzanilla, arbequina, hojiblanca y ecológico. El mismo que puedes llevarte a tu cocina.</p>
+          <a class="btn" href="https://www.realdecote.es" target="_blank" rel="noopener" data-i18n="oil.cta">Conocer Real de Cote &#8599;</a>
+        </div>
+      </div>
     </section>
 
     <!-- Bloque local: quiénes somos y dónde (SEO) -->
@@ -313,8 +507,9 @@
   </div>
 
   <script src="/js/cookies.js?v=7" defer></script>
-  <script src="/js/i18n.js?v=33" defer></script>
+  <script src="/js/i18n.js?v=35" defer></script>
   <script src="/js/main.js?v=12" defer></script>
   <script src="/js/anuncio.js?v=9" defer></script>
+  <script src="/js/resenas.js?v=2" defer></script>
 </body>
 </html>
