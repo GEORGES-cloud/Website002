@@ -109,7 +109,7 @@ select { font: inherit; color: inherit; }
    que el texto se lea desde el primer momento aunque la fuente tarde. */
 @font-face {
   font-family: "Blastyes ES";
-  src: url("/assets/fonts/BlastyesES.woff2?v=1") format("woff2");
+  src: url("/assets/fonts/BlastyesES.woff2?v=2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -138,12 +138,17 @@ select { font: inherit; color: inherit; }
   --noir-3: #1A1A1A;
   --noir-soft: #262626;
   --cream: #FFFFFF;
-  --cream-2: #D3D3D3;
+  --cream-2: #FFFFFF;
   --ink: #000000;
-  /* Grises neutros para los textos secundarios. Sobre el negro puro suben
-     a 8.6:1 y 5.9:1, bastante por encima del 4.5 que pide WCAG. */
-  --muted: #A6A6A6;
-  --muted-2: #888888;
+  /* Fueron grises neutros para los textos secundarios. Ya no: toda la letra
+     del sitio va en blanco puro, sin excepción. Un gris sobre negro es un
+     blanco apagado, y apagado sobre fondo negro se lee como suciedad, no
+     como jerarquía. La jerarquía la ponen el cuerpo, el peso y el aire, que
+     es con lo que se ha hecho siempre en papel. Los tokens se quedan con su
+     nombre porque los usan ciento y pico reglas; lo que cambia es su valor,
+     en un solo sitio. De paso, todo el texto sube a 21:1. */
+  --muted: #FFFFFF;
+  --muted-2: #FFFFFF;
   /* Acento en blanco. Antes fue oro viejo (#B08A54) y después crema
      (#EDE4D3), y las dos veces el tono cálido daba al sitio aire de
      plantilla. Ya no hay color de marca: el contraste lo pone la luz. Los
@@ -163,16 +168,12 @@ select { font: inherit; color: inherit; }
      desiguales son queridos: un degradado perfectamente regular canta a
      efecto. */
   --oro: linear-gradient(104deg, #9C9C9C 0%, #E9E9E9 18%, #FFFFFF 34%, #C2C2C2 52%, #F2F2F2 70%, #A8A8A8 88%, #D8D8D8 100%);
-  /* Eran verde oliva y terracota, los dos últimos tonos cálidos que
-     quedaban. Ahora son grises con su misma luminancia, salvo el terracota,
-     que sube un poco porque a 4.4:1 no llegaba al 4.5 de WCAG. Siguen
-     siendo dos tokens aparte por lo mismo que --accent-N: si vuelve el
-     color, se cambia aquí. Las dos etiquetas que los usan (veg y nuevo)
-     quedan en el mismo gris; hoy no hay ninguna puesta en la carta, y si
-     vuelven se distinguirán por su texto, que además es lo correcto: el
-     color no debería ser nunca la única pista. */
-  --olive: #878787;
-  --terra: #8F8F8F;
+  /* Eran verde oliva y terracota, los dos últimos tonos cálidos; luego
+     grises; ahora blanco, como el resto de la letra. Las dos etiquetas que
+     los usan (veg y nuevo) se distinguen por su texto, que además es lo
+     correcto: el color no debería ser nunca la única pista. */
+  --olive: #FFFFFF;
+  --terra: #FFFFFF;
   /* Los filetes, en blanco. Con el dorado iban al 0.26 de alfa para no
      cantar; en blanco basta con 0.16 y la línea se ve más limpia. */
   --line: rgba(255, 255, 255, 0.16);
@@ -654,8 +655,11 @@ body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-4
    Sin white-space: nowrap, que sacaría el texto fuera de la columna en vez
    de partirlo si algún día la frase crece. */
 html[lang="es"] .story__body--una-linea { container-type: inline-size; }
+/* El tope está medido para la Bodoni, que es la que pone este titular: la
+   frase es «Un homenaje de hijo a padre» y en Bodoni gasta 13 veces su
+   cuerpo, así que a 7cqw cabe de un renglón en la columna sin partirse. */
 html[lang="es"] .story__body--una-linea .h2 {
-  font-size: min(clamp(2.4rem, 5.2vw, 4.4rem), 15.5cqw);
+  font-size: min(clamp(2.4rem, 5.2vw, 4.4rem), 7cqw);
 }
 
 .story__body .stats {
@@ -1251,7 +1255,7 @@ html[lang="es"] .story__body--una-linea .h2 {
   .hero__cta { width: 100%; }
 }
 
-.hero--papi h1 { color: var(--cream-2); opacity: .94; }
+.hero--papi h1 { color: var(--cream); }
 
 /* (1) Marquesina · susurrada */
 .marquee {
@@ -1272,7 +1276,6 @@ html[lang="es"] .story__body--una-linea .h2 {
   font-size: clamp(.62rem, 1vw, .76rem);
   color: var(--muted);
   gap: clamp(2.6rem, 5vw, 4rem);
-  opacity: .9;
 }
 .marquee span::after { content: "·"; font-style: normal; color: var(--accent); opacity: .5; font-size: 1em; }
 
@@ -1328,36 +1331,128 @@ h1, h2, h3, h4, .dish__name, .dish__price,
 /* Titulares con algo más de cuerpo (Bodoni a 400 quedaba demasiado fino) */
 h1, h2, h3, h4, .h2, .h3 { font-weight: 500; }
 
-/* ---------- Los titulares, de puño ----------
-   Solo la clase .h2, que es la que llevan los titulares de sección de las
-   páginas de contenido. Los <h2> pelados de aviso legal, privacidad y
-   cookies se quedan en Bodoni: un epígrafe que dice «4. Propiedad
-   intelectual» escrito a mano sería una broma.
+/* ---------- La mano de la casa ----------
+   Tres letras, y cada una con un oficio: la Bodoni ANUNCIA (los titulares),
+   la Hanken EXPLICA (el texto corrido) y esta mano ROTULA. Nada más.
 
-   El cuerpo sube un 30% sobre la Bodoni y no es capricho. Esta letra tiene
-   la altura de equis en 0.28 del em (la Bodoni la tiene en 0.48) y las
-   mayúsculas en 1.14. Al mismo font-size se lee la mitad de grande. Se
+   Rotular quiere decir frases de dos o tres palabras: «Nuestra historia»,
+   «La carta», «Pescados», «El ritual de la sal». Se probó lo contrario —la
+   mano en los diecisiete titulares de sección, y en la frase con la que la
+   casa se explica— y estaba mal. A partir de cierto largo una manuscrita
+   deja de parecer escrita y empieza a parecer compuesta: «Un homenaje de
+   hijo a padre» o «Comidas y cenas de empresa» se leen como una fuente con
+   mucho carácter, no como la mano de alguien. En dos palabras no pasa: ahí
+   se lee por lo que es, alguien rotulando a mano lo que hay debajo.
+
+   Son 27 rótulos —los 18 antetítulos y las 9 categorías de la carta—, y que
+   sean muchos da igual, porque ninguno compite: ninguno es el titular. La
+   regla no es cuántos, es de qué largo. Nada que pase de un renglón corto.
+
+   El cuerpo sube mucho sobre la Bodoni y no es capricho. Esta letra tiene la
+   altura de equis en 0.28 del em (la Bodoni la tiene en 0.48) y las
+   mayúsculas en 1.14: al mismo font-size se lee la mitad de grande. Se
    iguala por la equis, que es lo que gobierna cómo de grande PARECE un
    renglón, no por la caja.
 
-   El interlineado va holgado porque las mayúsculas de esta fuente bajan
-   hasta -1.1 em por debajo de la línea base: la A y la M llevan rasgo largo,
-   y con el 1.04 de la Bodoni se cruzaban con el renglón de abajo.
+   El peso va a 400 y sin italic por lo mismo que la firma: la fuente solo
+   existe en 400, el navegador le fabrica la negrita engordando el trazo, y
+   ya viene inclinada de serie —aplicarle itálica encima la tumba el doble y
+   se deforma—. */
 
-   El peso vuelve a 400 por lo mismo que la firma: solo existe en 400 y el
-   navegador le fabrica la negrita engordando el trazo. */
-.h2 {
+/* Los antetítulos. Pierden la caja alta y el espaciado de 0.42em, que son de
+   un rótulo compuesto: una manuscrita en mayúsculas y con las letras
+   separadas a la fuerza es justo lo que no es, porque le rompe los enlaces
+   entre letras, que es de lo que está hecha. */
+.eyebrow {
   font-family: var(--font-firma);
   font-weight: 400;
-  line-height: 1.22;
+  font-style: normal;
+  font-size: clamp(1.3rem, 1.85vw, 1.6rem);
   letter-spacing: 0;
-  font-size: clamp(2.4rem, 5.2vw, 4.4rem);
+  text-transform: none;
+  line-height: 1.15;
+  /* El filete va al lado, no debajo: con el gap de 0.9rem y una letra que
+     empieza con trazo de entrada se pegaban. */
+  gap: 1.1rem;
 }
-/* .signature sale de este grupo: el 500 se puso para dar cuerpo a la Bodoni,
-   pero la manuscrita solo existe en 400 y el navegador le fabricaba la
-   negrita engordando el trazo. Una monolínea engordada a la fuerza deja de
-   ser una monolínea: parecía una itálica de contraste, no una firma. */
-.dish__name, .menu-cat, .story__body .stat b { font-weight: 500; }
+/* El filete, a media altura de equis, que es donde lo pondría quien dibujara
+   el rótulo. Se esperaba tener que subirlo mucho —la caja de esta fuente mide
+   2.24 em, sube a 1.14 y baja a -1.1, mientras que lo que se ve ocupa la
+   banda de 0 a 0.28— pero no: align-items:center no centra la caja del tipo,
+   centra la de la LÍNEA, que con line-height 1.15 es casi el cuerpo. Medido
+   en pantalla, el filete queda 0.06 em por debajo del sitio. Así que una
+   pizca, y no el dedo entero que pedía el cálculo sobre el papel. */
+.eyebrow::before,
+.eyebrow.center::after { transform: translateY(-0.07em); }
+
+/* Las categorías de la carta. Mismo criterio: «Pescados», «Arroces»,
+   «Postres» son rótulos, no titulares. El filete de la derecha se queda,
+   que es lo que las ata al ancho de la columna. */
+.menu-cat {
+  font-family: var(--font-firma);
+  font-weight: 400;
+  font-style: normal;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: clamp(1.75rem, 3.2vw, 2.4rem);
+  line-height: 1.1;
+}
+.menu-cat::after { transform: translateY(-0.05em); }
+
+/* En pantalla pequeña el antetítulo baja, pero no tanto como bajaba la
+   versión compuesta: por debajo de 1.15rem esta letra deja de leerse. */
+@media (max-width: 760px) {
+  .eyebrow { font-size: 1.2rem; }
+  .menu-cat { font-size: 1.6rem; }
+}
+
+/* ---------- El ruso no se escribe a mano ----------
+   Blastyes es alfabeto latino y nada mas. En ruso, el navegador coge de la
+   pila la siguiente letra que sepa cirílico —la Bodoni— y pasa una cosa
+   peor que no tener la fuente: el respaldo va letra a letra, no frase a
+   frase, así que cualquier rótulo que mezcle alfabetos sale MESTIZO —medio
+   de puño, medio de Bodoni—, y los que son todo cirílico salen enteros de
+   Bodoni pero con el cuerpo de la mano, que está subido para compensar su
+   equis diminuta: a 1.3rem la Bodoni no es un antetítulo, es un cartel.
+   La firma del chef sí se queda de puño: «Federico Cardenete» es latino en
+   los seis idiomas y no se mezcla con nada.
+
+   Aquí pesa más que antes, porque los 27 rótulos que llevan la mano son
+   precisamente los que en ruso van en cirílico: «Наша история», «Меню»,
+   «Рыба». Ninguna letra de esas la tiene la fuente, así que en ruso los
+   antetítulos y las categorías vuelven a su versión compuesta —caja alta y
+   espaciada— y se les devuelve su cuerpo, que es mucho menor: la mano iba a
+   1.3rem para compensar su equis diminuta, y la Hanken a 1.3rem en caja alta
+   y con 0.42em de espaciado sería un rótulo de aeropuerto. */
+html[lang="ru"] .eyebrow {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.72rem;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+html[lang="ru"] .menu-cat {
+  font-family: var(--font-display);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: clamp(1.3rem, 2.6vw, 1.9rem);
+  line-height: 1.2;
+}
+/* Los filetes vuelven al centro de la caja: la de la Bodoni y la de la
+   Hanken son normales, y el -0.42em estaba corrigiendo una caja que ya no
+   está. */
+html[lang="ru"] .eyebrow::before,
+html[lang="ru"] .eyebrow.center::after,
+html[lang="ru"] .menu-cat::after { transform: none; }
+/* .signature y .menu-cat salen de este grupo: el 500 se puso para dar cuerpo
+   a la Bodoni, pero la manuscrita solo existe en 400 y el navegador le
+   fabricaba la negrita engordando el trazo. Una monolínea engordada a la
+   fuerza deja de ser una monolínea: parecía una itálica de contraste, no una
+   firma. En ruso, donde las categorías vuelven a Bodoni, el 500 se les
+   devuelve en el bloque de arriba. */
+.dish__name, .story__body .stat b { font-weight: 500; }
 
 /* Eyebrow en oliva (no en latón) para que respire la paleta */
 .eyebrow { color: var(--olive); }

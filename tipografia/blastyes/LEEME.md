@@ -12,6 +12,14 @@ letra **pelada**. Tecleas `Zeñorío` y dibuja `Zenorio`, sin avisar.
 Comprobado glifo a glifo: `U+00F1` apunta a `n`, `U+00ED` apunta a `i`, y así
 las catorce. Sí trae la diéresis alemana (`ä ö ü`), que es real.
 
+Y no era solo el castellano. La web se traduce a seis idiomas, y la misma
+trampa estaba puesta para el francés y el sueco: `à â è å` y compañía también
+apuntaban a la letra pelada. La frase francesa habría salido «Voila Zenorio :
+une maison batie», y la sueca «byggt pa värme». Un senuelo no se ve nunca;
+por eso hay una comprobación automática al final de `acentos.py` que **falla
+el build** si alguna letra acentuada comparte glifo con su pelada o no lleva
+un trazo más que ella.
+
 ## Lo que se le hizo
 
 `acentos.py` genera los signos que faltaban:
@@ -30,6 +38,30 @@ las catorce. Sí trae la diéresis alemana (`ä ö ü`), que es real.
 - La `í` lleva una `i` sin punto construida aparte.
 - Se añadió el punto volado `·`, que tampoco venía y salía como una caja. Es
   su propio punto, subido a media altura de equis.
+
+Después se añadieron las marcas de los otros idiomas, con el mismo criterio
+de no inventar nada que la fuente ya tuviera:
+
+- **El grave** existía, pero como acento suelto ya colocado a su altura (su
+  caja arranca en `y=499`). Como pieza de montaje no sirve, así que se baja
+  al origen igual que el agudo. De ahí salen `à è ì ò ù`.
+- **El circunflejo** es un agudo y un grave que se encuentran en el pico,
+  al 74% y solapados un 26% para que no se vea la junta. `â ê î ô û`.
+- **La diéresis** la dibujó el diseñador, pero fundida dentro de `adieresis`:
+  no hay pieza suelta. Se le sacan los dos puntos quedándose con los
+  contornos que empiezan por encima de la `a` (y > 300). De ahí `ë ï ÿ`.
+- **El anillo** de la `å` sueca sí hay que trazarlo: la fuente no tiene ni un
+  círculo pequeño del que tirar. Va con la pluma de la eñe para que pese
+  igual, y con la vuelta de dentro girando al revés, que es como TrueType
+  entiende que hay un hueco. Si las dos giran igual, sale un lunar.
+- **La cedilla** es su propia coma, al 82% y colgada de la línea base. Ojo
+  con esto: colgarla del fondo de la caja mandaba la de la `Ç` a 781 unidades
+  bajo el suelo, porque las mayúsculas de esta fuente bajan muchísimo con el
+  rasgo final.
+
+Los acentos **sueltos** (`´ ¨ ˆ ˚ ¸`) no se remapean a estas piezas: están
+apoyadas en el origen porque se montan sobre una letra, y un acento suelto
+saldría pegado a la línea base.
 
 También se recablea la tabla `cmap` antigua de Macintosh, que va por bytes y
 en MacRoman: si solo arreglas la de Unicode, la fuente sigue escribiendo
@@ -61,8 +93,28 @@ tiene instalada, y la descripción, que explica qué se le añadió.
 
 ## Lo que falta
 
-- La tilde de la **Ñ mayúscula** queda alta y algo a la derecha. En la web no
-  sale ninguna (los titulares van en caja de frase), pero está ahí.
+- **Las mayúsculas acentuadas** llevan la marca alta y a la derecha. Se
+  comparó con las que dibujó el diseñador midiendo dónde cae la marca sobre
+  el ancho de la letra: `Ä` al 65%, `Ö` al 65%, `Ü` al 55%, y la `É` del
+  injerto al 59%. O sea, dentro de su rango y no fuera. Es el estilo de la
+  fuente: estas mayúsculas llevan un rasgo de salida largo hacia la derecha
+  y el diseñador pone la marca sobre él, no sobre el cuerpo de la letra.
+  Dicho eso, en la web ahora **sí** sale una: el antetítulo francés
+  «Événements». A cuerpo de rótulo (26 px) pasa, pero a tamaños grandes el
+  acento de la `É` parece posarse sobre la `v` siguiente. Si algún día
+  molesta, se corrige solo ese glifo bajándole el `CENTRO_MAY`, a sabiendas
+  de que entonces la `É` deja de ir como la `Ä` del diseñador.
 - No hay kerning entre pares. La fuente original tampoco lo traía.
-- Solo alfabeto latino: si algún día se escribe un titular en ruso, cae a la
-  Bodoni. Está previsto en la pila de `--font-firma`.
+- **Nada de cirílico**, y eso en esta web importa porque se traduce al ruso.
+  Dejarlo al respaldo de fuentes no vale: el navegador sustituye *letra a
+  letra*, no frase a frase, así que «Это и есть Zeñorío» saldría con
+  «Zeñorío» de puño y el resto de Bodoni, y encima en un cuerpo subido un 30%
+  para compensar la equis diminuta de la manuscrita. Por eso en `styles.css`
+  hay una regla `html[lang="ru"]` que quita la mano y devuelve la letra
+  compuesta en su cuerpo normal. Esto importa más desde que la mano se usa
+  en los 27 rótulos cortos (antetítulos y categorías de la carta), que son
+  justo los que en ruso van en cirílico. La firma del chef sí se queda:
+  «Federico Cardenete» es latino en los seis idiomas.
+- Si algún día se traduce a un idioma con alfabeto propio (griego, árabe,
+  japonés), hay que añadirlo a esa misma regla. Lo que no puede pasar es
+  dejarlo al respaldo y confiar.
